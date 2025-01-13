@@ -1,11 +1,14 @@
+<?php 
+include 'view/client/layout/script.php';
+?>
 <footer class="footer padding-t-100 bg-off-white">
         <div class="container">
             <div class="row footer-top padding-b-100">
                 <div class="col-xl-4 col-lg-6 col-sm-12 col-12 cr-footer-border">
                     <div class="cr-footer-logo">
                         <div class="image">
-                            <img src="assets/img/logo/logo.png" alt="logo" class="logo">
-                            <img src="assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
+                            <img src="view/client/assets/img/logo/logo.png" alt="logo" class="logo">
+                            <img src="view/client/assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
                         </div>
                         <p>Carrot is the biggest market of grocery products. Get your daily needs from our store.</p>
                     </div>
