@@ -1,11 +1,12 @@
 <?php
-include 'view/client/layout/header.php';
+require_once 'commons/function.php';
+include 'view/layout/header.php';
 if (isset($_GET['act']) && $_GET['act'] != '') {
     $act = $_GET['act'];
     switch ($act) {
         
     }
 }else{
-    include 'view/client/ctsp.php';
+    include 'view/pagines/product/productDetails.php';
 }
-include 'view/client/layout/footer.php';
+include 'view/layout/footer.php';
