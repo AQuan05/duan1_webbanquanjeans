@@ -26,31 +26,26 @@
 
                         <div class="card-body">
                             <form action="" method="POST" enctype="multipart/form-data">
-                                <div>
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
-                                                <label for="cleave-date" class="form-label">Name</label>
-                                                <input type="text"
-                                                    class="form-control"
-                                                    placeholder="Please enter name"
-                                                    name="name_cate"
-                                                    value="<?php echo isset($_POST['name_cate']) ? htmlspecialchars($_POST['name_cate']) : ''; ?>">
-                                                <input type="text"
-                                                    class="form-control"
-                                                    placeholder="Please enter name"
-                                                    name="name_cate"
-                                                    value="<?php echo isset($_POST['name_cate']) ? htmlspecialchars($_POST['name_cate']) : ''; ?>">
-                                            </div>
 
-                                        </div><!-- end col -->
-                                </div>
-                                <div class="col-sm-auto">
+                                <form action="?act=addCategory" method="post" enctype="multipart/form-data">
+
                                     <div>
-                                        <button type="submit" name="addCate" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>Add Category</button>
-                                    </div>
-                                </div>
-                            </form><!-- end form -->
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="mb-3">
+                                                    <label for="cleave-date" class="form-label">Name</label>
+                                                    <input type="text" class="form-control" placeholder="Please enter name" name="name_cate" value="">
+                                                </div>
+
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                        <div>
+                                            <div class="col-sm-auto">
+                                                <div>
+                                                    <button type="submit" name="addCate" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>Add Category</button>
+                                                </div>
+                                            </div>
+                                </form><!-- end form -->
                         </div><!-- end card-body -->
                     </div><!-- end card -->
                 </div>
@@ -60,22 +55,4 @@
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
-
-
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script> © Velzon.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 </div>

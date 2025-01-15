@@ -26,10 +26,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div class="table-responsive table-card mt-3 mb-1 ">
-
                                 <div class="table-responsive table-card mt-3 mb-1">
 
                                     <table class="table align-middle table-nowrap" id="customerTable">
@@ -62,28 +58,19 @@
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
-                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=editCategories&id=<?= $Category['category_id'] ?>">Edit</a></button>
+                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=updateCategories&category_id=<?= $Category['category_id'] ?>">Edit</a></button>
                                                             </div>
                                                             <div class="remove">
-                                                                <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal"><a href="?act=deleteCategories&id=<?= $Category['category_id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa <?= $Category['category_name'] ?>');">Remove</a></button>
+                                                                <button onclick="return confirm('Bạn có muốn xóa không?')" class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal"><a href="?act=deleteCategories&category_id=<?= $Category['category_id'] ?>">Remove</a></button>
                                                             </div>
                                                         </div>
                                                     </td>
 
                                                 </tr>
-                                                <?php } ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
-                                
-                                
-
-                                                <?php } ?>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
                                 <div class="d-flex justify-content-end">
                                     <div class="pagination-wrap hstack gap-2">
                                         <a class="page-item pagination-prev disabled" href="javascript:void(0);">

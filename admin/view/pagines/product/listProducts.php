@@ -6,7 +6,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">List Category</h4>
+                            <h4 class="card-title mb-0">List Product</h4>
                         </div><!-- end card header -->
 
                         <div class="card-body">
@@ -14,7 +14,7 @@
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <div>
-                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addCategories">Add Category</a> </button>
+                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addProducts">Add Product</a> </button>
                                         </div>
                                     </div>
                                     <div class="col-sm">
@@ -55,16 +55,16 @@
                                                     </th>
                                                     <td class="id"><a href="javascript:void(0);" class="fw-medium link-primary"><?= $listProduct['category_id'] ?></a></td>
                                                     <td class="category_name"><?= $listProduct['product_name'] ?></td>
-                                                    <td><img width="100" src="../uploads/img_sp/<?= $listProduct['image']?>" alt="123"></td>
+                                                    <td><img width="100" src="../admin/view/assets/images/products/<?= $listProduct['image'] ?>" alt="123"></td>
                                                     <td class="category_id"><?= $listProduct['category_id'] ?></td>
                                                     <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
-                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=editCategories">Edit</a></button>
+                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=editProducts&id=<?= $listProduct['category_id'] ?>">Edit</a></button>
                                                             </div>
                                                             <div class="remove">
-                                                                <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Remove</button>
+                                                                <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal"><a href="?act=deleteProduct&id=<?= $listProduct['product_id'] ?>">Remove</a></button>
                                                             </div>
                                                         </div>
                                                     </td>
