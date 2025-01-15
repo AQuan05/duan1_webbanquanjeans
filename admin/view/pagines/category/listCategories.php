@@ -1,3 +1,4 @@
+<?php  require_once '../admin/controller/categoriesController.php'?>
 <div class="main-content">
 <div class="page-content">
     <div class="container-fluid">
@@ -38,20 +39,21 @@
                                             <th class="sort" data-sort="customer_name">ID</th>
                                             <th class="sort" data-sort="email">Name Cate</th>
                                             <th class="sort" data-sort="status">Delivery Status</th>
+                                            <th class="sort" data-sort="status">Status</th>
                                             <th class="sort" data-sort="action">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="list form-check-all">
+
                                         <tr>
-                                            <?php foreach ($listCategories as $key => $value) {?>
+                                            <?php foreach ($Categories as $Category) {  extract($Category);?>
                                             <th scope="row">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                 </div>
                                             </th>
-                                            <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary"><?=$value['id']?></a></td>
-                                            <td class="category_name"><?=$value['category_name']?></td>
-
+                                            <td class="id"><a href="javascript:void(0);" class="fw-medium link-primary"><?=$Category['category_id']?></a></td>
+                                            <td class="category_name"><?=$Category['category_name']?></td>
                                             <td class=""></td>
                                             <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
                                             <td>
