@@ -1,5 +1,4 @@
 <div class="main-content">
-
 <div class="page-content">
     <div class="container-fluid">
 
@@ -35,13 +34,6 @@
                                             <input type="text" class="form-control" placeholder="Please enter name" id="cleave-date">
                                         </div>
 
-                                    </div><!-- end col -->
-
-                                    <div class="col-xl-6">
-                                        <div class="mb-3">
-                                            <label for="cleave-date-format" class="form-label">Description</label>
-                                            <input type="text" class="form-control" placeholder="Please enter description" id="cleave-date-format">
-                                        </div>
                                     </div><!-- end col -->
                                 </div><!-- end row -->
                             </div>

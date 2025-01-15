@@ -6,7 +6,7 @@ class productController{
         $this->Product = new Product();
     }
     public function listProduct(){
-        // $listProduct = $this->Product->listProduct();
-        // require_once 'admin/view/pagines/product/listProduct.php';
+        $listProducts = $this->Product->listProduct();
+        require_once '../admin/view/pagines/product/listProducts.php';
     }
 }

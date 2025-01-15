@@ -11,7 +11,7 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="?act=listProducts">List of Category</a></li>
+                                <li class="breadcrumb-item"><a href="?act=listCategories">List of Category</a></li>
                                 <li class="breadcrumb-item active">Add Category</li>
                             </ol>
                         </div>
@@ -25,13 +25,13 @@
                     <div class="card">
 
                         <div class="card-body">
-                            <form action="?act=addCategory" method="post" enctype="multipart/form-data">
+                            <form action="?act=addCategories" method="post" enctype="multipart/form-data">
                                 <div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3">
                                                 <label for="cleave-date" class="form-label">Name</label>
-                                                <input type="text" class="form-control" placeholder="Please enter name" id="cleave-date">
+                                                <input type="text" class="form-control" placeholder="Please enter name" name="name" id="cleave-date">
                                             </div>
 
                                         </div><!-- end col -->

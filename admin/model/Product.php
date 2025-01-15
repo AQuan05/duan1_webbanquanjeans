@@ -5,7 +5,7 @@ class Product{
         $this->conn = DB();
     }
     function listProduct(){
-        $sql = "SELECT * FROM product";
+        $sql = "SELECT * FROM products";
         return $this->conn->query($sql)->fetchAll();
     }
 }

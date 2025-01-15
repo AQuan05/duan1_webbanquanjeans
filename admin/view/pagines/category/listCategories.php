@@ -14,7 +14,7 @@
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <div>
-                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addCategory">Add Category</a> </button>
+                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addCategories">Add Category</a> </button>
                                         </div>
                                     </div>
                                     <div class="col-sm">
@@ -57,10 +57,10 @@
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
-                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=editCategories">Edit</a></button>
+                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=editCategories&id=<?= $Category['category_id'] ?>">Edit</a></button>
                                                             </div>
                                                             <div class="remove">
-                                                                <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Remove</button>
+                                                                <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal"><a href="?act=deleteCategories&id=<?= $Category['category_id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa <?= $Category['category_name'] ?>');">Remove</a></button>
                                                             </div>
                                                         </div>
                                                     </td>
