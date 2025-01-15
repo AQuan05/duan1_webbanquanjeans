@@ -439,7 +439,7 @@
                                                 <a href="?act=listCategories" class="nav-link" data-key="t-alerts">List of categories</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="?act=addCategories" class="nav-link" data-key="t-badges">Add of categories</a>
+                                                <a href="" class="nav-link" data-key="t-badges">Add of categories</a>
                                             </li>
                                         </ul>
                                     </div>

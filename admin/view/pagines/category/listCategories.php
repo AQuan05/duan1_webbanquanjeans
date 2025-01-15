@@ -35,26 +35,24 @@
                                                     <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                 </div>
                                             </th>
-                                            <th class="sort" data-sort="customer_name">Customer</th>
-                                            <th class="sort" data-sort="email">Email</th>
-                                            <th class="sort" data-sort="phone">Phone</th>
-                                            <th class="sort" data-sort="date">Joining Date</th>
+                                            <th class="sort" data-sort="customer_name">ID</th>
+                                            <th class="sort" data-sort="email">Name Cate</th>
                                             <th class="sort" data-sort="status">Delivery Status</th>
                                             <th class="sort" data-sort="action">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="list form-check-all">
                                         <tr>
+                                            <?php foreach ($listCategories as $key => $value) {?>
                                             <th scope="row">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                 </div>
                                             </th>
-                                            <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ2101</a></td>
-                                            <td class="customer_name">Mary Cousar</td>
-                                            <td class="email">marycousar@velzon.com</td>
-                                            <td class="phone">580-464-4694</td>
-                                            <td class="date">06 Apr, 2021</td>
+                                            <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary"><?=$value['id']?></a></td>
+                                            <td class="category_name"><?=$value['category_name']?></td>
+
+                                            <td class=""></td>
                                             <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
                                             <td>
                                                 <div class="d-flex gap-2">
@@ -66,6 +64,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <?php } ?>
                                         </tr>
                                     </tbody>
                                 </table>                                

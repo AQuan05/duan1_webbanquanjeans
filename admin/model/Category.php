@@ -7,7 +7,8 @@ class Category {
     }
 
     function listCategory() {
-        $sql = "SELECT * FROM category";    
+        $sql = "SELECT * FROM categories";    
         return $this->conn->query($sql)->fetchAll();
     }
+    
 }
