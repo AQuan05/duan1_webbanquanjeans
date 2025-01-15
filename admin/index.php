@@ -26,6 +26,12 @@ switch ($act) {
         $categoriesController = new categoriesController();
         $categoriesController->updateCategoriesController($_GET['category_id']);
         break;
+    case 'listProducts':
+        require_once '../admin/view/pagines/product/listProducts.php';
+        break;
+    case 'addProducts':
+        require_once '../admin/view/pagines/product/addProducts.php';
+        break;
 }
 
 include '../admin/view/layout/footer.php';
