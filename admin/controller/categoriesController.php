@@ -1,5 +1,6 @@
 <?php
 require_once '../admin/model/Category.php';
+
 class categoriesController
 {
     public $categories;
@@ -7,29 +8,69 @@ class categoriesController
     {
         $this->categories = new Category();
     }
-    public function listCategories()
+    public function listCategoriesController()
     {
-        $Categories = $this->categories->listCategories();
+        $Categories = $this->categories->listCategoriesModel();
         require_once '../admin/view/pagines/category/listCategories.php';
     }
-    public function addCategory()
+    function addCategoriesController()
     {
-        if (isset($_POST['add'])) {
-            $name = $_POST['name'];
-            $this->categories->addCategory($name);
-            header('Location:?act=listCategories');
-            exit();
-        } else {
-            include '../admin/view/pagines/category/addCategories.php';
+        require_once '../admin/view/pagines/category/addCategories.php';
+        if (isset($_POST['addCate'])) {
+            $name = htmlspecialchars(trim($_POST['name_cate']));
+            if (empty($name)) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Error!",
+                        text: "Category name cannot be empty!.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+                return;
+            }
+            if (strlen($name) < 5) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Error!",
+                        text: "Category name cannot be less than 5.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+                return;
+            }
+            if ($this->categories->addCategoriesModel($name)) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "success",
+                        title: "successfully!",
+                        text: "Add category successfully.",
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        window.location.href = "index.php?act=listCategories";
+                    });
+                });
+            </script>';
+            } else {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Thất bại!",
+                        text: "Không thể thêm danh mục, vui lòng thử lại.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+            }
+            exit;
         }
-    }
-    public function deleteCategory($id)
-    {
-        if ($this->categories->deleteCategory($id)) {
-            echo "<script>alert('Xóa thành công!'); window.location.href = 'index.php?act=listCategories';</script>";
-        } else {
-            echo "<script>alert('Xóa thất bại!'); window.location.href = 'index.php?act=listCategories';</script>";
-        }
-        exit();
     }
 }
