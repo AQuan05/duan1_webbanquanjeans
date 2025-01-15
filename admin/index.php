@@ -8,15 +8,14 @@ include '../admin/view/layout/header.php';
 
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
-    // case 'listCategories':
-    //     $categoryController = new Category();
-    //     $categoryController->listCategories();
-    //     break;
     case 'listCategories':
         $categoriesController = new categoriesController();
-        $categoriesController->listCategories();
+        $categoriesController->listCategoriesController();
         break;
-        
+    case 'addCategories':
+        $categoriesController = new categoriesController();
+        $categoriesController->addCategoriesController();
+        break;
 
 }
 

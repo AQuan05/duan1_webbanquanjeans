@@ -25,43 +25,16 @@
                     <div class="card">
 
                         <div class="card-body">
-                            <form action="#">
+                            <form action="" method="POST" enctype="multipart/form-data">
                                 <div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3">
                                                 <label for="cleave-date" class="form-label">Name</label>
-                                                <input type="text" class="form-control" placeholder="Please enter name" id="cleave-date">
+                                                <input type="text" class="form-control" placeholder="Please enter name" id="cleave-date" name="name_cate">
                                             </div>
 
                                         </div><!-- end col -->
-
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
-                                                <label for="cleave-date-format" class="form-label">Description</label>
-                                                <input type="text" class="form-control" placeholder="Please enter description" id="cleave-date-format">
-                                            </div>
-                                        </div><!-- end col -->
-                                    </div><!-- end row -->
-                                </div>
-
-                                <div class="mt-4">
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
-                                                <label for="cleave-time" class="form-label">Date created</label>
-                                                <input type="text" class="form-control" placeholder="DD/MM/YYYY" id="cleave-time">
-                                            </div>
-
-                                        </div><!-- end col -->
-
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
-                                                <label for="cleave-time-format" class="form-label">Date updated</label>
-                                                <input type="text" class="form-control" placeholder="DD/MM/YYYY" id="cleave-time-format">
-                                            </div>
-                                        </div><!-- end col -->
-                                    </div><!-- end row -->
                                 </div>
                                 <div class="col-sm-auto">
                                     <div>
