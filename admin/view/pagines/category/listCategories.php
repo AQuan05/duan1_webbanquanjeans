@@ -14,7 +14,11 @@
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <div>
+
                                             <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addCategories">Add Category</a> </button>
+
+                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addCategory">Add Category</a> </button>
+
                                         </div>
                                     </div>
                                     <div class="col-sm">
@@ -27,7 +31,11 @@
                                     </div>
                                 </div>
 
+
                                 <div class="table-responsive table-card mt-3 mb-1 ">
+
+                                <div class="table-responsive table-card mt-3 mb-1">
+
                                     <table class="table align-middle table-nowrap" id="customerTable">
                                         <thead class="table-light">
                                             <tr>
@@ -65,6 +73,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
+
                                                 </tr>
                                                 <?php } ?>
                                         </tbody>
@@ -72,6 +81,13 @@
                                 </div>
                                 
                                 
+
+                                                <?php } ?>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                                 <div class="d-flex justify-content-end">
                                     <div class="pagination-wrap hstack gap-2">
                                         <a class="page-item pagination-prev disabled" href="javascript:void(0);">

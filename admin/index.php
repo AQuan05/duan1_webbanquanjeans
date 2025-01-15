@@ -11,6 +11,7 @@ require_once '../admin/controller/categoriesController.php';
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
     case 'listCategories':
+
         $categoriesController = new categoriesController();
         $categoriesController->listCategoriesController();
         break;
@@ -18,6 +19,13 @@ switch ($act) {
         $categoriesController = new categoriesController();
         $categoriesController->addCategoriesController();
         break;
+
+
+        include '../admin/view/pagines/category/listCategories.php';
+        break;
+        
+    default:
+        include '../admin/view/pagines/home.php';
 
 }
 
