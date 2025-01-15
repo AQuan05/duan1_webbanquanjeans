@@ -1,12 +1,80 @@
 <?php
 require_once '../admin/model/Product.php';
-class productController{
+class productController
+{
     public $Product;
-    public function __construct() {
+    public function __construct()
+    {
         $this->Product = new Product();
     }
-    public function listProduct(){
-        // $listProduct = $this->Product->listProduct();
-        // require_once 'admin/view/pagines/product/listProduct.php';
+    public function listProductsController()
+    {
+        $listProducts = $this->Product->listProductModel();
+        // $Categories = $this->Product->getProductsWithCategoryNames();
+        require_once '../admin/view/pagines/product/listProducts.php';
+    }
+    public function addProductsController()
+    {
+        $Categories = $this->Product->getProductsWithCategoryNames();
+        require_once '../admin/view/pagines/product/addProducts.php';
+
+        if (isset($_POST['addPro'])) {
+            // Lấy giá trị từ form
+            $product_name = $_POST['product_name'];
+            $category_id = $_POST['category_id'];
+            $description = $_POST['description'];
+            $image = ''; // Khởi tạo image mặc định
+
+            // Kiểm tra và xử lý hình ảnh nếu có
+            if ($_FILES['image']['name'] != '') {
+                $image = $_FILES['image']['name'];
+                move_uploaded_file($_FILES['image']['tmp_name'], '../admin/view/assets/images/products' . $image);
+            }
+
+            // Gọi phương thức thêm sản phẩm vào cơ sở dữ liệu
+            // var_dump($this->Product->addProductModel($product_name, $image, $category_id, $description)); // Debugging
+            // print_r($_POST);
+            // exit();
+            if ($this->Product->addProductModel($product_name, $image, $category_id, $description)) {
+                // Nếu thêm thành công, chuyển hướng đến trang danh sách sản phẩm
+                echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: "success",
+                title: "successfully!",
+                text: "Add category successfully.",
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+            window.location.href = "index.php?act=listProducts";
+            });
+        });
+    </script>';
+            } else {
+                echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: "error",
+                title: "Failed!",
+                text: "Not add products, please try again.",
+                showConfirmButton: true
+            });
+        });
+    </script>';
+            }
+            exit();
+        }
+    }
+    public function deleteProductController($product_id)
+    {
+        $product_id = $_GET['id'];
+        // if (isset($_GET['product_id'])) {
+            // $product_id = $_GET['product_id'];
+            if ($this->Product->deleteProductModel($product_id)) {
+                echo 'Xoa thanh cong';
+                header('location: ?act=listProducts');
+                // exit
+            }
+        // }
     }
 }

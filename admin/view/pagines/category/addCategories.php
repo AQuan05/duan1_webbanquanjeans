@@ -25,7 +25,6 @@
                     <div class="card">
 
                         <div class="card-body">
-
                             <form action="" method="POST" enctype="multipart/form-data">
 
                                 <form action="?act=addCategory" method="post" enctype="multipart/form-data">
@@ -49,6 +48,7 @@
                                             <button type="submit" name="addCate" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>Add Category</button>
                                         </div>
                                     </div>
+
                                 </form><!-- end form -->
                         </div><!-- end card-body -->
                     </div><!-- end card -->
@@ -59,7 +59,5 @@
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
-
-
 
 </div>
