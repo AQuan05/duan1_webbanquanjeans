@@ -8,6 +8,7 @@ class categoriesController
     {
         $this->categories = new Category();
     }
+
     public function listCategoriesController()
     {
         $Categories = $this->categories->listCategoriesModel();

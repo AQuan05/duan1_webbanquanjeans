@@ -6,6 +6,7 @@ class Category{
     public function __construct(){
         $this->conn = DB();
     }
+
     function listCategoriesModel(){
         $sql = "SELECT * FROM categories";
         return $this->conn->query($sql)->fetchAll();
@@ -24,6 +25,17 @@ class Category{
         $sql = "UPDATE categories SET category_name = '$category_name' WHERE category_id = $category_id";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
+    }
+
+
+
+    function listCategories() {
+        $sql = "SELECT * FROM categories";    
+        return $this->conn->query($sql)->fetchAll();
+    }
+    function addCategory($name) {
+        $sql = "INSERT INTO `categories` VALUES (null'$name')";
+        return $this->conn->query($sql);
     }
 
 }
