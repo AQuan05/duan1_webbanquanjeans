@@ -11,7 +11,6 @@ require_once '../admin/controller/categoriesController.php';
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
     case 'listCategories':
-
         $categoriesController = new categoriesController();
         $categoriesController->listCategoriesController();
         break;
@@ -22,6 +21,10 @@ switch ($act) {
     case 'deleteCategories':
         $categoriesController = new categoriesController();
         $categoriesController->deleteCategoriesController($_GET['category_id']);
+        break;
+    case 'updateCategories':
+        $categoriesController = new categoriesController();
+        $categoriesController->updateCategoriesController($_GET['category_id']);
         break;
 }
 

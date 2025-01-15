@@ -26,5 +26,10 @@ class Category{
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
+    function findCategoryModel($category_id){
+        $sql = "SELECT * FROM categories WHERE category_id = $category_id";
+        return $this->conn->query($sql)->fetch();
+
+    }
     
 }

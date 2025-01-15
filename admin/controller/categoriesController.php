@@ -71,7 +71,7 @@ class categoriesController
                 });
             </script>';
             }
-            exit;
+            exit();
         }
     }
     function deleteCategoriesController($category_id)
@@ -123,7 +123,64 @@ class categoriesController
     }
     function updateCategoriesController($category_id)
     {
+        $oneCategory = $this->categories->findCategoryModel($category_id);
         require_once '../admin/view/pagines/category/editCategories.php';
-        
+        if (isset($_POST['updateCate'])) {
+            $category_id = $_POST['category_id'];
+            $name = htmlspecialchars(trim($_POST['name_cate']));
+            if (empty($name)) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Error!",
+                        text: "Category name cannot be empty!.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+                return;
+            }
+            if (strlen($name) < 5) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Error!",
+                        text: "Category name cannot be less than 5.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+                return;
+            }
+            if ($this->categories->updateCategoriesModel($category_id, $name)) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "success",
+                        title: "successfully!",
+                        text: "Update category successfully.",
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        window.location.href = "index.php?act=listCategories";
+                    });
+                });
+            </script>';
+            } else {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Thất bại!",
+                        text: "Không thể thêm danh mục, vuiが thử lagi.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+            }
+            exit();
+        }
     }
 }
