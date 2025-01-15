@@ -25,17 +25,28 @@
                     <div class="card">
 
                         <div class="card-body">
+
+                            <form action="" method="POST" enctype="multipart/form-data">
+
                             <form action="?act=addCategory" method="post" enctype="multipart/form-data">
+
                                 <div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3">
                                                 <label for="cleave-date" class="form-label">Name</label>
-                                                <input type="text" class="form-control" placeholder="Please enter name" id="cleave-date">
+                                                <input type="text"
+                                                    class="form-control"
+                                                    placeholder="Please enter name"
+                                                    name="name_cate"
+                                                    value="<?php echo isset($_POST['name_cate']) ? htmlspecialchars($_POST['name_cate']) : ''; ?>">
                                             </div>
 
                                         </div><!-- end col -->
+
+
                                     </div><!-- end row -->
+
                                 </div>
                                 <div class="col-sm-auto">
                                     <div>

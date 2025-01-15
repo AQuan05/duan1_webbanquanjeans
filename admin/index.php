@@ -1,24 +1,34 @@
 <?php
+ob_start();
 require_once '../commons/function.php';
 //model
+include '../admin/view/layout/header.php';
 require_once '../admin/model/Category.php';
 //controller
 require_once '../admin/controller/categoriesController.php';
-include '../admin/view/layout/header.php';
+
 
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
-    // case 'listCategories':
-    //     $categoryController = new Category();
-    //     $categoryController->listCategories();
-    //     break;
     case 'listCategories':
+
+        $categoriesController = new categoriesController();
+        $categoriesController->listCategoriesController();
+        break;
+    case 'addCategories':
+        $categoriesController = new categoriesController();
+        $categoriesController->addCategoriesController();
+        break;
+
+
         include '../admin/view/pagines/category/listCategories.php';
         break;
         
     default:
         include '../admin/view/pagines/home.php';
+
 }
 
 include '../admin/view/layout/footer.php';
+ob_end_flush();
 ?>
