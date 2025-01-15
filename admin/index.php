@@ -27,6 +27,7 @@ switch ($act) {
     case 'updateCategories':
         $categoriesController = new categoriesController();
         $categoriesController->updateCategoriesController($_GET['category_id']);
+
         break;
     case 'listProducts':
         $productsController = new productController();
@@ -39,6 +40,7 @@ switch ($act) {
     case 'deleteProduct':
         $productsController = new productController();
         $productsController->deleteProductController($_GET['id']);
+
         break;
 }
 

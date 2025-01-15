@@ -444,6 +444,7 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a href="?act=addCategories" class="nav-link" data-key="t-badges">Add of categories</a>
+
                                             </li>
                                         </ul>
                                     </div>

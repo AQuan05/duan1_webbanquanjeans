@@ -38,13 +38,17 @@
                                                 </div>
 
                                             </div><!-- end col -->
+
+
                                         </div><!-- end row -->
+
+                                    </div>
+                                    <div class="col-sm-auto">
                                         <div>
-                                            <div class="col-sm-auto">
-                                                <div>
-                                                    <button type="submit" name="addCate" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>Add Category</button>
-                                                </div>
-                                            </div>
+                                            <button type="submit" name="addCate" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>Add Category</button>
+                                        </div>
+                                    </div>
+
                                 </form><!-- end form -->
                         </div><!-- end card-body -->
                     </div><!-- end card -->
@@ -55,4 +59,5 @@
         </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
+
 </div>
