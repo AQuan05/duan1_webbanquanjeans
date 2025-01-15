@@ -1,14 +1,13 @@
 <?php
-class Category {
+
+class Category{
     public $conn;
 
-    function __construct() {
+    public function __construct(){
         $this->conn = DB();
     }
-
-    function listCategory() {
-        $sql = "SELECT * FROM categories";    
+    function listCategories(){
+        $sql = "SELECT * FROM categories";
         return $this->conn->query($sql)->fetchAll();
     }
-    
 }
