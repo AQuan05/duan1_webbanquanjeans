@@ -123,19 +123,7 @@ class categoriesController
     }
     function updateCategoriesController($category_id)
     {
-        if (empty($category_id) || !is_numeric($category_id)) {
-            echo '<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            Swal.fire({
-                icon: "error",
-                title: "Lỗi!",
-                text: "ID danh mục không hợp lệ.",
-                showConfirmButton: true
-            });
-        });
-        </script>';
-            exit();
-        }
-        require_once '../admin/view/pagines/category/updateCategories.php';
+        require_once '../admin/view/pagines/category/editCategories.php';
+        
     }
 }

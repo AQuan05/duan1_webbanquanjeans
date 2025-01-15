@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-sm-auto">
                                     <div>
-                                        <button type="submit" name="add" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>Add Category</button>
+                                    <button type="submit" name="addCate" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>Add Category</button>
                                     </div>
                                 </div>
                             </form><!-- end form -->
@@ -65,20 +65,5 @@
     <!-- End Page-content -->
 
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script> © Velzon.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+
 </div>

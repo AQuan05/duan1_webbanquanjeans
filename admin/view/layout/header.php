@@ -444,8 +444,6 @@
 
                                                 <a href="?act=addCategories" class="nav-link" data-key="t-badges">Add of categories</a>
 
-                                                <a href="?act=addCategory" class="nav-link" data-key="t-badges">Add of categories</a>
-
                                             </li>
                                         </ul>
                                     </div>
