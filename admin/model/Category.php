@@ -6,9 +6,12 @@ class Category {
         $this->conn = DB();
     }
 
-    function listCategory() {
+    function listCategories() {
         $sql = "SELECT * FROM categories";    
         return $this->conn->query($sql)->fetchAll();
     }
-    
+    function addCategory($name) {
+        $sql = "INSERT INTO `categories` VALUES (null'$name')";
+        return $this->conn->query($sql);
+    }
 }

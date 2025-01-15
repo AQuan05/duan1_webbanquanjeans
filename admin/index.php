@@ -1,20 +1,25 @@
 <?php
 require_once '../commons/function.php';
-include '../admin/view/layout/header.php';
-require_once '../admin/controller/categoryController.php';
+//model
 require_once '../admin/model/Category.php';
+//controller
+require_once '../admin/controller/categoriesController.php';
+include '../admin/view/layout/header.php';
 
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
-    case 'listProducts':
-        include '../admin/view/pagines/product/listProducts.php'; // Đảm bảo đường dẫn đúng
-        break;
+    // case 'listCategories':
+    //     $categoryController = new Category();
+    //     $categoryController->listCategories();
+    //     break;
     case 'listCategories':
-        include '../admin/view/pagines/category/listCategories.php';
+        $categoriesController = new categoriesController();
+        $categoriesController->listCategories();
         break;
-        
-    default:
-        include '../admin/view/pagines/home.php';
+    case 'addCategory':
+        $categoriesController = new categoriesController();
+        $categoriesController->addCategory();
+        break;
 }
 
 include '../admin/view/layout/footer.php';
