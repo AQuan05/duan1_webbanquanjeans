@@ -1,8 +1,9 @@
 <?php
-class Category {
+
+class Category{
     public $conn;
 
-    function __construct() {
+    public function __construct(){
         $this->conn = DB();
     }
 

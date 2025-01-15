@@ -13,13 +13,11 @@ switch ($act) {
     //     $categoryController->listCategories();
     //     break;
     case 'listCategories':
-        $categoriesController = new categoriesController();
-        $categoriesController->listCategories();
+        include '../admin/view/pagines/category/listCategories.php';
         break;
-    case 'addCategory':
-        $categoriesController = new categoriesController();
-        $categoriesController->addCategory();
-        break;
+        
+    default:
+        include '../admin/view/pagines/home.php';
 }
 
 include '../admin/view/layout/footer.php';
