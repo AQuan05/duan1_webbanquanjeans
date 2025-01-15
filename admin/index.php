@@ -18,7 +18,10 @@ switch ($act) {
         $categoriesController = new categoriesController();
         $categoriesController->addCategoriesController();
         break;
-
+    case 'deleteCategories':
+        $categoriesController = new categoriesController();
+        $categoriesController->deleteCategoriesController($_GET['category_id']);
+        break;
 }
 
 include '../admin/view/layout/footer.php';

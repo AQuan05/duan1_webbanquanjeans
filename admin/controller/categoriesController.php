@@ -73,4 +73,68 @@ class categoriesController
             exit;
         }
     }
+    function deleteCategoriesController($category_id)
+    {
+        // Kiểm tra $category_id có hợp lệ hay không
+        if (empty($category_id) || !is_numeric($category_id)) {
+            echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: "error",
+                title: "Lỗi!",
+                text: "ID danh mục không hợp lệ.",
+                showConfirmButton: true
+            });
+        });
+        </script>';
+            exit();
+        }
+
+        // Thực hiện xóa danh mục
+        if ($this->categories->deleteCategoriesModel($category_id)) {
+            echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: "success",
+                title: "Thành công!",
+                text: "Xóa danh mục thành công.",
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                window.location.href = "index.php?act=listCategories";
+            });
+        });
+        </script>';
+        } else {
+            echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: "error",
+                title: "Thất bại!",
+                text: "Không thể xóa danh mục, vui lòng thử lại.",
+                showConfirmButton: true
+            });
+        });
+        </script>';
+        }
+
+        exit();
+    }
+    function updateCategoriesController($category_id)
+    {
+        if (empty($category_id) || !is_numeric($category_id)) {
+            echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: "error",
+                title: "Lỗi!",
+                text: "ID danh mục không hợp lệ.",
+                showConfirmButton: true
+            });
+        });
+        </script>';
+            exit();
+        }
+        require_once '../admin/view/pagines/category/updateCategories.php';
+    }
 }
