@@ -8,6 +8,5 @@ class productController{
     public function listProduct(){
         // $listProduct = $this->Product->listProduct();
         // require_once 'admin/view/pagines/product/listProduct.php';
-        return '../admin/view/pagines/product/listProduct.php';
     }
 }

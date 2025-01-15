@@ -1,17 +1,25 @@
-		<!-- Footer -->
-		<footer>
-		    <div class="container-fluid">
-		        <div class="copyright">
-		            <p><span id="copyright_year"></span> © Carrot, All rights Reserved.</p>
-		            <p>Design by MaraviyaInfotech.</p>
-		        </div>
-		    </div>
-		    <?php include 'view/layout/script.php'; ?>
-		</footer>
-		</main>
-		</body>
+<?php
+include_once '../admin/view/layout/script.php';
+?>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> © Velzon.
+            </div>
+            <div class="col-sm-6">
+                <div class="text-sm-end d-none d-sm-block">
+                    Design & Develop by Themesbrand
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</body>
 
+<!-- Mirrored from themesbrand.com/velzon/html/master/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Jan 2025 15:25:02 GMT -->
 
-		<!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/admin-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Jan 2025 05:58:56 GMT -->
-
-		</html>
+</html>

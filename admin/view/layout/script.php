@@ -1,21 +1,23 @@
-<script src="../admin/view/assets/js/vendor/jquery-3.6.4.min.js"></script>
-	<script src="../admin/view/assets/js/vendor/simplebar.min.js"></script>
-	<script src="../admin/view/assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<script src="../admin/view/assets/js/vendor/apexcharts.min.js"></script>
-	<script src="../admin/view/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
-	<script src="../admin/view/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="../admin/view/assets/js/vendor/owl.carousel.min.js"></script>
-	<!-- Data Tables -->
-	<script src='../admin/view/assets/js/vendor/jquery.datatables.min.js'></script>
-	<script src='../admin/view/assets/js/vendor/datatables.bootstrap5.min.js'></script>
-	<script src='../admin/view/assets/js/vendor/datatables.responsive.min.js'></script>
-	<!-- Caleddar -->
-	<script src="../admin/view/assets/js/vendor/jquery.simple-calendar.js"></script>
-	<!-- Date Range Picker -->
-	<script src="../admin/view/assets/js/vendor/moment.min.js"></script>
-	<script src="../admin/view/assets/js/vendor/daterangepicker.js"></script>
-	<script src="../admin/view/assets/js/vendor/date-range.js"></script>
+<!-- JAVASCRIPT -->
+<script src="../admin/view/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../admin/view/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../admin/view/assets/libs/node-waves/waves.min.js"></script>
+    <script src="../admin/view/assets/libs/feather-icons/feather.min.js"></script>
+    <script src="../admin/view/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="../admin/view/assets/js/plugins.js"></script>
 
-	<!-- Main Custom -->
-	<script src="../admin/view/assets/js/main.js"></script>
-	<script src="../admin/view/assets/js/data/ecommerce-chart-data.js"></script>
+    <!-- apexcharts -->
+    <script src="../admin/view/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Vector map-->
+    <script src="../admin/view/assets/libs/jsvectormap/jsvectormap.min.js"></script>
+    <script src="../admin/view/assets/libs/jsvectormap/maps/world-merc.js"></script>
+
+    <!--Swiper slider js-->
+    <script src="../admin/view/assets/libs/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Dashboard init -->
+    <script src="../admin/view/assets/js/pages/dashboard-ecommerce.init.js"></script>
+
+    <!-- App js -->
+    <script src="../admin/view/assets/js/app.js"></script>  

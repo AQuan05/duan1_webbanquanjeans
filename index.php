@@ -7,6 +7,6 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
         
     }
 }else{
-    include 'view/pagines/product/productDetails.php';
+    include 'view/pagines/home.php';
 }
 include 'view/layout/footer.php';
