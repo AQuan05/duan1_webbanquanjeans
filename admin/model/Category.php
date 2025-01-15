@@ -6,6 +6,7 @@ class Category{
     public function __construct(){
         $this->conn = DB();
     }
+
     function listCategoriesModel(){
         $sql = "SELECT * FROM categories";
         return $this->conn->query($sql)->fetchAll();

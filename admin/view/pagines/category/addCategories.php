@@ -36,6 +36,11 @@
                                                     placeholder="Please enter name"
                                                     name="name_cate"
                                                     value="<?php echo isset($_POST['name_cate']) ? htmlspecialchars($_POST['name_cate']) : ''; ?>">
+                                                <input type="text"
+                                                    class="form-control"
+                                                    placeholder="Please enter name"
+                                                    name="name_cate"
+                                                    value="<?php echo isset($_POST['name_cate']) ? htmlspecialchars($_POST['name_cate']) : ''; ?>">
                                             </div>
 
                                         </div><!-- end col -->

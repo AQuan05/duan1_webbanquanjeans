@@ -8,6 +8,7 @@ class categoriesController
     {
         $this->categories = new Category();
     }
+
     public function listCategoriesController()
     {
         $Categories = $this->categories->listCategoriesModel();
@@ -73,4 +74,17 @@ class categoriesController
             exit;
         }
     }
+    public function listCategories()
+    {
+        $Categories = $this->categories->listCategoriesModel();
+        require_once '../admin/view/pagines/category/listCategories.php';
+    }
+    function addCategory() {
+        if(isset($_POST['add']) && ($_POST['add'])) {
+            $name = $_POST['name'];
+            $this->categories->addCategoriesModel($name);
+        }
+        require_once '../admin/view/pagines/category/listCategories.php';
+    }
 }
+
