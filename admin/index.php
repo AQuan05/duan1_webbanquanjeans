@@ -1,10 +1,12 @@
 <?php
+ob_start();
 require_once '../commons/function.php';
 //model
+include '../admin/view/layout/header.php';
 require_once '../admin/model/Category.php';
 //controller
 require_once '../admin/controller/categoriesController.php';
-include '../admin/view/layout/header.php';
+
 
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
@@ -20,4 +22,5 @@ switch ($act) {
 }
 
 include '../admin/view/layout/footer.php';
+ob_end_flush();
 ?>
