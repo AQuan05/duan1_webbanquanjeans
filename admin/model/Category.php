@@ -20,21 +20,26 @@ class Category
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
+
     function deleteCategoriesModel($category_id)
     {
         $sql = "DELETE FROM categories WHERE category_id = $category_id";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
-    }
-    function updateCategoriesModel($category_id, $category_name)
-    {
+    } 
+    function updateCategoriesModel($category_id, $category_name){
+
         $sql = "UPDATE categories SET category_name = '$category_name' WHERE category_id = $category_id";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
+
     function findCategoryModel($category_id)
     {
         $sql = "SELECT * FROM categories WHERE category_id = $category_id";
         return $this->conn->query($sql)->fetch();
     }
 }
+    
+}
+
