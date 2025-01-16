@@ -34,6 +34,17 @@ class Product
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
+    function updateProductModel($product_id, $product_name, $image, $category_id, $description)
+    {
+        $sql = "UPDATE `products` SET `product_name` = '$product_name', `image` = '$image', `category_id` = '$category_id', `description` = '$description' WHERE `product_id` = $product_id";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute();
+    }
+    function findProductModel($product_id)
+    {
+        $sql = "SELECT * FROM `products` WHERE `product_id` = $product_id";
+        return $this->conn->query($sql)->fetch();
+    }
 }
 
 

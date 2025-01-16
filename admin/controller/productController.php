@@ -69,12 +69,78 @@ class productController
     {
         $product_id = $_GET['id'];
         // if (isset($_GET['product_id'])) {
-            // $product_id = $_GET['product_id'];
-            if ($this->Product->deleteProductModel($product_id)) {
-                echo 'Xoa thanh cong';
-                header('location: ?act=listProducts');
-                // exit
-            }
+        // $product_id = $_GET['product_id'];
+        if ($this->Product->deleteProductModel($product_id)) {
+            echo 'Xoa thanh cong';
+            header('location: ?act=listProducts');
+            // exit
+        }
         // }
+    }
+    function updateProductController($product_id)
+    {
+        $Categories = $this->Product->getProductsWithCategoryNames();
+        $oneProduct = $this->Product->findProductModel($product_id);
+        require_once '../admin/view/pagines/product/editProduct.php';
+        if (isset($_POST['updatePro'])) {
+            $product_id = $_POST['product_id'];
+            $description = $_POST['description'];
+            $image = $_FILES['image']['name'];
+            $category_id = $_POST['category_id'];
+            $product_name = htmlspecialchars(trim($_POST['product_name']));
+            if (empty($product_name)) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Error!",
+                        text: "Product name cannot be empty!.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+                return;
+            }
+            if (strlen($product_name) < 5) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Error!",
+                        text: "Product name cannot be less than 5.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+                return;
+            }
+            if ($this->Product->updateProductModel($product_id, $product_name, $image, $category_id, $description)) {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "success",
+                        title: "successfully!",
+                        text: "Update product successfully.",
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        window.location.href = "index.php?act=listProducts";
+                    });
+                });
+            </script>';
+            } else {
+                echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Thất bại!",
+                        text: "Không thể cập nhật sản phẩm, vui lòng thử lại.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
+            }
+            exit();
+        }
     }
 }

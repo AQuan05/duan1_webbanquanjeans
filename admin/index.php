@@ -40,6 +40,10 @@ switch ($act) {
         $productsController = new productController();
         $productsController->deleteProductController($_GET['id']);
         break;
+    case 'editProduct':
+        $productsController = new productController();
+        $productsController->updateProductController($_GET['id']);
+        break;
 }
 
 include '../admin/view/layout/footer.php';

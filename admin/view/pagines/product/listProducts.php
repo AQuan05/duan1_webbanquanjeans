@@ -53,7 +53,7 @@
                                                             <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                         </div>
                                                     </th>
-                                                    <td class="id"><a href="javascript:void(0);" class="fw-medium link-primary"><?= $listProduct['category_id'] ?></a></td>
+                                                    <td class="id"><a href="javascript:void(0);" class="fw-medium link-primary"><?= $listProduct['product_id'] ?></a></td>
                                                     <td class="category_name"><?= $listProduct['product_name'] ?></td>
                                                     <td><img width="100" src="../admin/view/assets/images/products/<?= $listProduct['image'] ?>" alt="123"></td>
                                                     <td class="category_id"><?= $listProduct['category_id'] ?></td>
@@ -61,7 +61,7 @@
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
-                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=editProducts&id=<?= $listProduct['category_id'] ?>">Edit</a></button>
+                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=editProduct&id=<?= $listProduct['product_id'] ?>">Edit</a></button>
                                                             </div>
                                                             <div class="remove">
                                                                 <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal"><a href="?act=deleteProduct&id=<?= $listProduct['product_id'] ?>">Remove</a></button>
