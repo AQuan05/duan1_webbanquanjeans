@@ -78,19 +78,19 @@ class productController
         // }
     }
     function updateProductController($product_id)
-{
-    $Categories = $this->Product->getProductsWithCategoryNames();
-    $oneProduct = $this->Product->findProductModel($product_id);
-    require_once '../admin/view/pagines/product/editProduct.php';
-    if (isset($_POST['updatePro'])) {
-        $product_id = $_POST['product_id'];
-        $description = $_POST['description'];
-        $category_id = $_POST['category_id'];
-        $product_name = htmlspecialchars(trim($_POST['product_name']));
+    {
+        $Categories = $this->Product->getProductsWithCategoryNames();
+        $oneProduct = $this->Product->findProductModel($product_id);
+        require_once '../admin/view/pagines/product/editProduct.php';
+        if (isset($_POST['updatePro'])) {
+            $product_id = $_POST['product_id'];
+            $description = $_POST['description'];
+            $category_id = $_POST['category_id'];
+            $product_name = htmlspecialchars(trim($_POST['product_name']));
 
-        // Validate product name
-        if (empty($product_name)) {
-            echo '<script>
+            // Validate product name
+            if (empty($product_name)) {
+                echo '<script>
             document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: "warning",
@@ -100,10 +100,10 @@ class productController
                 });
             });
         </script>';
-            return;
-        }
-        if (strlen($product_name) < 5) {
-            echo '<script>
+                return;
+            }
+            if (strlen($product_name) < 5) {
+                echo '<script>
             document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: "warning",
@@ -113,25 +113,25 @@ class productController
                 });
             });
         </script>';
-            return;
-        }
+                return;
+            }
 
-        // Handle image upload
-        $image = $oneProduct['image']; // Keep current image by default
-        if (isset($_FILES['image']) && $_FILES['image']['name'] != "") {
-            $targetDir = "../admin/view/assets/images/products/";
-            $imageName = basename($_FILES['image']['name']);
-            $targetFile = $targetDir . $imageName;
+            // Handle image upload
+            $image = $oneProduct['image']; // Keep current image by default
+            if (isset($_FILES['image']) && $_FILES['image']['name'] != "") {
+                $targetDir = "../admin/view/assets/images/products/";
+                $imageName = basename($_FILES['image']['name']);
+                $targetFile = $targetDir . $imageName;
 
-            // Check if upload is successful
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                // Delete old image if exists
-                if (file_exists($targetDir . $oneProduct['image'])) {
-                    unlink($targetDir . $oneProduct['image']);
-                }
-                $image = $imageName;
-            } else {
-                echo '<script>
+                // Check if upload is successful
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                    // Delete old image if exists
+                    if (file_exists($targetDir . $oneProduct['image'])) {
+                        unlink($targetDir . $oneProduct['image']);
+                    }
+                    $image = $imageName;
+                } else {
+                    echo '<script>
                 document.addEventListener("DOMContentLoaded", function() {
                     Swal.fire({
                         icon: "error",
@@ -141,13 +141,13 @@ class productController
                     });
                 });
             </script>';
-                return;
+                    return;
+                }
             }
-        }
 
-        // Update product information
-        if ($this->Product->updateProductModel($product_id, $product_name, $image, $category_id, $description)) {
-            echo '<script>
+            // Update product information
+            if ($this->Product->updateProductModel($product_id, $product_name, $image, $category_id, $description)) {
+                echo '<script>
             document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: "success",
@@ -160,8 +160,8 @@ class productController
                 });
             });
         </script>';
-        } else {
-            echo '<script>
+            } else {
+                echo '<script>
             document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: "error",
@@ -171,9 +171,8 @@ class productController
                 });
             });
         </script>';
+            }
+            exit();
         }
-        exit();
     }
-}
-
 }
