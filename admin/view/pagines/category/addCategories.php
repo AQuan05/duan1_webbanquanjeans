@@ -39,7 +39,6 @@
 
                                             </div><!-- end col -->
 
-
                                         </div><!-- end row -->
 
                                     </div>

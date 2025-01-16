@@ -153,6 +153,7 @@ class categoriesController
 
         }
     }
+
     function deleteCategoriesController($category_id)
     {
         // Kiểm tra $category_id có hợp lệ hay không
@@ -201,4 +202,5 @@ class categoriesController
         exit();
     }
    
+
 }

@@ -1,14 +1,13 @@
 <?php
 ob_start();
-ob_start();
 require_once '../commons/function.php';
 //model
-include '../admin/view/layout/header.php';
 require_once '../admin/model/Category.php';
 require_once '../admin/model/Product.php';
 //controller
 require_once '../admin/controller/categoriesController.php';
 require_once '../admin/controller/productController.php';
+include '../admin/view/layout/header.php';
 
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
@@ -42,14 +41,7 @@ switch ($act) {
         $productsController->deleteProductController($_GET['id']);
 
         break;
-    case 'listProducts':
-        require_once '../admin/view/pagines/product/listProducts.php';
-        break;
-    case 'addProducts':
-        require_once '../admin/view/pagines/product/addProducts.php';
-        break;
 }
 
 include '../admin/view/layout/footer.php';
-ob_end_flush();
 ob_end_flush();

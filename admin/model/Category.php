@@ -40,6 +40,6 @@ class Category
         return $this->conn->query($sql)->fetch();
     }
 }
-    
+
 
 
