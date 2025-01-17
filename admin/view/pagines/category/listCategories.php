@@ -19,7 +19,7 @@
                                     </div>
                                     <div class="col-sm">
                                         <div class="d-flex justify-content-sm-end">
-                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +51,14 @@
 
                                                     <td class="id"><a href="javascript:void(0);" class="fw-medium link-primary"><?= $Category['category_id'] ?></a></td>
                                                     <td class="category_name"><?= $Category['category_name'] ?></td>
-                                                    <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
+                                                    <td class="status">
+                                                        <?php if ($Category['status'] === 'Active'): ?>
+                                                            <span class="badge bg-success-subtle text-success text-uppercase"><?= $Category['status'] ?></span>
+                                                        <?php else: ?>
+                                                            <span class="badge bg-danger-subtle text-danger text-uppercase"><?= $Category['status'] ?></span>
+                                                        <?php endif; ?>
+                                                    </td>
+
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">

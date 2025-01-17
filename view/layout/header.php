@@ -88,10 +88,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <a href="wishlist.html" class="cr-right-bar-item">
-                                <i class="ri-heart-3-line"></i>
-                                <span>Wishlist</span>
-                            </a>
+                          
                             <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
                                 <i class="ri-shopping-cart-line"></i>
                                 <span>Cart</span>
@@ -308,9 +305,6 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <a href="wishlist.html" class="cr-right-bar-item">
-                                <i class="ri-heart-line"></i>
-                            </a>
                             <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
                                 <i class="ri-shopping-cart-line"></i>
                             </a>
@@ -318,53 +312,22 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">
+                                    <a class="nav-link" href="?act=/">
                                         Home
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Category
+                                        Product Category
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item" href="shop-left-sidebar.html">Shop Left
                                                 sidebar</a>
                                         </li>
-                                        <li>
-                                            <a class="dropdown-item" href="shop-right-sidebar.html">Shop
-                                                Right
-                                                sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="shop-full-width.html">Full
-                                                Width</a>
-                                        </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Products
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="product-left-sidebar.html">product
-                                                Left
-                                                sidebar </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="product-right-sidebar.html">product
-                                                Right
-                                                sidebar </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="product-full-width.html">Product
-                                                Full
-                                                Width
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                        
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)">
                                         Pages
@@ -377,25 +340,7 @@
                                             <a class="dropdown-item" href="contact-us.html">Contact Us</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./view/pagines/cart/viewcart.php">Cart</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="track-order.html">Track Order</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                                        </li>
-                                        <li>
                                             <a class="dropdown-item" href="faq.html">Faq</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="policy.html">Policy</a>
@@ -414,10 +359,6 @@
                                         <li>
                                             <a class="dropdown-item" href="blog-right-sidebar.html">Right
                                                 Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-full-width.html">Full
-                                                Width</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="blog-detail-left-sidebar.html">Detail
@@ -473,7 +414,7 @@
             <div class="cr-menu-content">
                 <ul>
                     <li class="dropdown drop-list">
-                        <a href="index.html">Home</a>
+                        <a href="?act=/">Home</a>
                     </li>
                     <li class="dropdown drop-list">
                         <span class="menu-toggle"></span>
@@ -502,7 +443,6 @@
                             <li><a href="cart.html">Cart</a></li>
                             <li><a href="checkout.html">Checkout</a></li>
                             <li><a href="track-order.html">Track Order</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
                             <li><a href="faq.html">Faq</a></li>
                             <li><a href="login.html">Login</a></li>
                             <li><a href="register.html">Register</a></li>
