@@ -8,7 +8,7 @@ class Product
     }
     function listProductModel()
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM products JOIN categories ON products.category_id = categories.category_id";
         return $this->conn->query($sql)->fetchAll();
     }
     function addProductModel($product_name, $image, $category_id, $description)

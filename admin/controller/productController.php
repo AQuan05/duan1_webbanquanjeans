@@ -24,7 +24,6 @@ class productController
             $category_id = $_POST['category_id'];
             $description = $_POST['description'];
             $image = ''; // Khởi tạo image mặc định
-
             // Kiểm tra và xử lý hình ảnh nếu có
             if ($_FILES['image']['name'] != '') {
                 $image = $_FILES['image']['name'];
