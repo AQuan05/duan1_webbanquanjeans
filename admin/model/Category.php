@@ -14,9 +14,9 @@ class Category
         $sql = "SELECT * FROM categories";
         return $this->conn->query($sql)->fetchAll();
     }
-    function addCategoriesModel($category_name)
+    function addCategoriesModel($category_name,$status)
     {
-        $sql = "INSERT INTO categories (category_name) VALUES ('$category_name')";
+        $sql = "INSERT INTO categories (category_name, status) VALUES ('$category_name', '$status')";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
@@ -27,9 +27,9 @@ class Category
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     } 
-    function updateCategoriesModel($category_id, $category_name){
+    function updateCategoriesModel($category_id, $category_name, $status){
 
-        $sql = "UPDATE categories SET category_name = '$category_name' WHERE category_id = $category_id";
+        $sql = "UPDATE categories SET category_name = '$category_name' , status = '$status' WHERE category_id = $category_id";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
