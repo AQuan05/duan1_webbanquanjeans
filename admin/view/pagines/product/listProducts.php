@@ -14,7 +14,7 @@
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <div>
-                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addProducts">Add Product</a> </button>
+                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addProducts" style="color: #fff">Add Product</a> </button>
                                         </div>
                                     </div>
                                     <div class="col-sm">
@@ -39,7 +39,7 @@
                                                 <th class="sort" data-sort="customer_name">ID</th>
                                                 <th class="sort" data-sort="email">Name Product</th>
                                                 <th class="sort" data-sort="email">Image</th>
-                                                <th class="sort" data-sort="email">Category_id</th>
+                                                <th class="sort" data-sort="email">Category name</th>
                                                 <th class="sort" data-sort="status">Status</th>
                                                 <th class="sort" data-sort="action">Action</th>
                                             </tr>
@@ -54,9 +54,9 @@
                                                         </div>
                                                     </th>
                                                     <td class="id"><a href="javascript:void(0);" class="fw-medium link-primary"><?= $listProduct['product_id'] ?></a></td>
-                                                    <td class="category_name"><?= $listProduct['product_name'] ?></td>
+                                                    <td class="product_name"><?= $listProduct['product_name'] ?></td>
                                                     <td><img width="100" src="../admin/view/assets/images/products/<?= $listProduct['image'] ?>" alt="123"></td>
-                                                    <td class="category_id"><?= $listProduct['category_id'] ?></td>
+                                                    <td class="category_name"><?= $listProduct['category_name'] ?></td>
                                                     <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
                                                     <td>
                                                         <div class="d-flex gap-2">
