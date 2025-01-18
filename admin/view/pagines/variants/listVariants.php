@@ -13,7 +13,7 @@
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <div>
-                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addVariants">Add Variants</a> </button>
+                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addVariants" style="color: #fff">Add Variants</a> </button>
                                         </div>
                                     </div>
                                 </div>
@@ -30,9 +30,6 @@
                                                 <th class="sort" data-sort="email">Name Product</th>
                                                 <th class="sort" data-sort="phone">Color</th>
                                                 <th class="sort" data-sort="date">Size</th>
-                                                <th class="sort" data-sort="status">Stock</th>
-                                                <th class="sort" data-sort="action">Price</th>
-                                                <th class="sort" data-sort="status">Status</th>
                                                 <th class="sort" data-sort="action">Action</th>
                                             </tr>
                                         </thead>
@@ -46,20 +43,17 @@
                                                             <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                         </div>
                                                     </th>
-                                                    <td class="id" class="fw-medium link-primary"><?= $value['variant_id'] ?></td>
+                                                    <td class="id" class="fw-medium link-primary"><?= $value['variants_id'] ?></td>
                                                     <td class="customer_name"><?= $value['product_name'] ?></td>
                                                     <td class="email"><?= $value['color'] ?></td>
                                                     <td class="phone"><?= $value['size'] ?></td>
-                                                    <td class="date"><?= $value['stock'] ?></td>
-                                                    <td class="date"><?= $value['price'] ?></td>
-                                                    <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
-                                                                <a href="?act=updateVariants&id=<?= $value['variant_id']?>" class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal">Edit</a>
+                                                                <a href="?act=updateVariants&id=<?= $value['variants_id']?>" class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal">Edit</a>
                                                             </div>
                                                             <div class="remove">
-                                                                <a href="?act=deleteVariants&id=<?= $value['variant_id'] ?>" class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Remove</a>
+                                                                <a href="?act=deleteVariants&id=<?= $value['variants_id'] ?>" class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Remove</a>
                                                             </div>
                                                         </div>
                                                     </td>

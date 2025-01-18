@@ -7,12 +7,12 @@ class Variant {
         $this->conn = DB();
     }
     function listVariantsModel() {
-        $sql = "SELECT * FROM product_variants JOIN products ON product_variants.product_id = products.product_id";
+        $sql = "SELECT * FROM variants JOIN products ON variants.product_id = products.product_id";
         return $this->conn->query($sql)->fetchAll();
     }
 
-    function addVariantsModel($color, $size, $stock, $price, $product_id) {
-        $sql = "INSERT INTO product_variants (color, size, stock, price, product_id) VALUES ('$color', '$size', '$stock', '$price', '$product_id')";
+    function addVariantsModel($color, $size, $product_id) {
+        $sql = "INSERT INTO variants (color, size, product_id) VALUES ('$color', '$size', '$product_id')";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
