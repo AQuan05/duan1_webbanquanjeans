@@ -34,8 +34,8 @@
                                             </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                            <?php foreach ($variants as $key => $value) { 
-                                                extract($value);
+                                            <?php foreach ($variants as $variant) { 
+                                                extract($variant);
                                                 ?>
                                                 <tr>
                                                     <th scope="row">
@@ -43,17 +43,17 @@
                                                             <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                         </div>
                                                     </th>
-                                                    <td class="id" class="fw-medium link-primary"><?= $value['variants_id'] ?></td>
-                                                    <td class="customer_name"><?= $value['product_name'] ?></td>
-                                                    <td class="email"><?= $value['color'] ?></td>
-                                                    <td class="phone"><?= $value['size'] ?></td>
+                                                    <td class="id" class="fw-medium link-primary"><?= isset($variant['variant_id']) ? $variant['variant_id'] : 'No ID'?></td>
+                                                    <td class="product_name"><?= $variant['product_name'] ?></td>
+                                                    <td class="color"><?= $variant['color'] ?></td>
+                                                    <td class="size"><?= $variant['size'] ?></td>
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
-                                                                <a href="?act=updateVariants&id=<?= $value['variants_id']?>" class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal">Edit</a>
+                                                            <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=updateVariants&variant_id=<?= $variant['variant_id'] ?>" style="color: #fff;">Edit</a></button>
                                                             </div>
                                                             <div class="remove">
-                                                                <a href="?act=deleteVariants&id=<?= $value['variants_id'] ?>" class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Remove</a>
+                                                                <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal"><a href="?act=deleteVariants&variant_id=<?= $variant['variant_id'] ?>" style="color: #fff;">Remove</a></button>
                                                             </div>
                                                         </div>
                                                     </td>

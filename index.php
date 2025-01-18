@@ -17,10 +17,10 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             include 'view/pagines/acc/login.php';
             break;
         case 'ProductCategory':
-            include 'view/pagines/ProductCategory.php';
+            include 'view/pagines/product/ProductCategory.php';
             break;
         case 'ProductDetail':
-            include 'view/pagines/ProductDetail.php';
+            include 'view/pagines/product/ProductDetail.php';
             break;
         case 'About':
             include 'view/pagines/pages/About.php';

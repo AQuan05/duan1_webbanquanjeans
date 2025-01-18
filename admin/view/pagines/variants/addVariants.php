@@ -31,10 +31,16 @@
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3">
-                                                <label for="cleave-phone" class="form-label">Name Product</label>
-                                                <input type="text" name="name" class="form-control" placeholder="Enter name" id="cleave-phone">
+                                                <label for="product_id" class="form-label">Product</label> <br>
+                                                <select name="product_id" id="product_id" class="form-select">
+                                                    <option value="" selected disabled>Chọn sản phẩm</option> <!-- Lựa chọn mặc định -->
+                                                    <?php foreach ($products as $product) { ?>
+                                                        <option value="<?= $product['product_id'] ?>"><?= $product['product_name'] ?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
-                                        </div>
+
+                                        </div><!-- end col -->
                                         <div class="col-xl-6">
                                             <div class="mb-3">
                                                 <label for="cleave-date" class="form-label">Color</label>
@@ -51,26 +57,7 @@
                                         </div><!-- end col -->
                                     </div><!-- end row -->
                                 </div>
-
-                                <div class="mt-4">
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
-                                                <label for="cleave-time" class="form-label">Stock</label>
-                                                <input type="number" name="stock" class="form-control" placeholder="Enter stock" id="cleave-time">
-                                            </div>
-
-                                        </div><!-- end col -->
-
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
-                                                <label for="cleave-time-format" class="form-label">Price</label>
-                                                <input type="number" name="price" class="form-control" placeholder="Enter price" id="cleave-time-format">
-                                            </div>
-                                        </div><!-- end col -->
-                                    </div><!-- end row -->
-                                </div>
-                                <button type="submit" name="addVariants" class="btn btn-primary">Add Variants</button>
+                                <button type="submit" name="addVariant" class="btn btn-primary">Add Variants</button>
                             </form><!-- end form -->
                         </div><!-- end card-body -->
                     </div><!-- end card -->

@@ -54,6 +54,14 @@ switch ($act) {
         $variantsController = new variantsController();
         $variantsController->addVariantsController();
         break;
+    case 'deleteVariants':
+        $variantsController = new variantsController();
+        $variantsController->deleteVariantsController($_GET['variant_id']);
+        break;
+    case 'updateVariants':
+        $variantsController = new variantsController();
+        $variantsController->updateVariantsController($_GET['variant_id']);
+        break;
 }
 
 include '../admin/view/layout/footer.php';
