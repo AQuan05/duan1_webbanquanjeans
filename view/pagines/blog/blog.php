@@ -6,7 +6,7 @@
                     <div class="col-lg-12">
                         <div class="cr-breadcrumb-title">
                             <h2>Blog Classic</h2>
-                            <span><a href="index.html">Home</a> - Blog Classic</span>
+                            <span><a href="index.php">Home</a> - Blog Classic</span>
                         </div>
                     </div>
                 </div>

@@ -28,11 +28,11 @@
                                     <table class="table align-middle table-nowrap" id="customerTable">
                                         <thead class="table-light">
                                             <tr>
-                                                <th scope="col" style="width: 50px;">
+                                                <!-- <th scope="col" style="width: 50px;">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                     </div>
-                                                </th>
+                                                </th> -->
                                                 <th class="sort" data-sort="customer_name">ID</th>
                                                 <th class="sort" data-sort="email">Name Cate</th>
                                                 <th class="sort" data-sort="status">Status</th>
@@ -43,11 +43,11 @@
                                             <?php foreach ($Categories as $Category) {
                                                 extract($Category); ?>
                                                 <tr>
-                                                    <th scope="row">
+                                                    <!-- <th scope="row">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                         </div>
-                                                    </th>
+                                                    </th> -->
 
                                                     <td class="id"><a href="javascript:void(0);" class="fw-medium link-primary"><?= $Category['category_id'] ?></a></td>
                                                     <td class="category_name"><?= $Category['category_name'] ?></td>
