@@ -471,10 +471,10 @@
                             <div class="collapse menu-dropdown" id="sidebarIcons">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="?act=listVariants" class="nav-link"><span data-key="t-feather">List of variants</span> <span class="badge badge-pill bg-info">v4.29.2</span></a>
+                                        <a href="?act=listColors" class="nav-link"><span data-key="t-feather">Color</span> <span class="badge badge-pill bg-info">v4.29.2</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="?act=addVariants" class="nav-link"> <span data-key="t-crypto-svg">Add of variants</span></a>
+                                        <a href="?act=listSize" class="nav-link"> <span data-key="t-crypto-svg">Size</span></a>
                                     </li>
                                 </ul>
                             </div>

@@ -20,7 +20,6 @@
                 </div>
             </div>
             <!-- end page title -->
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -30,17 +29,16 @@
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3">
-                                                <label for="cleave-date" class="form-label">Name Product</label>
-                                                <input type="text" name="product_name" class="form-control" value="<?= $oneProduct['product_name'] ?>" placeholder="Please enter name" id="cleave-date">
+                                                <label for="product_name" class="form-label">Name Product</label>
+                                                <input type="text" name="product_name" class="form-control" value="<?= htmlspecialchars($oneProduct['product_name']) ?>" placeholder="Please enter name" id="product_name">
                                                 <input type="hidden" name="product_id" value="<?= $oneProduct['product_id'] ?>">
                                             </div>
-
                                         </div><!-- end col -->
 
                                         <div class="col-xl-6">
                                             <div class="mb-3">
-                                                <label for="cleave-date-format" class="form-label">Image</label>
-                                                <input type="file" name="image" class="form-control" value="<?= $oneProduct['image'] ?>" placeholder="Please select a photo" id="cleave-date-format">
+                                                <label for="image" class="form-label">Image</label>
+                                                <input type="file" name="image" class="form-control" value="<?= htmlspecialchars($oneProduct['image']) ?>" placeholder="Please select a photo" id="image">
                                             </div>
                                         </div><!-- end col -->
                                     </div><!-- end row -->
@@ -61,16 +59,94 @@
                                                     <?php } ?>
                                                 </select>
                                             </div>
-
                                         </div><!-- end col -->
 
                                         <div class="col-xl-6">
                                             <div class="mb-3">
-                                                <label for="cleave-time-format" class="form-label">Description</label>
-                                                <input type="text" name="description" class="form-control" value="<?= $oneProduct['description'] ?>" placeholder="Please description" id="cleave-time-format">
+                                                <label for="description" class="form-label">Description</label>
+                                                <input type="text" name="description" class="form-control" value="<?= htmlspecialchars($oneProduct['description']) ?>" placeholder="Please description" id="description">
                                             </div>
                                         </div><!-- end col -->
                                     </div><!-- end row -->
+                                </div>
+
+                                <div id="variant-container" class="mt-4">
+                                    <?php if (isset($variants) && count($variants) > 0) { ?>
+                                        <?php foreach ($variants as $variant) { ?>
+                                            <div class="variant-group">
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <div class="mb-3">
+                                                            <label for="color_id" class="form-label">Color</label> <br>
+                                                            <select name="color_id" id="color_id" class="form-select">
+                                                                <option value="" disabled>Chọn color</option>
+                                                                <?php foreach ($color as $colors) { ?>
+                                                                    <option value="<?= $colors['color_id'] ?>"
+                                                                        <?= ($variant['color_id'] == $colors['color_id']) ? 'selected' : '' ?>>
+                                                                        <?= $colors['color_name'] ?>
+                                                                    </option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div><!-- end col -->
+
+                                                    <div class="col-xl-6">
+                                                        <div class="mb-3">
+                                                            <label for="size_id" class="form-label">Size</label> <br>
+                                                            <select name="size_id" id="size_id" class="form-select">
+                                                                <option value="" disabled>Chọn size</option>
+                                                                <?php foreach ($size as $sizes) { ?>
+                                                                    <option value="<?= $sizes['size_id'] ?>"
+                                                                        <?= ($variant['size_id'] == $sizes['size_id']) ? 'selected' : '' ?>>
+                                                                        <?= $sizes['size_name'] ?>
+                                                                    </option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div><!-- end col -->
+
+                                                    <div class="mb-3">
+                                                        <label for="price" class="form-label">Price</label>
+                                                        <input type="number" name="price" class="form-control"
+                                                            value="<?= $variant['price'] ?>" placeholder="Please enter price" id="price">
+                                                    </div>
+                                                </div><!-- end row -->
+                                            </div>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <div class="variant-group">
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="mb-3">
+                                                        <label for="color_id" class="form-label">Color</label> <br>
+                                                        <select name="color_id" id="color_id" class="form-select">
+                                                            <option value="" disabled selected>Chọn color</option>
+                                                            <?php foreach ($color as $colors) { ?>
+                                                                <option value="<?= $colors['color_id'] ?>"><?= $colors['color_name'] ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div><!-- end col -->
+
+                                                <div class="col-xl-6">
+                                                    <div class="mb-3">
+                                                        <label for="size_id" class="form-label">Size</label> <br>
+                                                        <select name="size_id" id="size_id" class="form-select">
+                                                            <option value="" disabled selected>Chọn size</option>
+                                                            <?php foreach ($size as $sizes) { ?>
+                                                                <option value="<?= $sizes['size_id'] ?>"><?= $sizes['size_name'] ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div><!-- end col -->
+
+                                                <div class="mb-3">
+                                                    <label for="price" class="form-label">Price</label>
+                                                    <input type="number" name="price" class="form-control" placeholder="Please enter price" id="price">
+                                                </div>
+                                            </div><!-- end row -->
+                                        </div>
+                                    <?php } ?>
                                 </div>
 
                                 <div class="mt-4">
