@@ -7,12 +7,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                        <h4 class="mb-sm-0">Add Variants</h4>
-
+                        <h4 class="mb-sm-0">Add Size</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="?act=listVariants">List of Variants</a></li>
-                                <li class="breadcrumb-item active">Add Variants/li>
+                                <li class="breadcrumb-item"><a href="?act=addSize">Add Size</a></li>
+                                <li class="breadcrumb-item active">Add Size</li>
                             </ol>
                         </div>
 
@@ -26,30 +25,18 @@
                     <div class="card">
 
                         <div class="card-body">
-                            <form action=" " method="post" enctype="multipart/form-data">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 <div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3">
-                                                <label for="cleave-date" class="form-label">Color</label>
-                                                <input type="text" name="color" class="form-control" placeholder="Enter color" id="cleave-date">
-                                            </div>
-
-                                        </div><!-- end col -->
-
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
                                                 <label for="cleave-date-format" class="form-label">Size</label>
-                                                <input type="text" name="size" class="form-control" placeholder="Enter size" id="cleave-date-format">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="cleave-date-format" class="form-label">price</label>
-                                                <input type="text" name="price" class="form-control" placeholder="Enter size" id="cleave-date-format">
+                                                <input type="text" name="size_name" class="form-control" placeholder="Enter size" id="cleave-date-format">
                                             </div>
                                         </div><!-- end col -->
                                     </div><!-- end row -->
                                 </div>
-                                <button type="submit" name="addVariant" class="btn btn-primary">Add Variants</button>
+                                <button type="submit" name="addSize" class="btn btn-primary">Add Size</button>
                             </form><!-- end form -->
                         </div><!-- end card-body -->
                     </div><!-- end card -->

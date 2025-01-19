@@ -21,4 +21,21 @@
 
     <!-- App js -->
     <script src="../admin/view/assets/js/app.js"></script>  
+    <script>
+    document.getElementById('add-variant-btn').addEventListener('click', function () {
+    // Lấy container gốc
+    const container = document.getElementById('variant-container');
     
+    // Tạo một bản sao của phần tử nhóm biến thể đầu tiên
+    const firstVariantGroup = container.querySelector('.variant-group');
+    const newVariantGroup = firstVariantGroup.cloneNode(true);
+
+    // Xóa các giá trị được chọn trong bản sao
+    newVariantGroup.querySelectorAll('select').forEach(select => {
+        select.selectedIndex = 0; // Reset về lựa chọn mặc định
+    });
+
+    // Thêm bản sao vào container
+    container.appendChild(newVariantGroup);
+});
+</script>

@@ -1,100 +1,118 @@
 <?php
 require_once '../admin/model/Product.php';
+require_once '../admin/model/Size.php';
+require_once '../admin/model/Color.php';
+require_once '../admin/model/Variant.php';
 class productController
 {
     public $Product;
+    public $Color;
+    public $Size;
+    public $Variant;
     public function __construct()
     {
         $this->Product = new Product();
+        $this->Color = new Color();
+        $this->Size = new Size();
+        $this->Variant = new Variant();
     }
     public function listProductsController()
     {
         $listProducts = $this->Product->listProductModel();
-        // $Categories = $this->Product->getProductsWithCategoryNames();
+        foreach ($listProducts as &$product) {
+            $product_id = $product['product_id'];
+            $variants = $this->Variant->getVariantsByProductId($product_id);
+            $product['variants'] = $variants;
+        }
         require_once '../admin/view/pagines/product/listProducts.php';
     }
     public function addProductsController()
     {
         $Categories = $this->Product->getProductsWithCategoryNames();
+        $color = $this->Color->listColorModel();
+        $size = $this->Size->listSizeModel();
         require_once '../admin/view/pagines/product/addProducts.php';
 
         if (isset($_POST['addPro'])) {
-            // Lấy giá trị từ form
             $product_name = $_POST['product_name'];
             $category_id = $_POST['category_id'];
             $description = $_POST['description'];
-            $image = ''; // Khởi tạo image mặc định
-            // Kiểm tra và xử lý hình ảnh nếu có
+            $image = '';
             if (empty($product_name)) {
                 echo '<script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Error!",
-                    text: "Product name cannot be empty!",
-                    showConfirmButton: true
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Error!",
+                        text: "Product name cannot be empty!",
+                        showConfirmButton: true
+                    });
                 });
-            });
-        </script>';
+            </script>';
                 return;
             }
+
             if (strlen($product_name) < 5) {
                 echo '<script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Error!",
-                    text: "Product name cannot be less than 5.",
-                    showConfirmButton: true
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Error!",
+                        text: "Product name cannot be less than 5.",
+                        showConfirmButton: true
+                    });
                 });
-            });
-        </script>';
+            </script>';
                 return;
             }
             if ($_FILES['image']['name'] != '') {
                 $image = $_FILES['image']['name'];
                 move_uploaded_file($_FILES['image']['tmp_name'], '../admin/view/assets/images/products/' . $image);
             }
-
-            // Gọi phương thức thêm sản phẩm vào cơ sở dữ liệu
-            // var_dump($this->Product->addProductModel($product_name, $image, $category_id, $description)); // Debugging
-            // print_r($_POST);
-            // exit();
             if ($this->Product->addProductModel($product_name, $image, $category_id, $description)) {
-                // Nếu thêm thành công, chuyển hướng đến trang danh sách sản phẩm
+                $product_id = $this->Product->getLastInsertedId();
+                if (!empty($_POST['color_id']) && !empty($_POST['size_id'])) {
+                    $color_ids = $_POST['color_id'];
+                    $size_ids = $_POST['size_id'];
+                    $prices = $_POST['price'];
+
+                    foreach ($color_ids as $key => $color_id) {
+                        $size_id = $size_ids[$key];
+                        $color_id = $color_ids[$key];
+                        $price = $prices[$key];
+                        $this->Variant->addProductvariantsModel($product_id, $size_id, $color_id, $price);
+                    }
+                }
                 echo '<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            Swal.fire({
-                icon: "success",
-                title: "successfully!",
-                text: "Add category successfully.",
-                showConfirmButton: false,
-                timer: 2000
-            }).then(() => {
-            window.location.href = "index.php?act=listProducts";
-            });
-        });
-    </script>';
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Successfully!",
+                        text: "Add product and variants successfully.",
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        window.location.href = "index.php?act=listProducts";
+                    });
+                });
+            </script>';
             } else {
                 echo '<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            Swal.fire({
-                icon: "error",
-                title: "Failed!",
-                text: "Not add products, please try again.",
-                showConfirmButton: true
-            });
-        });
-    </script>';
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Failed!",
+                        text: "Failed to add product. Please try again.",
+                        showConfirmButton: true
+                    });
+                });
+            </script>';
             }
             exit();
         }
     }
     public function deleteProductController($product_id)
     {
-        $product_id = $_GET['id'];
-        // if (isset($_GET['product_id'])) {
-        // $product_id = $_GET['product_id'];
         if ($this->Product->deleteProductModel($product_id)) {
             echo 'Xoa thanh cong';
             header('location: ?act=listProducts');
@@ -104,98 +122,128 @@ class productController
     }
     function updateProductController($product_id)
     {
+        // Lấy dữ liệu cần thiết từ model
         $Categories = $this->Product->getProductsWithCategoryNames();
         $oneProduct = $this->Product->findProductModel($product_id);
+        $color = $this->Color->listColorModel();
+        $size = $this->Size->listSizeModel();
+        $variants = $this->Variant->getVariantsByProductId($product_id);
+
+        // Hiển thị trang editProduct
         require_once '../admin/view/pagines/product/editProduct.php';
+
+        // Xử lý khi form được submit
         if (isset($_POST['updatePro'])) {
+            // Lấy dữ liệu từ form
             $product_id = $_POST['product_id'];
-            $description = $_POST['description'];
+            $description = htmlspecialchars(trim($_POST['description']));
             $category_id = $_POST['category_id'];
             $product_name = htmlspecialchars(trim($_POST['product_name']));
 
-            // Validate product name
+            // Validate tên sản phẩm
             if (empty($product_name)) {
                 echo '<script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Error!",
-                    text: "Product name cannot be empty!",
-                    showConfirmButton: true
-                });
-            });
-        </script>';
-                return;
-            }
-            if (strlen($product_name) < 5) {
-                echo '<script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Error!",
-                    text: "Product name cannot be less than 5.",
-                    showConfirmButton: true
-                });
-            });
-        </script>';
+                    document.addEventListener("DOMContentLoaded", function() {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Error!",
+                            text: "Product name cannot be empty!",
+                            showConfirmButton: true
+                        });
+                    });
+                </script>';
                 return;
             }
 
-            // Handle image upload
-            $image = $oneProduct['image']; // Keep current image by default
+            if (strlen($product_name) < 5) {
+                echo '<script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Error!",
+                            text: "Product name must be at least 5 characters.",
+                            showConfirmButton: true
+                        });
+                    });
+                </script>';
+                return;
+            }
+
+            // Xử lý upload ảnh
+            $image = $oneProduct['image']; // Giữ nguyên ảnh hiện tại nếu không thay đổi
             if (isset($_FILES['image']) && $_FILES['image']['name'] != "") {
                 $targetDir = "../admin/view/assets/images/products/";
                 $imageName = basename($_FILES['image']['name']);
                 $targetFile = $targetDir . $imageName;
 
-                // Check if upload is successful
+                // Kiểm tra và upload ảnh
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                    // Delete old image if exists
+                    // Xóa ảnh cũ nếu tồn tại
                     if (file_exists($targetDir . $oneProduct['image'])) {
                         unlink($targetDir . $oneProduct['image']);
                     }
                     $image = $imageName;
                 } else {
                     echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Upload Failed!",
-                        text: "Failed to upload the image.",
-                        showConfirmButton: true
-                    });
-                });
-            </script>';
+                        document.addEventListener("DOMContentLoaded", function() {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Upload Failed!",
+                                text: "Failed to upload the image.",
+                                showConfirmButton: true
+                            });
+                        });
+                    </script>';
                     return;
                 }
             }
 
-            // Update product information
-            if ($this->Product->updateProductModel($product_id, $product_name, $image, $category_id, $description)) {
+            // Cập nhật thông tin sản phẩm
+            $updateSuccess = $this->Product->updateProductModel($product_id, $product_name, $image, $category_id, $description);
+
+            if ($updateSuccess) {
+                // Nếu sản phẩm có biến thể, cập nhật thông tin biến thể
+                if (!empty($_POST['variant_id'])) {
+                    $variant_ids = $_POST['variant_id'];
+                    $color_ids = $_POST['color_id'];
+                    $size_ids = $_POST['size_id'];
+                    $prices = $_POST['price'];
+
+                    foreach ($variant_ids as $key => $variant_id) {
+                        $color_id = $color_ids[$key];
+                        $size_id = $size_ids[$key];
+                        $price = $prices[$key];
+
+                        // Cập nhật biến thể
+                        $this->Variant->updateProductVariantModel($variant_id, $size_id, $color_id, $price);
+                    }
+                }
+                // Hiển thị thông báo thành công
                 echo '<script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    icon: "success",
-                    title: "Success!",
-                    text: "Product updated successfully.",
-                    showConfirmButton: false,
-                    timer: 2000
-                }).then(() => {
-                    window.location.href = "index.php?act=listProducts";
-                });
-            });
-        </script>';
+                    document.addEventListener("DOMContentLoaded", function() {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success!",
+                            text: "Product updated successfully.",
+                            showConfirmButton: false,
+                            timer: 2000
+                        }).then(() => {
+                            window.location.href = "index.php?act=listProducts";
+                        });
+                    });
+                </script>';
             } else {
+                // Hiển thị thông báo lỗi khi cập nhật thất bại
                 echo '<script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    icon: "error",
-                    title: "Failed!",
-                    text: "Unable to update the product. Please try again.",
-                    showConfirmButton: true
-                });
-            });
-        </script>';
+                    document.addEventListener("DOMContentLoaded", function() {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Failed!",
+                            text: "Unable to update the product. Please try again.",
+                            showConfirmButton: true
+                        });
+                    });
+                </script>';
             }
             exit();
         }
