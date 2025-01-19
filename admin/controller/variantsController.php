@@ -27,15 +27,15 @@ class variantsController
             $color = trim($_POST['color']);
             $size = trim($_POST['size']);
             $product_id = intval($_POST['product_id']); // Chuyển thành kiểu số nguyên để đảm bảo an toàn
-    
+            $price = intval($_POST['price']);
             // Kiểm tra dữ liệu đầu vào
-            if (empty($color) || empty($size) || $product_id <= 0) {
+            if (empty($color) || empty($size) || $product_id <= 0 || $price <= 0) {
                 echo 'Vui lòng điền đầy đủ thông tin hợp lệ.';
                 return;
             }
     
             // Thêm variant vào cơ sở dữ liệu
-            if ($this->Variant->addVariantsModel($color, $size, $product_id)) {
+            if ($this->Variant->addVariantsModel($color, $size, $product_id, $price)) {
                 header('Location: ?act=listVariants');
                 exit; // Đảm bảo không chạy tiếp code bên dưới
             } else {
@@ -63,12 +63,13 @@ class variantsController
             $product_id = intval($_POST['product_id']);
             $color = trim($_POST['color']);
             $size = trim($_POST['size']);
-            if (empty($color) || empty($size) || $product_id <= 0) {
+            $price = intval($_POST['price']);
+            if (empty($color) || empty($size) || $product_id <= 0 || $price <= 0) {
                 echo 'Vui lòng điền đày đủ thông tin hợp lệ.';
                 return;
             }
     
-            if ($this->Variant->updateVariantsModel($variant_id, $color, $size, $product_id)) {
+            if ($this->Variant->updateVariantsModel($variant_id, $color, $size, $product_id, $price)) {
                 header('Location: ?act=listVariants');
                 exit;
             } else {

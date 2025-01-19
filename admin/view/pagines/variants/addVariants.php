@@ -54,6 +54,10 @@
                                                 <label for="cleave-date-format" class="form-label">Size</label>
                                                 <input type="text" name="size" class="form-control" placeholder="Enter size" id="cleave-date-format">
                                             </div>
+                                            <div class="mb-3">
+                                                <label for="cleave-date-format" class="form-label">price</label>
+                                                <input type="text" name="price" class="form-control" placeholder="Enter size" id="cleave-date-format">
+                                            </div>
                                         </div><!-- end col -->
                                     </div><!-- end row -->
                                 </div>

@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                        <h4 class="mb-sm-0">Add Variants</h4>
+                        <h4 class="mb-sm-0">Update Variants</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
@@ -57,6 +57,10 @@
                                             <div class="mb-3">
                                                 <label for="cleave-date-format" class="form-label">Size</label>
                                                 <input type="text" name="size" class="form-control" placeholder="Enter size" id="cleave-date-format" value="<?= $OneVariant['size'] ?>">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="cleave-date-format" class="form-label">Price</label>
+                                                <input type="text" name="price" class="form-control" placeholder="Enter size" id="cleave-date-format" value="<?= $OneVariant['price'] ?>">
                                             </div>
                                         </div><!-- end col -->
                                     </div><!-- end row -->

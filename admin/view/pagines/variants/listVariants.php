@@ -30,6 +30,7 @@
                                                 <th class="sort" data-sort="email">Name Product</th>
                                                 <th class="sort" data-sort="phone">Color</th>
                                                 <th class="sort" data-sort="date">Size</th>
+                                                <th class="sort" data-sort="date">Price</th>
                                                 <th class="sort" data-sort="action">Action</th>
                                             </tr>
                                         </thead>
@@ -45,8 +46,9 @@
                                                     </th>
                                                     <td class="id" class="fw-medium link-primary"><?= isset($variant['variant_id']) ? $variant['variant_id'] : 'No ID'?></td>
                                                     <td class="product_name"><?= $variant['product_name'] ?></td>
-                                                    <td class="color"><?= $variant['color'] ?></td>
-                                                    <td class="size"><?= $variant['size'] ?></td>
+                                                    <td class="color"><?= $variant['color_name'] ?></td>
+                                                    <td class="size"><?= $variant['size_name'] ?></td>
+                                                    <td class="price"><?= $variant['price'] ?></td>
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
