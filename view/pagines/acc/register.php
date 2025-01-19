@@ -6,7 +6,7 @@
                     <div class="col-lg-12">
                         <div class="cr-breadcrumb-title">
                             <h2>Register</h2>
-                            <span> <a href="index.html">Home</a> - Register</span>
+                            <span> <a href="index.php">Home</a> - Register</span>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="col-12">
                     <div class="cr-register" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
                         <div class="form-logo">
-                            <img src="assets/img/logo/logo.png" alt="logo">
+                            <img src="view/assets/img/logo/logo.png" alt="logo">
                         </div>
                         <form class="cr-content-form">
                             <div class="row">

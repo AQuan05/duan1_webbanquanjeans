@@ -49,295 +49,6 @@
         </div>
     </section>
 
-    <!-- Categories -->
-    <section class="section-categories padding-b-100">
-        <div class="container">
-            <div class="row mb-minus-24">
-                <div class="col-lg-4 col-12 mb-24">
-                    <div class="cr-categories">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active center-categories-inner" id="cake_milk-tab"
-                                    data-bs-toggle="tab" data-bs-target="#cake_milk" type="button" role="tab"
-                                    aria-controls="cake_milk" aria-selected="true">
-                                    Cake & Milk <span>(65 items)</span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link center-categories-inner" id="meat-tab" data-bs-toggle="tab"
-                                    data-bs-target="#meat" type="button" role="tab" aria-controls="meat"
-                                    aria-selected="false" tabindex="-1">
-                                    Fresh Meat <span>(30 items)</span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link center-categories-inner" id="Vegetables-tab"
-                                    data-bs-toggle="tab" data-bs-target="#Vegetables" type="button" role="tab"
-                                    aria-controls="Vegetables" aria-selected="false" tabindex="-1">
-                                    Vegetables <span>(25 items)</span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link center-categories-inner" id="Custard-tab" data-bs-toggle="tab"
-                                    data-bs-target="#Custard" type="button" role="tab" aria-controls="Custard"
-                                    aria-selected="false" tabindex="-1">
-                                    Apple & Mango <span>(45 items)</span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link center-categories-inner" id="Strawberry-tab"
-                                    data-bs-toggle="tab" data-bs-target="#Strawberry" type="button" role="tab"
-                                    aria-controls="Strawberry" aria-selected="false" tabindex="-1">
-                                    Strawberry <span>(68 items)</span>
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="center-categories-inner cr-view-more" href="shop-left-sidebar.html">
-                                    View More
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-12 mb-24">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade active show" id="cake_milk" role="tabpanel"
-                            aria-labelledby="cake_milk-tab">
-                            <div class="row mb-minus-24">
-                                <div class="col-6 cr-categories-box mb-24">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>50
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Cake</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/3.jpg" alt="categories-3">
-                                    </div>
-                                </div>
-                                <div class="col-6 cr-categories-box mb-24">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>40
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Milk</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/4.jpg" alt="categories-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="meat" role="tabpanel" aria-labelledby="meat-tab">
-                            <div class="row mb-minus-24">
-                                <div class="col-6 cr-categories-box">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>35
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Fish Meat</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/1.jpg" alt="categories-1">
-                                    </div>
-                                </div>
-                                <div class="col-6 cr-categories-box">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>24
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Fresh Meat</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/2.jpg" alt="categories-2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="Vegetables" role="tabpanel" aria-labelledby="Vegetables-tab">
-                            <div class="row mb-minus-24">
-                                <div class="col-6 cr-categories-box mb-24">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>45
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Coriander</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/5.jpg" alt="categories-5">
-                                    </div>
-                                </div>
-                                <div class="col-6 cr-categories-box mb-24">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>20
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Broccoli</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/6.jpg" alt="categories-6">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="Custard" role="tabpanel" aria-labelledby="Custard-tab">
-                            <div class="row mb-minus-24">
-                                <div class="col-6 cr-categories-box mb-24">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>30
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Apple</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/7.jpg" alt="categories-7">
-                                    </div>
-                                </div>
-                                <div class="col-6 cr-categories-box mb-24">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>25
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Mango</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/8.jpg" alt="categories-8">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="Strawberry" role="tabpanel" aria-labelledby="Strawberry-tab">
-                            <div class="row mb-minus-24">
-                                <div class="col-6 cr-categories-box mb-24">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>33
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Strawberry</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/categories/9.jpg" alt="categories-9">
-                                    </div>
-                                </div>
-                                <div class="col-6 cr-categories-box mb-24">
-                                    <div class="cr-side-categories">
-                                        <div class="categories-inner">
-                                            <h4>15
-                                                <span>
-                                                    <small>%</small>
-                                                    <small>Off</small>
-                                                </span>
-                                            </h4>
-                                        </div>
-                                        <div class="categories-contain">
-                                            <div class="categories-text">
-                                                <h5>Strawberry</h5>
-                                            </div>
-                                            <div class="categories-button">
-                                                <a href="shop-left-sidebar.html" class="cr-button">shop now</a>
-                                            </div>
-                                        </div>
-                                        <img src="view/assets/img/view/assets/img/categories/10.jpg" alt="categories-10">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Popular product -->
     <section class="section-popular-product-shape padding-b-100">
         <div class="container" data-aos="fade-up" data-aos-duration="2000">
@@ -1147,6 +858,105 @@
                                             <i class="ri-star-fill"></i>
                                             <i class="ri-star-fill"></i>
                                             <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section class="section-blog padding-b-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mb-30" data-aos="fade-up" data-aos-duration="2000">
+                        <div class="cr-banner">
+                            <h2>Latest News</h2>
+                        </div>
+                        <div class="cr-banner-sub-title">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore lacus vel facilisis. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cr-blog-slider swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-blog">
+                                    <div class="cr-blog-content">
+                                        <span><code>By Admin</code> | <a href="blog-left-sidebar.html">Snacks</a></span>
+                                        <h5>Urna pretium elit mauris cursus at elit Vestibulum.</h5>
+                                        <a class="read" href="blog-detail-left-sidebar.html">Read More</a>
+                                    </div>
+                                    <div class="cr-blog-image">
+                                        <img src="view/assets/img/blog/2.jpg" alt="blog-2">
+                                        <div class="cr-blog-date">
+                                            <span>
+                                                10
+                                                <code>oct</code>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-blog">
+                                    <div class="cr-blog-content">
+                                        <span><code>By Admin</code> | <a href="blog-left-sidebar.html">Food</a></span>
+                                        <h5>Best guide to Shopping for organic ingredients.</h5>
+                                        <a class="read" href="blog-detail-left-sidebar.html">Read More</a>
+                                    </div>
+                                    <div class="cr-blog-image">
+                                        <img src="view/assets/img/blog/1.jpg" alt="blog-1">
+                                        <div class="cr-blog-date">
+                                            <span>
+                                                09<code>sep</code>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-blog">
+                                    <div class="cr-blog-content">
+                                        <span><code>By Admin</code> | <a href="blog-left-sidebar.html">Snacks</a></span>
+                                        <h5>Cursus at elit vestibulum urna pretium elit mauris.</h5>
+                                        <a class="read" href="blog-detail-left-sidebar.html">Read More</a>
+                                    </div>
+                                    <div class="cr-blog-image">
+                                        <img src="view/assets/img/blog/3.jpg" alt="blog-2">
+                                        <div class="cr-blog-date">
+                                            <span>
+                                                12
+                                                <code>oct</code>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-aos="fade-up" data-aos-duration="2000">
+                                <div class="cr-blog">
+                                    <div class="cr-blog-content">
+                                        <span><code>By Admin</code> | <a
+                                                href="blog-left-sidebar.html">Vegetable</a></span>
+                                        <h5>Condimentum Nam enim bestMorbi odio sodales.</h5>
+                                        <a class="read" href="blog-detail-left-sidebar.html">Read More</a>
+                                    </div>
+                                    <div class="cr-blog-image">
+                                        <img src="view/assets/img/blog/2.jpg" alt="blog-3">
+                                        <div class="cr-blog-date">
+                                            <span>
+                                                22
+                                                <code>jan</code>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

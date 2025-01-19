@@ -24,8 +24,33 @@ class productController
             $category_id = $_POST['category_id'];
             $description = $_POST['description'];
             $image = ''; // Khởi tạo image mặc định
-
             // Kiểm tra và xử lý hình ảnh nếu có
+            if (empty($product_name)) {
+                echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Error!",
+                    text: "Product name cannot be empty!",
+                    showConfirmButton: true
+                });
+            });
+        </script>';
+                return;
+            }
+            if (strlen($product_name) < 5) {
+                echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Error!",
+                    text: "Product name cannot be less than 5.",
+                    showConfirmButton: true
+                });
+            });
+        </script>';
+                return;
+            }
             if ($_FILES['image']['name'] != '') {
                 $image = $_FILES['image']['name'];
                 move_uploaded_file($_FILES['image']['tmp_name'], '../admin/view/assets/images/products/' . $image);

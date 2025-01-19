@@ -38,7 +38,17 @@
                                                 </div>
 
                                             </div><!-- end col -->
+                                            <div class="col-xl-6">
+                                            <div class="mb-3">
+                                                <label for="Status" class="form-label">Status</label> <br>
+                                                <select name="status" id="Status" class="form-select">
+                                                    <option value="" selected disabled>Chọn trạng thái</option> <!-- Lựa chọn mặc định -->
+                                                   <option value="Active">Active</option>
+                                                   <option value="Inactive" >Inactive</option>
+                                                </select>
+                                            </div>
 
+                                        </div><!-- end col -->
                                         </div><!-- end row -->
 
                                     </div>

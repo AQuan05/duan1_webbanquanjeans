@@ -4,11 +4,12 @@
     Version: 2.1
     Copyright 2024
  ============================================================-->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 
 <!-- Mirrored from maraviyainfotech.com/projects/carrot/carrot-v21/carrot-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Jan 2025 17:41:06 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,21 +78,16 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
+                                            <a class="dropdown-item" href="?act=register">Register</a>
                                         </li>
+
                                         <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
+                                            <a class="dropdown-item" href="?act=login">Login</a>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
-                            <a href="wishlist.html" class="cr-right-bar-item">
-                                <i class="ri-heart-3-line"></i>
-                                <span>Wishlist</span>
-                            </a>
+
                             <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
                                 <i class="ri-shopping-cart-line"></i>
                                 <span>Cart</span>
@@ -308,9 +304,6 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <a href="wishlist.html" class="cr-right-bar-item">
-                                <i class="ri-heart-line"></i>
-                            </a>
                             <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
                                 <i class="ri-shopping-cart-line"></i>
                             </a>
@@ -318,52 +311,25 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">
+                                    <a class="nav-link" href="index.php">
                                         Home
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Category
+                                        Product Category
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="shop-left-sidebar.html">Shop Left
+                                            <a class="dropdown-item" href="?act=ProductCategory">Shop Left
                                                 sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="shop-right-sidebar.html">Shop
-                                                Right
-                                                sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="shop-full-width.html">Full
-                                                Width</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Products
+                                    <a class="nav-link dropdown-toggle" href="?act=ProductDetail">
+                                        Detail product
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="product-left-sidebar.html">product
-                                                Left
-                                                sidebar </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="product-right-sidebar.html">product
-                                                Right
-                                                sidebar </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="product-full-width.html">Product
-                                                Full
-                                                Width
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)">
@@ -371,38 +337,20 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="about.html">About Us</a>
+                                            <a class="dropdown-item" href="?act=About">About Us</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="contact-us.html">Contact Us</a>
+                                            <a class="dropdown-item" href="?act=Contact">Contact Us</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="./view/pagines/cart/viewcart.php">Cart</a>
+                                            <a class="dropdown-item" href="?act=Faq">Faq</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="track-order.html">Track Order</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="faq.html">Faq</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="login.html">Login</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="register.html">Register</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="policy.html">Policy</a>
+                                            <a class="dropdown-item" href="?act=Policy">Policy</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item dropdown">
+                                <!-- <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)">
                                         Blog
                                     </a>
@@ -414,10 +362,6 @@
                                         <li>
                                             <a class="dropdown-item" href="blog-right-sidebar.html">Right
                                                 Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="blog-full-width.html">Full
-                                                Width</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="blog-detail-left-sidebar.html">Detail
@@ -435,7 +379,7 @@
                                                 Width</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)">
                                         Elements
@@ -473,43 +417,33 @@
             <div class="cr-menu-content">
                 <ul>
                     <li class="dropdown drop-list">
-                        <a href="index.html">Home</a>
+                        <a href="?act=Home">Home</a>
                     </li>
                     <li class="dropdown drop-list">
                         <span class="menu-toggle"></span>
                         <a href="javascript:void(0)" class="dropdown-list">Category</a>
                         <ul class="sub-menu">
-                            <li><a href="shop-left-sidebar.html">Shop Left sidebar</a></li>
-                            <li><a href="shop-right-sidebar.html">Shop Right sidebar</a></li>
-                            <li><a href="shop-full-width.html">Full Width</a></li>
+                            <li><a href="?act=ProductCategory">Shop Left sidebar</a></li>
                         </ul>
                     </li>
                     <li class="dropdown drop-list">
                         <span class="menu-toggle"></span>
                         <a href="javascript:void(0)" class="dropdown-list">product</a>
                         <ul class="sub-menu">
-                            <li><a href="product-left-sidebar.html">product Left sidebar</a></li>
-                            <li><a href="product-right-sidebar.html">product Right sidebar</a></li>
-                            <li><a href="product-full-width.html">Product Full Width </a></li>
+                            <li><a href="?act=ProductDetail">Product Detail</a></li>
                         </ul>
                     </li>
                     <li class="dropdown drop-list">
                         <span class="menu-toggle"></span>
                         <a href="javascript:void(0)" class="dropdown-list">Pages</a>
                         <ul class="sub-menu">
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact-us.html">Contact Us</a></li>
-                            <li><a href="cart.html">Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="track-order.html">Track Order</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
-                            <li><a href="faq.html">Faq</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
-                            <li><a href="policy.html">Policy</a></li>
+                            <li><a href="?act=AboutUs">About Us</a></li>
+                            <li><a href="?act=ContactUs">Contact Us</a></li>
+                            <li><a href="?act=Faq">Faq</a></li>
+                            <li><a href="?act=Policy">Policy</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown drop-list">
+                    <!-- <li class="dropdown drop-list">
                         <span class="menu-toggle"></span>
                         <a href="javascript:void(0)" class="dropdown-list">Blog</a>
                         <ul class="sub-menu">
@@ -520,7 +454,7 @@
                             <li><a href="blog-detail-right-sidebar.html">Detail Right Sidebar</a></li>
                             <li><a href="blog-detail-full-width.html">Detail Full Width</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="dropdown drop-list">
                         <span class="menu-toggle"></span>
                         <a href="javascript:void(0)">Element</a>

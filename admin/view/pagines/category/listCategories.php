@@ -14,12 +14,12 @@
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <div>
-                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addCategories">Add Category</a> </button>
+                                            <button type="submit" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i><a href="?act=addCategories" style="color: #fff">Add Category</a> </button>
                                         </div>
                                     </div>
                                     <div class="col-sm">
                                         <div class="d-flex justify-content-sm-end">
-                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -28,11 +28,11 @@
                                     <table class="table align-middle table-nowrap" id="customerTable">
                                         <thead class="table-light">
                                             <tr>
-                                                <th scope="col" style="width: 50px;">
+                                                <!-- <th scope="col" style="width: 50px;">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                     </div>
-                                                </th>
+                                                </th> -->
                                                 <th class="sort" data-sort="customer_name">ID</th>
                                                 <th class="sort" data-sort="email">Name Cate</th>
                                                 <th class="sort" data-sort="status">Status</th>
@@ -43,15 +43,22 @@
                                             <?php foreach ($Categories as $Category) {
                                                 extract($Category); ?>
                                                 <tr>
-                                                    <th scope="row">
+                                                    <!-- <th scope="row">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                         </div>
-                                                    </th>
+                                                    </th> -->
 
                                                     <td class="id"><a href="javascript:void(0);" class="fw-medium link-primary"><?= $Category['category_id'] ?></a></td>
                                                     <td class="category_name"><?= $Category['category_name'] ?></td>
-                                                    <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
+                                                    <td class="status">
+                                                        <?php if ($Category['status'] === 'Active'): ?>
+                                                            <span class="badge bg-success-subtle text-success text-uppercase"><?= $Category['status'] ?></span>
+                                                        <?php else: ?>
+                                                            <span class="badge bg-danger-subtle text-danger text-uppercase"><?= $Category['status'] ?></span>
+                                                        <?php endif; ?>
+                                                    </td>
+
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">

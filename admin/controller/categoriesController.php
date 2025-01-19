@@ -19,6 +19,7 @@ class categoriesController
         require_once '../admin/view/pagines/category/addCategories.php';
         if (isset($_POST['addCate'])) {
             $name = htmlspecialchars(trim($_POST['name_cate']));
+            $status = $_POST['status'];
             if (empty($name)) {
                 echo '<script>
                 document.addEventListener("DOMContentLoaded", function() {
@@ -45,7 +46,7 @@ class categoriesController
             </script>';
                 return;
             }
-            if ($this->categories->addCategoriesModel($name)) {
+            if ($this->categories->addCategoriesModel($name, $status)) {
                 echo '<script>
                 document.addEventListener("DOMContentLoaded", function() {
                     Swal.fire({
@@ -85,6 +86,7 @@ class categoriesController
         if (isset($_POST['updateCate'])) {
             $category_id = $_POST['category_id'];
             $name = htmlspecialchars(trim($_POST['name_cate']));
+            $status = $_POST['status'];
             if (empty($name)) {
                 echo '<script>
                 document.addEventListener("DOMContentLoaded", function() {
@@ -111,7 +113,7 @@ class categoriesController
             </script>';
                 return;
             }
-            if ($this->categories->updateCategoriesModel($category_id, $name)) {
+            if ($this->categories->updateCategoriesModel($category_id, $name, $status)) {
                 echo '<script>
                 document.addEventListener("DOMContentLoaded", function() {
                     Swal.fire({
@@ -145,15 +147,6 @@ class categoriesController
         $Categories = $this->categories->listCategoriesModel();
         require_once '../admin/view/pagines/category/listCategories.php';
     }
-    function addCategory()
-    {
-        if (isset($_POST['add']) && ($_POST['add'])) {
-            $name = $_POST['name'];
-            $this->categories->addCategoriesModel($name);
-
-        }
-    }
-
     function deleteCategoriesController($category_id)
     {
         // Kiểm tra $category_id có hợp lệ hay không
