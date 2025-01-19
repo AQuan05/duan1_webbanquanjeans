@@ -31,12 +31,6 @@
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3">
-                                                <label for="cleave-phone" class="form-label">Name Product</label>
-                                                <input type="text" name="name" class="form-control" placeholder="Enter name" id="cleave-phone">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
                                                 <label for="cleave-date" class="form-label">Color</label>
                                                 <input type="text" name="color" class="form-control" placeholder="Enter color" id="cleave-date">
                                             </div>

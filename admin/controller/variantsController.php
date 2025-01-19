@@ -22,8 +22,6 @@ class variantsController
             $product_id = $_POST['product_id'];
             $this->Variant->addVariantsModel($color, $size, $product_id);
             header('Location: ?act=listVariants');
-        } else {
-            header('Location: ?act=addVariants');
         }
     }
 }
