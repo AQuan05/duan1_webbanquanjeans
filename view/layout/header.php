@@ -74,16 +74,34 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle cr-right-bar-item" href="javascript:void(0)">
                                         <i class="ri-user-3-line"></i>
-                                        <span>Account</span>
+                                        <span>
+                                            <?php
+                                            // Kiểm tra xem người dùng đã đăng nhập chưa
+                                            if (isset($_SESSION['user'])) {
+                                                // Nếu đã đăng nhập, hiển thị tên người dùng
+                                                echo $_SESSION['user']['username'];
+                                            } else {
+                                                // Nếu chưa đăng nhập, hiển thị "Account"
+                                                echo "Account";
+                                            }
+                                            ?>
+                                        </span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="?act=register">Register</a>
-                                        </li>
-
-                                        <li>
-                                            <a class="dropdown-item" href="?act=login">Login</a>
-                                        </li>
+                                        <?php if (!isset($_SESSION['user'])): ?>
+                                            <!-- Nếu chưa đăng nhập, hiển thị các mục đăng ký và đăng nhập -->
+                                            <li>
+                                                <a class="dropdown-item" href="?act=register">Register</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="?act=login">Login</a>
+                                            </li>
+                                        <?php else: ?>
+                                            <!-- Nếu đã đăng nhập, hiển thị mục "Logout" -->
+                                            <li>
+                                                <a class="dropdown-item" href="?act=logout">Logout</a>
+                                            </li>
+                                        <?php endif; ?>
                                     </ul>
                                 </li>
                             </ul>
@@ -311,7 +329,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php">
+                                    <a class="nav-link" href="?act=index">
                                         Home
                                     </a>
                                 </li>
@@ -417,7 +435,7 @@
             <div class="cr-menu-content">
                 <ul>
                     <li class="dropdown drop-list">
-                        <a href="?act=Home">Home</a>
+                        <a href="?act=index">Home</a>
                     </li>
                     <li class="dropdown drop-list">
                         <span class="menu-toggle"></span>
