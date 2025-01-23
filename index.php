@@ -1,41 +1,30 @@
 <?php
 require_once 'commons/function.php';
+//model
+require_once 'model/Product.php';
+require_once 'model/Category.php';
+// controller
+require_once 'controller/productController.php';
 include 'view/layout/header.php';
+
 if (isset($_GET['act']) && $_GET['act'] != '') {
     $act = $_GET['act'];
     switch ($act) {
-        case 'viewcart':
-            include 'view/pagines/cart/viewcart.php';
+        case '/':
+            include 'view/pagines/product/home.php';
             break;
-        case 'checkout':
-            include 'view/pagines/cart/checkout.php';
+        case 'listProducts':
+            $productController = new ProductController();
+            $productController->listProductsController();
             break;
-        case 'register':
-            include 'view/pagines/acc/register.php';
-            break;
-        case 'login':
-            include 'view/pagines/acc/login.php';
-            break;
-        case 'ProductCategory':
-            include 'view/pagines/product/ProductCategory.php';
-            break;
-        case 'ProductDetail':
-            include 'view/pagines/product/ProductDetail.php';
-            break;
-        case 'About':
-            include 'view/pagines/pages/About.php';
-            break;
-        case 'Contact':
-            include 'view/pagines/pages/Contact.php';
-            break;
-        case 'Policy':
-            include 'view/pagines/pages/Policy.php';
-            break;
-        case 'Faq':
-            include 'view/pagines/pages/Faq.php';
+        case 'detailProducts':
+            $productController = new ProductController();
+            $productController->detailProductsController($_GET['product_id']);
             break;
     }
 } else {
-    include 'view/pagines/home.php';
+
+    include 'view/pagines/product/home.php';
 }
+
 include 'view/layout/footer.php';
