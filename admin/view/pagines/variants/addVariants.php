@@ -31,18 +31,6 @@
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3">
-                                                <label for="product_id" class="form-label">Product</label> <br>
-                                                <select name="product_id" id="product_id" class="form-select">
-                                                    <option value="" selected disabled>Chọn sản phẩm</option> <!-- Lựa chọn mặc định -->
-                                                    <?php foreach ($products as $product) { ?>
-                                                        <option value="<?= $product['product_id'] ?>"><?= $product['product_name'] ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-
-                                        </div><!-- end col -->
-                                        <div class="col-xl-6">
-                                            <div class="mb-3">
                                                 <label for="cleave-date" class="form-label">Color</label>
                                                 <input type="text" name="color" class="form-control" placeholder="Enter color" id="cleave-date">
                                             </div>

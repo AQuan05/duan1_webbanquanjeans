@@ -17,10 +17,10 @@ class variantsController
     {
         // Lấy danh sách sản phẩm từ Model
         $products = $this->Variant->GetAllProducts();
-    
+
         // Hiển thị giao diện thêm Variant
         require_once '../admin/view/pagines/variants/addVariants.php';
-    
+
         // Xử lý thêm Variant khi form được submit
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addVariant'])) {
             // Lấy dữ liệu từ form
@@ -33,7 +33,7 @@ class variantsController
                 echo 'Vui lòng điền đầy đủ thông tin hợp lệ.';
                 return;
             }
-    
+
             // Thêm variant vào cơ sở dữ liệu
             if ($this->Variant->addVariantsModel($color, $size, $product_id, $price)) {
                 header('Location: ?act=listVariants');
@@ -48,16 +48,14 @@ class variantsController
         $variant_id = $_GET['variant_id'];
         if ($this->Variant->deleteVariantsModel($variant_id)) {
             header('Location: ?act=listVariants');
-            exit;
         }
     }
-    
     function updateVariantsController($variant_id)
     {
         $OneVariant = $this->Variant->findVariantsModel($variant_id);
         $products = $this->Variant->GetAllProducts();
         require_once '../admin/view/pagines/variants/editVariants.php';
-    
+
         if (isset($_POST['updateVariant'])) {
             $variant_id = intval($_POST['variant_id']);
             $product_id = intval($_POST['product_id']);
@@ -68,7 +66,7 @@ class variantsController
                 echo 'Vui lòng điền đày đủ thông tin hợp lệ.';
                 return;
             }
-    
+
             if ($this->Variant->updateVariantsModel($variant_id, $color, $size, $product_id, $price)) {
                 header('Location: ?act=listVariants');
                 exit;
@@ -77,5 +75,4 @@ class variantsController
             }
         }
     }
-    
 }
