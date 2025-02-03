@@ -55,6 +55,7 @@ switch ($act) {
         $variantsController->listVariantsController();
         break;
     case 'addVariants':
+        // echo'<script>alert("hello")</script>';
         $variantsController = new variantsController();
         $variantsController->addVariantsController();
         break;
