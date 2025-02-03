@@ -3,6 +3,7 @@ ob_start();
 session_start();
 require_once 'commons/function.php';
 
+
 // model
 require_once 'model/Account.php';
 
@@ -10,17 +11,26 @@ require_once 'model/Account.php';
 require_once 'controller/AccountController.php';
 require_once 'controller/ValidateController.php';
 
+
+//model
+require_once 'model/Product.php';
+require_once 'model/Category.php';
+// controller
+require_once 'controller/productController.php';
+
 include 'view/layout/header.php';
 
 if (isset($_GET['act']) && $_GET['act'] != '') {
     $act = $_GET['act'];
     switch ($act) {
-        case 'viewcart':
-            include 'view/pagines/cart/viewcart.php';
+        case '/':
+            include 'view/pagines/product/home.php';
             break;
-        case 'checkout':
-            include 'view/pagines/cart/checkout.php';
+        case 'listProducts':
+            $productController = new ProductController();
+            $productController->listProductsController();
             break;
+
         case 'register':
             $AccountController = new AccountController();
             $AccountController->addAccController();
@@ -59,10 +69,17 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'Faq':
             include 'view/pagines/pages/Faq.php';
+
+        case 'detailProducts':
+            $productController = new ProductController();
+            $productController->detailProductsController($_GET['product_id']);
+
             break;
     }
 } else {
-    include 'view/pagines/home.php';
+
+    include 'view/pagines/product/home.php';
 }
+
 include 'view/layout/footer.php';
 ob_end_flush();

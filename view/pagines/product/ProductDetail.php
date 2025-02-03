@@ -20,109 +20,12 @@
             <div class="row mb-minus-24" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
                 <div class="col-xxl-4 col-xl-5 col-md-6 col-12 mb-24">
                     <div class="vehicle-detail-banner banner-content clearfix">
-                        <div class="banner-slider">
-                            <div class="slider slider-for">
-                                <div class="slider-banner-image">
-                                    <div class="zoom-image-hover">
-                                        <img src="view/assets/img/product/9.jpg" alt="product-tab-1"
-                                            class="product-image">
-                                    </div>
-                                </div>
-                                <div class="slider-banner-image">
-                                    <div class="zoom-image-hover">
-                                        <img src="view/assets/img/product/10.jpg" alt="product-tab-2"
-                                            class="product-image">
-                                    </div>
-                                </div>
-                                <div class="slider-banner-image">
-                                    <div class="zoom-image-hover">
-                                        <img src="view/assets/img/product/11.jpg" alt="product-tab-3"
-                                            class="product-image">
-                                    </div>
-                                </div>
-                                <div class="slider-banner-image">
-                                    <div class="zoom-image-hover">
-                                        <img src="view/assets/img/product/12.jpg" alt="product-tab-1"
-                                            class="product-image">
-                                    </div>
-                                </div>
-                                <div class="slider-banner-image">
-                                    <div class="zoom-image-hover">
-                                        <img src="view/assets/img/product/13.jpg" alt="product-tab-2"
-                                            class="product-image">
-                                    </div>
-                                </div>
-                                <div class="slider-banner-image">
-                                    <div class="zoom-image-hover">
-                                        <img src="view/assets/img/product/14.jpg" alt="product-tab-3"
-                                            class="product-image">
-                                    </div>
-                                </div>
-                                <div class="slider-banner-image">
-                                    <div class="zoom-image-hover">
-                                        <img src="view/assets/img/product/15.jpg" alt="product-tab-1"
-                                            class="product-image">
-                                    </div>
-                                </div>
-                                <div class="slider-banner-image">
-                                    <div class="zoom-image-hover">
-                                        <img src="view/assets/img/product/16.jpg" alt="product-tab-2"
-                                            class="product-image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slider slider-nav thumb-image">
-                                <div class="thumbnail-image">
-                                    <div class="thumbImg">
-                                        <img src="view/assets/img/product/9.jpg" alt="product-tab-1">
-                                    </div>
-                                </div>
-                                <div class="thumbnail-image">
-                                    <div class="thumbImg">
-                                        <img src="view/assets/img/product/10.jpg" alt="product-tab-2">
-                                    </div>
-                                </div>
-                                <div class="thumbnail-image">
-                                    <div class="thumbImg">
-                                        <img src="view/assets/img/product/11.jpg" alt="product-tab-3">
-                                    </div>
-                                </div>
-                                <div class="thumbnail-image">
-                                    <div class="thumbImg">
-                                        <img src="view/assets/img/product/12.jpg" alt="product-tab-1">
-                                    </div>
-                                </div>
-                                <div class="thumbnail-image">
-                                    <div class="thumbImg">
-                                        <img src="view/assets/img/product/13.jpg" alt="product-tab-2">
-                                    </div>
-                                </div>
-                                <div class="thumbnail-image">
-                                    <div class="thumbImg">
-                                        <img src="view/assets/img/product/14.jpg" alt="product-tab-3">
-                                    </div>
-                                </div>
-                                <div class="thumbnail-image">
-                                    <div class="thumbImg">
-                                        <img src="view/assets/img/product/15.jpg" alt="product-tab-1">
-                                    </div>
-                                </div>
-                                <div class="thumbnail-image">
-                                    <div class="thumbImg">
-                                        <img src="view/assets/img/product/16.jpg" alt="product-tab-2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       <img width="100%" height="400px" src="admin/view/assets/images/products/<?=$detailProducts['image']?>" alt="img-1">
                     </div>
                 </div>
                 <div class="col-xxl-8 col-xl-7 col-md-6 col-12 mb-24">
                     <div class="cr-size-and-weight-contain">
-                        <h2 class="heading">Better Munch - Sweet Crunchy Nut Mix - Roasted Almonds, Dried Dates and Coconuts.</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus sequi unde libero ea
-                            odio aperiam ex alias quod? Tempora, magnam? Reprehenderit incidunt repudiandae officia eius
-                            a ullam. Recusandae quia aliquid ratione est quis voluptatibus magni porro a.
-                            Necessitatibus, tenetur ducimus.</p>
+                        <h2 class="heading"><?= $detailProducts['product_name']?></p>
                     </div>
                     <div class="cr-size-and-weight">
                         <div class="cr-review-star">
@@ -135,29 +38,24 @@
                             </div>
                             <p>( 75 Review )</p>
                         </div>
-                        <div class="list">
-                            <ul>
-                                <li><label>Brand <span>:</span></label>ESTA BETTERU CO</li>
-                                <li><label>Flavour <span>:</span></label>Super Saver Pack</li>
-                                <li><label>Diet Type <span>:</span></label>Vegetarian</li>
-                                <li><label>Weight <span>:</span></label>200 Grams</li>
-                                <li><label>Speciality <span>:</span></label>Gluten Free, Sugar Free</li>
-                                <li><label>Info <span>:</span></label>Egg Free, Allergen-Free</li>
-                                <li><label>Items <span>:</span></label>1</li>
-                            </ul>
-                        </div>
+                       
                         <div class="cr-product-price">
-                            <span class="new-price">$120.25</span>
-                            <span class="old-price">$123.25</span>
+                            <span class="new-price"><?=number_format($detailProducts['price'])?>VNĐ</span>
+                            
                         </div>
                         <div class="cr-size-weight">
-                            <h5><span>Size</span>/<span>Weight</span> :</h5>
+                            <h5><span>Color</span> :</h5>
                             <div class="cr-kg">
                                 <ul>
-                                    <li class="active-color">50kg</li>
-                                    <li>80kg</li>
-                                    <li>120kg</li>
-                                    <li>200kg</li>
+                                    <li class="active-color"><?=$detailProducts['color_name']?></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="cr-size-weight">
+                            <h5><span>Size</span> :</h5>
+                            <div class="cr-kg">
+                                <ul>
+                                    <li class="active-size"><?=$detailProducts['size_name']?></li>
                                 </ul>
                             </div>
                         </div>
