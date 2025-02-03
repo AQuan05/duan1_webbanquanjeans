@@ -1,3 +1,5 @@
+    <?php require_once 'view/layout/header.php' ?>
+    
     <!-- Hero slider -->
     <section class="section-hero padding-b-100 next">
         <div class="cr-slider swiper-container">
@@ -69,19 +71,18 @@
                 <div class="col-xl-3 col-lg-4 col-12 mb-24">
                     <div class="row mb-minus-24 sticky">
                         <div class="col-lg-12 col-sm-6 col-6 cr-product-box mb-24">
+                            <?php foreach ($categories as $category) {  ?>
                             <div class="cr-product-tabs">
                                 <ul>
-                                    <li class="active" data-filter="all">All</li>
-                                    <li data-filter=".snack">Snack</li>
-                                    <li data-filter=".vegetable">Vegetable</li>
-                                    <li data-filter=".fruit">Fruit</li>
-                                    <li data-filter=".bakery">Bakery</li>
+                                    <li class="active" data-filter="all"><a href="?act=/&category_id=<?= $category['category_id']; ?>"><?=  $category['category_name']; ?></a></li>
+
                                 </ul>
                             </div>
+                            <?php }?>
                         </div>
                         <div class="col-lg-12 col-sm-6 col-6 cr-product-box banner-480 mb-24">
                             <div class="cr-ice-cubes">
-                                <img src="assets/img/product/product-banner.jpg" alt="product banner">
+                                <img src="view/assets/img/product/product-banner.jpg" alt="product banner">
                                 <div class="cr-ice-cubes-contain">
                                     <h4 class="title">Juicy </h4>
                                     <h5 class="sub-title">Fruits</h5>
@@ -98,7 +99,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/1.jpg" alt="product-1">
+                                        <img src="view/assets/img/product/1.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -136,7 +137,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/9.jpg" alt="product-1">
+                                        <img src="view/assets/img/product/9.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -174,7 +175,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/2.jpg" alt="product-1">
+                                        <img src="view/assets/img/product/2.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -212,7 +213,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/17.jpg" alt="product-1">
+                                        <img src="view/assets/img/product/17.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -250,7 +251,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/11.jpg" alt="product-1">
+                                        <img src="view/assets/img/product/11.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -288,7 +289,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/3.jpg" alt="product-1">
+                                        <img src="view/assets/img/product/3.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -326,7 +327,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/10.jpg" alt="product-1">
+                                        <img src="view/assets/img/product/10.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -364,7 +365,7 @@
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
-                                        <img src="assets/img/product/17.jpg" alt="product-1">
+                                        <img src="view/assets/img/product/17.jpg" alt="product-1">
                                     </div>
                                     <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
@@ -457,7 +458,7 @@
         </div>
     </section>
 
-
+<?php require_once 'view/layout/footer.php' ?>
 
 
 
