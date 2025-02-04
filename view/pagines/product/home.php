@@ -70,16 +70,6 @@
             <div class="product-content row mb-minus-24" id="MixItUpDA2FB7">
                 <div class="col-xl-3 col-lg-4 col-12 mb-24">
                     <div class="row mb-minus-24 sticky">
-                        <div class="col-lg-12 col-sm-6 col-6 cr-product-box mb-24">
-                            <?php foreach ($categories as $category) {  ?>
-                            <div class="cr-product-tabs">
-                                <ul>
-                                    <li class="active" data-filter="all"><a href="?act=/&category_id=<?= $category['category_id']; ?>"><?=  $category['category_name']; ?></a></li>
-
-                                </ul>
-                            </div>
-                            <?php }?>
-                        </div>
                         <div class="col-lg-12 col-sm-6 col-6 cr-product-box banner-480 mb-24">
                             <div class="cr-ice-cubes">
                                 <img src="view/assets/img/product/product-banner.jpg" alt="product banner">

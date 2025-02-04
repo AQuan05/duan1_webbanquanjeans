@@ -1,3 +1,4 @@
+<?php require_once 'view/layout/header.php'; ?>
 <!-- Breadcrumb -->
 <section class="section-breadcrumb">
     <div class="cr-breadcrumb-image">
@@ -134,3 +135,4 @@
         </div>
     </div>
 </section>
+<?php require_once 'view/layout/footer.php' ?>
