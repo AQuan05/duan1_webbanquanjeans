@@ -6,29 +6,19 @@ require_once 'commons/function.php';
 
 // model
 require_once 'model/Account.php';
+require_once 'model/shopModel.php';
 
 // controller
 require_once 'controller/AccountController.php';
+require_once 'controller/shopController.php';
 require_once 'controller/ValidateController.php';
 
-
-//model
-require_once 'model/Product.php';
-require_once 'model/Category.php';
-// controller
-require_once 'controller/productController.php';
-
-include 'view/layout/header.php';
-
 if (isset($_GET['act']) && $_GET['act'] != '') {
-    $act = $_GET['act'];
+    $act = $_GET['act'] ?? '/';
+    $action = $_GET['action'] ?? '';
     switch ($act) {
         case '/':
             include 'view/pagines/product/home.php';
-            break;
-        case 'listProducts':
-            $productController = new productController();
-            $productController->listProductsController();
             break;
 
         case 'register':
@@ -47,6 +37,19 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $AccountController = new AccountController();
             $AccountController->resetPasswordController();
             break;
+        case 'shop':
+            $shopController = new ShopController();
+            $shopController->allProducts();
+            break;
+        case 'shopSingle':
+            $shopController = new shopController();
+            $shopController->productDetails($_GET['product_id']);
+            break;
+        case 'shopCategory':
+            $shopController = new shopController();
+            $shopController->shopCategory($_GET['category_id']);
+            break;
+        case 'cart':
         case 'logout':
             session_destroy();
             header('Location: ?act=index');
@@ -54,9 +57,6 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'ProductCategory':
             include 'view/pagines/ProductCategory.php';
-            break;
-        case 'ProductDetail':
-            include 'view/pagines/ProductDetail.php';
             break;
         case 'About':
             include 'view/pagines/pages/About.php';
@@ -69,16 +69,11 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'Faq':
             include 'view/pagines/pages/Faq.php';
-            break;
-        // case 'detailProducts':
-        //     $productController = new ProductController();
-        //     $productController->detailProductsController($_GET['product_id']);
-        //     break;
+
     }
 } else {
-
-    include 'view/pagines/product/home.php';
+ header('Location: ?act=/');
 }
 
-include 'view/layout/footer.php';
+
 ob_end_flush();

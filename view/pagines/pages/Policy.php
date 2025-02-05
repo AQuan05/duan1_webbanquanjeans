@@ -1,4 +1,5 @@
-    <!-- Breadcrumb -->
+<?php require_once 'view/layout/header.php'; ?>
+   <!-- Breadcrumb -->
     <section class="section-breadcrumb">
         <div class="cr-breadcrumb-image">
             <div class="container">
@@ -122,3 +123,4 @@
         </div>
     </section>
     <!-- Policy section End -->
+    <?php require_once 'view/layout/footer.php'; ?>
