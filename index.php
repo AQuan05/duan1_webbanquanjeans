@@ -1,26 +1,62 @@
 <?php
+ob_start();
+session_start();
 require_once 'commons/function.php';
-include 'view/layout/header.php';
+
+
+// model
+require_once 'model/Account.php';
+require_once 'model/shopModel.php';
+
+// controller
+require_once 'controller/AccountController.php';
+require_once 'controller/shopController.php';
+require_once 'controller/ValidateController.php';
+
 if (isset($_GET['act']) && $_GET['act'] != '') {
-    $act = $_GET['act'];
+    $act = $_GET['act'] ?? '/';
+    $action = $_GET['action'] ?? '';
     switch ($act) {
-        case 'viewcart':
-            include 'view/pagines/cart/viewcart.php';
+        case '/':
+            include 'view/pagines/product/home.php';
             break;
-        case 'checkout':
-            include 'view/pagines/cart/checkout.php';
-            break;
+
         case 'register':
-            include 'view/pagines/acc/register.php';
+            $AccountController = new AccountController();
+            $AccountController->addAccController();
             break;
         case 'login':
-            include 'view/pagines/acc/login.php';
+            $AccountController = new AccountController();
+            $AccountController->loginController();
+            break;
+        case 'forgotPassword':
+            $AccountController = new AccountController();
+            $AccountController->forgotPasswordController();
+            break;
+        case 'resetPassword':
+            $AccountController = new AccountController();
+            $AccountController->resetPasswordController();
+            break;
+        case 'shop':
+            $shopController = new ShopController();
+            $shopController->allProducts();
+            break;
+        case 'shopSingle':
+            $shopController = new shopController();
+            $shopController->productDetails($_GET['product_id']);
+            break;
+        case 'shopCategory':
+            $shopController = new shopController();
+            $shopController->shopCategory($_GET['category_id']);
+            break;
+        case 'cart':
+        case 'logout':
+            session_destroy();
+            header('Location: ?act=index');
+            exit();
             break;
         case 'ProductCategory':
-            include 'view/pagines/product/ProductCategory.php';
-            break;
-        case 'ProductDetail':
-            include 'view/pagines/product/ProductDetail.php';
+            include 'view/pagines/ProductCategory.php';
             break;
         case 'About':
             include 'view/pagines/pages/About.php';
@@ -33,9 +69,11 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'Faq':
             include 'view/pagines/pages/Faq.php';
-            break;
+
     }
 } else {
-    include 'view/pagines/home.php';
+ header('Location: ?act=/');
 }
-include 'view/layout/footer.php';
+
+
+ob_end_flush();

@@ -57,26 +57,53 @@
                             <img src="view/assets/img/logo/logo.png" alt="logo" class="logo">
                             <img src="view/assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
                         </a>
-                        <form class="cr-search">
-                            <input class="search-input" type="text" placeholder="Search For items...">
+                        <form class="cr-search" method="POST" action="?act=shop">
+                            <input class="search-input" type="text" placeholder="Search For items..." name="search">
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>All Categories</option>
                                 <option value="1">Mens</option>
                                 <option value="2">Womens</option>
                                 <option value="3">Electronics</option>
                             </select>
-                            <a href="javascript:void(0)" class="search-btn">
+                            <button type="submit" class="search-btn">
                                 <i class="ri-search-line"></i>
-                            </a>
+                            </button>
                         </form>
                         <div class="cr-right-bar">
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle cr-right-bar-item" href="javascript:void(0)">
                                         <i class="ri-user-3-line"></i>
-                                        <span>Account</span>
+                                        <span>
+                                            <?php
+                                            // Kiểm tra xem người dùng đã đăng nhập chưa
+                                            if (isset($_SESSION['user'])) {
+                                                // Nếu đã đăng nhập, hiển thị tên người dùng
+                                                echo $_SESSION['user']['username'];
+                                            } else {
+                                                // Nếu chưa đăng nhập, hiển thị "Account"
+                                                echo "Account";
+                                            }
+                                            ?>
+                                        </span>
                                     </a>
                                     <ul class="dropdown-menu">
+
+                                        <?php if (!isset($_SESSION['user'])): ?>
+                                            <!-- Nếu chưa đăng nhập, hiển thị các mục đăng ký và đăng nhập -->
+                                            <li>
+                                                <a class="dropdown-item" href="?act=register">Register</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="?act=login">Login</a>
+                                            </li>
+                                        <?php else: ?>
+                                            <!-- Nếu đã đăng nhập, hiển thị mục "Logout" -->
+                                            <li>
+                                                <a class="dropdown-item" href="?act=logout">Logout</a>
+                                            </li>
+                                        <?php endif; ?>
+
                                         <li>
                                             <a class="dropdown-item" href="?act=register">Register</a>
                                         </li>
@@ -84,6 +111,7 @@
                                         <li>
                                             <a class="dropdown-item" href="?act=login">Login</a>
                                         </li>
+
                                     </ul>
                                 </li>
                             </ul>
@@ -311,26 +339,20 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php">
+
+                                    <a class="nav-link" href="?act=/">
+
                                         Home
                                     </a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Product Category
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="?act=ProductCategory">Shop Left
-                                                sidebar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="?act=ProductDetail">
-                                        Detail product
+                                <li class="nav-item">
+
+                                    <a class="nav-link" href="?act=shop">
+
+                                        Shop
                                     </a>
                                 </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)">
                                         Pages
@@ -380,22 +402,7 @@
                                         </li>
                                     </ul>
                                 </li> -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)">
-                                        Elements
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="elements-products.html">Products</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="elements-typography.html">Typography</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="elements-buttons.html">Buttons</a>
-                                        </li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </div>
                     </nav>
@@ -417,7 +424,11 @@
             <div class="cr-menu-content">
                 <ul>
                     <li class="dropdown drop-list">
-                        <a href="?act=Home">Home</a>
+
+                        <a href="?act=index">Home</a>
+
+                        <a href="?act=listProducts">Home</a>
+
                     </li>
                     <li class="dropdown drop-list">
                         <span class="menu-toggle"></span>
