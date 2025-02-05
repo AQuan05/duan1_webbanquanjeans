@@ -27,7 +27,7 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             include 'view/pagines/product/home.php';
             break;
         case 'listProducts':
-            $productController = new ProductController();
+            $productController = new productController();
             $productController->listProductsController();
             break;
 
