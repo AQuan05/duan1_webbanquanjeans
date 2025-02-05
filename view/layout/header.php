@@ -61,9 +61,9 @@
                                     <input class="search-input" type="text" placeholder="Search For items...">
                                     <select class="form-select" aria-label="Default select example">
                                         <option selected>All Categories</option>
-                                <option value="1">Mens</option>
-                                <option value="2">Womens</option>
-                                <option value="3">Electronics</option>
+                                        <option value="1">Mens</option>
+                                        <option value="2">Womens</option>
+                                        <option value="3">Electronics</option>
                             </select>
                             <a href="javascript:void(0)" class="search-btn">
                                 <i class="ri-search-line"></i>
@@ -340,10 +340,7 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item">
 
-                                    <a class="nav-link" href="?act=index">
-
                                     <a class="nav-link" href="?act=/">
-
                                         Home
                                     </a>
                                 </li>
