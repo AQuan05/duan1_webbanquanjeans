@@ -69,11 +69,10 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'Faq':
             include 'view/pagines/pages/Faq.php';
-
+            break;
         case 'detailProducts':
             $productController = new ProductController();
             $productController->detailProductsController($_GET['product_id']);
-
             break;
     }
 } else {
