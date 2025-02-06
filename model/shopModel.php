@@ -73,11 +73,31 @@ ORDER BY p.product_id DESC";
     }
     public function VariantsByProductId($product_id)
     {
-        $sql = "SELECT variants.size_id, variants.color_id, variants.price, size.size_name, color.color_name
-                FROM variants
-                JOIN size ON variants.size_id = size.size_id
-                JOIN color ON variants.color_id = color.color_id
-                WHERE variants.product_id = $product_id";
-        return $this->conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "SELECT 
+                    v.variant_id,
+                    s.size_id,      -- Get size ID
+                    s.size_name,    -- Get size name
+                    c.color_id,    -- Get color ID
+                    c.color_name,  -- Get color name
+                    v.price
+                FROM variants v
+                INNER JOIN size s ON v.size_id = s.size_id
+                INNER JOIN color c ON v.color_id = c.color_id
+                WHERE v.product_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$product_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function getVariantById($variant_id) {
+        $sql = "SELECT v.price, c.color_name, s.size_name
+                FROM variants v
+                JOIN color c ON v.color_id = c.color_id
+                JOIN size s ON v.size_id = s.size_id
+                WHERE v.variant_id = ?"; // Use parameterized query
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$variant_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
 }
