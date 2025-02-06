@@ -20,12 +20,12 @@
             <div class="row mb-minus-24" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
                 <div class="col-xxl-4 col-xl-5 col-md-6 col-12 mb-24">
                     <div class="vehicle-detail-banner banner-content clearfix">
-                       <img width="100%" height="400px" src="admin/view/assets/images/products/<?=$detailProducts['image']?>" alt="img-1">
+                        <img width="100%" height="400px" src="admin/view/assets/images/products/<?php echo $detailProducts['image'] ?>" alt="img-1">
                     </div>
                 </div>
                 <div class="col-xxl-8 col-xl-7 col-md-6 col-12 mb-24">
                     <div class="cr-size-and-weight-contain">
-                        <h2 class="heading"><?= $detailProducts['product_name']?></p>
+                        <h2 class="heading"><?php echo $detailProducts['product_name'] ?></p>
                     </div>
                     <div class="cr-size-and-weight">
                         <div class="cr-review-star">
@@ -38,24 +38,24 @@
                             </div>
                             <p>( 75 Review )</p>
                         </div>
-                       
+
                         <div class="cr-product-price">
-                            <span class="new-price"><?=number_format($detailProducts['price'])?>VNĐ</span>
-                            
+                            <span class="new-price"><?php echo number_format($detailProducts['price']) ?>VNĐ</span>
                         </div>
                         <div class="cr-size-weight">
                             <h5><span>Color</span> :</h5>
                             <div class="cr-kg">
-                                <ul>
-                                    <li class="active-color"><?=$detailProducts['color_name']?></li>
-                                </ul>
-                            </div>
+                            <label for="color">Chọn màu sắc:</label>
+                            <select id="color" name="color">
+                                <option value="<?php echo $detailProducts['color_id'] ?>" selected><?php echo $detailProducts['color_name'] ?></option>
+                            </select>
+                        </div>
                         </div>
                         <div class="cr-size-weight">
                             <h5><span>Size</span> :</h5>
                             <div class="cr-kg">
                                 <ul>
-                                    <li class="active-size"><?=$detailProducts['size_name']?></li>
+                                    <li class="active-size"><?php echo $detailProducts['size_name'] ?></li>
                                 </ul>
                             </div>
                         </div>

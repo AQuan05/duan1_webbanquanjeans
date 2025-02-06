@@ -1,4 +1,4 @@
-<?php require_once 'view/layout/header.php' ?>
+<?php require_once 'view/layout/header.php'?>
 <!-- Breadcrumb -->
 <section class="section-breadcrumb">
     <div class="cr-breadcrumb-image">
@@ -26,7 +26,7 @@
                         <div class="slider slider-for">
                             <div class="slider-banner-image">
                                 <div class="zoom-image-hover">
-                                    <img src="admin/view/assets/images/products/<?=$productOne['image']?>" alt="product-tab-1"
+                                    <img src="admin/view/assets/images/products/<?php echo $productOne['image']?>" alt="product-tab-1"
                                         class="product-image">
                                 </div>
                             </div>
@@ -36,8 +36,8 @@
             </div>
             <div class="col-xxl-8 col-xl-7 col-md-6 col-12 mb-24">
                 <div class="cr-size-and-weight-contain">
-                    <h2 class="heading"><?=$productOne['product_name']?></h2>
-                    <p><?=$productOne['description']?></p>
+                    <h2 class="heading"><?php echo $productOne['product_name']?></h2>
+                    <p><?php echo $productOne['description']?></p>
                 </div>
                 <div class="cr-size-and-weight">
                     <div class="cr-review-star">
@@ -50,24 +50,81 @@
                         </div>
                         <p>( 75 Review )</p>
                     </div>
-                    <div class="cr-product-price">
-                        <span class="new-price"><?=number_format($productOne['price'])?> VNĐ</span>
-                    </div>
+                    <div class="cr-product-price" id="product-price-container">  </div>
+
+<script>
+  const variants =                   <?php echo json_encode($variants); ?>; // Pass variants data to JavaScript
+  const priceContainer = document.getElementById('product-price-container');
+  const sizeOptions = document.querySelectorAll('.cr-size-weight ul li');
+  const colorSelect = document.getElementById('color');
+
+  function updatePrice(selectedSize, selectedColor) {
+    const selectedVariant = variants.find(v => v.size_id == selectedSize && v.color_id == selectedColor);
+    if (selectedVariant) {
+      priceContainer.innerHTML = `<span class="new-price"><?php echo number_format(${selectedVariant . price})?> VNĐ</span>`;
+    } else {
+      priceContainer.innerHTML = `<span class="new-price">Giá không xác định</span>`; // Or handle the case where no variant is found
+    }
+  }
+
+  // Initial price update based on currently selected values:
+  const initialSize = document.querySelector('.active-size').dataset.size;
+  const initialColor = colorSelect.value;
+  updatePrice(initialSize, initialColor);
+
+  sizeOptions.forEach(size => {
+    size.addEventListener('click', function() {
+      const selectedSize = this.dataset.size;
+      const selectedColor = colorSelect.value;
+
+      // Remove active class from all size options
+      sizeOptions.forEach(li => li.classList.remove('active-size'));
+
+      // Add active class to the clicked size option
+      this.classList.add('active-size');
+
+      updatePrice(selectedSize, selectedColor);
+    });
+  });
+
+  colorSelect.addEventListener('change', function() {
+    const selectedColor = this.value;
+    const selectedSize = document.querySelector('.active-size').dataset.size;
+    updatePrice(selectedSize, selectedColor);
+  });
+
+</script>
                     <div class="cr-size-weight">
-                        <h5><span>Size</span></h5>
-                        <div class="cr-kg">
-                            <ul>
-                                <li class="active-color"><?=$productOne['size_name']?></li>
-                            </ul>
-                        </div>
-                        <br>
                         <h5><span>Color</span> :</h5>
                         <div class="cr-kg">
+                            <label for="color">Chọn màu sắc:</label>
+                            <select id="color" name="color">
+                                <?php foreach ($variants as $variant): ?>  <option value="<?php echo $variant['color_id'] ?>"
+                                            <?php if ($productOne['color_id'] == $variant['color_id']) {
+                                                    echo 'selected';
+                                            }
+                                            ?>>
+                                        <?php echo $variant['color_name'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cr-size-weight">
+                        <h5><span>Size</span> :</h5>
+                        <div class="cr-kg">
                             <ul>
-                                <li class="active-color"><?=$productOne['color_name']?></li>
+                                <?php foreach ($variants as $variant): ?> <li class="<?php if ($productOne['size_id'] == $variant['size_id']) {
+        echo 'active-size';
+}
+?>">
+                                        <?php echo $variant['size_name'] ?>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>
+
                     <div class="cr-add-card">
                         <div class="cr-qty-main">
                             <input type="text" placeholder="." value="1" minlength="1" maxlength="20"
@@ -440,4 +497,4 @@
         </div>
     </div>
 </section>
-<?php require_once 'view/layout/footer.php' ?>
+<?php require_once 'view/layout/footer.php'?>

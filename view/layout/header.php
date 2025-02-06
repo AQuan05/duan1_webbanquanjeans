@@ -104,19 +104,11 @@
                                             </li>
                                         <?php endif; ?>
 
-                                        <li>
-                                            <a class="dropdown-item" href="?act=register">Register</a>
-                                        </li>
-
-                                        <li>
-                                            <a class="dropdown-item" href="?act=login">Login</a>
-                                        </li>
-
                                     </ul>
                                 </li>
                             </ul>
 
-                            <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle">
+                            <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle" onclick="window.location.href='?act=cart'">
                                 <i class="ri-shopping-cart-line"></i>
                                 <span>Cart</span>
                             </a>
@@ -347,7 +339,6 @@
                                 <li class="nav-item">
 
                                     <a class="nav-link" href="?act=shop">
-
                                         Shop
                                     </a>
                                 </li>

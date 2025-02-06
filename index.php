@@ -3,7 +3,6 @@ ob_start();
 session_start();
 require_once 'commons/function.php';
 
-
 // model
 require_once 'model/Account.php';
 require_once 'model/shopModel.php';
@@ -50,6 +49,8 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $shopController->shopCategory($_GET['category_id']);
             break;
         case 'cart':
+            include 'view/pagines/cart/viewcart.php';
+            break;
         case 'logout':
             session_destroy();
             header('Location: ?act=index');
@@ -69,11 +70,9 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'Faq':
             include 'view/pagines/pages/Faq.php';
-
+            break;
     }
 } else {
  header('Location: ?act=/');
 }
-
-
 ob_end_flush();
