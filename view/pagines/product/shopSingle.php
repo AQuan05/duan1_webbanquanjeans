@@ -42,6 +42,7 @@
                 </div>
                 <div class="cr-size-and-weight">
 
+
                     <div class="cr-product-price">
                         <span class="new-price" id="productPrice" name="price">
                             <?php echo number_format($productOne['price'])?> VNĐ
