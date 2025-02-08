@@ -14,7 +14,7 @@ require_once 'controller/ValidateController.php';
 require_once 'controller/CartController.php';
 
 if (isset($_GET['act']) && $_GET['act'] != '') {
-    $act = $_GET['act'] ?? '/';
+    $act    = $_GET['act'] ?? '/';
     $action = $_GET['action'] ?? '';
     switch ($act) {
         case '/':
@@ -50,11 +50,16 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $shopController->shopCategory($_GET['category_id']);
             break;
         case 'viewcart':
-            include 'view/pagines/cart/viewcart.php';
+            $cartController = new CartController();
+            $cartController->viewcart(); // Chạy hàm hiển thị giỏ hàng
             break;
         case 'cart':
             $CartController = new CartController();
             $CartController->addToCart();
+            break;
+        case 'deletecart':
+            $cartController = new CartController();
+            $cartController->deleteCart($_POST['cart_item_id']);
             break;
         case 'logout':
             session_destroy();
@@ -78,6 +83,6 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
     }
 } else {
- header('Location: ?act=/');
+    header('Location: ?act=/');
 }
 ob_end_flush();

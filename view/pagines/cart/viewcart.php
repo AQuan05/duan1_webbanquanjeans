@@ -1,5 +1,6 @@
  <!-- Breadcrumb -->
  <?php require_once 'view/layout/header.php' ?>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
  <section class="section-breadcrumb">
      <div class="cr-breadcrumb-image">
          <div class="container">
@@ -35,24 +36,41 @@
                                  <table>
                                      <thead>
                                          <tr>
+                                             <th>Id</th>
                                              <th>Product</th>
-                                             <th>price</th>
                                              <th class="text-center">Quantity</th>
-                                             <th>Total</th>
                                              <th>Action</th>
                                          </tr>
                                      </thead>
                                      <?php if (! empty($cartItems)): ?>
                                          <?php foreach ($cartItems as $item): ?>
                                              <tr>
-                                                 <td><?php echo htmlspecialchars($item['cart_id']); ?></td>
-                                                 <td><?php echo htmlspecialchars($item['cart_name']); ?></td>
-                                                 <td>
-                                                     <img src="admin/view/assets/images/products/<?php echo htmlspecialchars($item['image']); ?>"
-                                                         alt="<?php echo htmlspecialchars($item['cart_name']); ?>"
-                                                         width="50">
+                                                 <td><?php echo htmlspecialchars($item['cart_item_id']); ?></td>
+                                                 <td class="cr-cart-name">
+                                                     <a href="javascript:void(0)">
+                                                         <img src="admin/view/assets/images/products/<?php echo htmlspecialchars($item['img']); ?>"
+                                                             alt="<?php echo htmlspecialchars($item['cart_name']); ?>"
+                                                             class="cr-cart-img" width="50">
+                                                         <?php echo htmlspecialchars($item['cart_name']); ?>
+                                                     </a>
                                                  </td>
-                                                 <td><?php echo htmlspecialchars($item['quantity']); ?></td>
+
+                                                 <td class="cr-cart-qty">
+                                                     <div class="cart-qty-plus-minus">
+                                                         <button type="button" class="minus" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, -1)">−</button>
+                                                         <input type="text" name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>"
+                                                             class="quantity" minlength="1" maxlength="20">
+                                                         <button type="button" class="plus" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, 1)">+</button>
+                                                     </div>
+                                                 </td>
+                                                 <td class="cr-cart-remove">
+                                                     <form action="?act=deletecart" method="POST" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">
+                                                         <input type="hidden" name="cart_item_id" value="<?php echo $item['cart_item_id']; ?>">
+                                                         <button type="submit" style="border: none; background: none;">
+                                                             <i class="fa fa-trash" style="color: red;"></i>
+                                                         </button>
+                                                     </form>
+                                                 </td>
                                              </tr>
                                          <?php endforeach; ?>
                                      <?php else: ?>
