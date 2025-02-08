@@ -16,25 +16,24 @@ class Cart
     public function addToCart($cart_id, $cart_name, $img, $quantity)
     {
         // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-        $sql_check  = "SELECT * FROM `cart_items` WHERE cart_id = $cart_id AND cart_name = $cart_name";
+        $sql_check  = "SELECT * FROM cart_items WHERE cart_id = ? AND cart_name = ?";
         $stmt_check = $this->conn->prepare($sql_check);
-        $stmt_check->execute();
+        $stmt_check->execute([$cart_id, $cart_name]);
         $existingItem = $stmt_check->fetch(PDO::FETCH_ASSOC);
 
         if ($existingItem) {
             // Nếu sản phẩm đã có, cập nhật số lượng
             $newQuantity = $existingItem['quantity'] + $quantity;
-            $sql_update  = "UPDATE `cart_items` SET quantity = $newQuantity WHERE cart_id = $cart_id AND cart_name = $cart_name";
+            $sql_update  = "UPDATE cart_items SET quantity = ? WHERE cart_id = ? AND cart_name = ?";
             $stmt_update = $this->conn->prepare($sql_update);
-            return $stmt_update->execute();
+            return $stmt_update->execute([$newQuantity, $cart_id, $cart_name]);
         } else {
             // Nếu sản phẩm chưa có, thêm mới
-            $sql_insert  = "INSERT INTO `cart_items` (`cart_id`, `cart_name`, `img`, `quantity`) VALUES ($cart_id, $cart_name, $img, $quantity)";
+            $sql_insert  = "INSERT INTO cart_items (cart_id, cart_name, img, quantity) VALUES (?, ?, ?, ?)";
             $stmt_insert = $this->conn->prepare($sql_insert);
-            return $stmt_insert->execute();
+            return $stmt_insert->execute([$cart_id, $cart_name, $img, $quantity]);
         }
     }
-
     public function deleteCartItem($cart_item_id)
     {
         $sql  = "DELETE FROM cart_items WHERE cart_item_id = ?";
