@@ -39,8 +39,7 @@
                                                 <th class="sort" data-sort="customer_name">ID</th>
                                                 <th class="sort" data-sort="email">Name Product</th>
                                                 <th class="sort" data-sort="email">Image</th>
-                                                <th class="sort" data-sort="email">Category name</th>
-                                                <th class="sort" data-sort="email">Color & Size</th> <!-- Thêm cột Color & Size -->
+                                                <th class="sort" data-sort="email">Category name</th><!-- Thêm cột Color & Size -->
                                                 <th class="sort" data-sort="status">Status</th>
                                                 <th class="sort" data-sort="action">Action</th>
                                             </tr>
@@ -58,22 +57,6 @@
                                                     <td class="product_name"><?= $listProduct['product_name'] ?></td>
                                                     <td><img width="100" src="../admin/view/assets/images/products/<?= $listProduct['image'] ?>" alt="123"></td>
                                                     <td class="category_name"><?= $listProduct['category_name'] ?></td>
-
-                                                    <!-- Hiển thị màu sắc và kích thước -->
-                                                    <td class="color_size">
-                                                        <?php if (!empty($listProduct['variants'])): ?>
-                                                            <?php foreach ($listProduct['variants'] as $variant): ?>
-                                                                <div>
-                                                                    <strong>Size:</strong> <?= $variant['size_name'] ?>,
-                                                                    <strong>Color:</strong> <?= $variant['color_name'] ?>,
-                                                                    <strong>Price:</strong> <?= $variant['price'] ?>
-                                                                </div>
-                                                            <?php endforeach; ?>
-                                                        <?php else: ?>
-                                                            No variants
-                                                        <?php endif; ?>
-                                                    </td>
-
                                                     <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
                                                     <td>
                                                         <div class="d-flex gap-2">

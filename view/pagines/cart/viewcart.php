@@ -1,5 +1,6 @@
  <!-- Breadcrumb -->
  <?php require_once 'view/layout/header.php' ?>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
  <section class="section-breadcrumb">
      <div class="cr-breadcrumb-image">
          <div class="container">
@@ -35,45 +36,48 @@
                                  <table>
                                      <thead>
                                          <tr>
+                                             <th>Id</th>
                                              <th>Product</th>
-                                             <th>price</th>
-                                             <th>Variants</th>
                                              <th class="text-center">Quantity</th>
-                                             <th>Total</th>
                                              <th>Action</th>
                                          </tr>
                                      </thead>
-                                     <tbody>
+                                     <?php if (! empty($cartItems)): ?>
+                                         <?php foreach ($cartItems as $item): ?>
+                                             <tr>
+                                                 <td><?php echo htmlspecialchars($item['cart_item_id']); ?></td>
+                                                 <td class="cr-cart-name">
+                                                     <a href="javascript:void(0)">
+                                                         <img src="admin/view/assets/images/products/<?php echo htmlspecialchars($item['img']); ?>"
+                                                             alt="<?php echo htmlspecialchars($item['cart_name']); ?>"
+                                                             class="cr-cart-img" width="50">
+                                                         <?php echo htmlspecialchars($item['cart_name']); ?>
+                                                     </a>
+                                                 </td>
+
+                                                 <td class="cr-cart-qty">
+                                                     <div class="cart-qty-plus-minus">
+                                                         <button type="button" class="minus" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, -1)">−</button>
+                                                         <input type="text" name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>"
+                                                             class="quantity" minlength="1" maxlength="20">
+                                                         <button type="button" class="plus" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, 1)">+</button>
+                                                     </div>
+                                                 </td>
+                                                 <td class="cr-cart-remove">
+                                                     <form action="?act=deletecart" method="POST" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">
+                                                         <input type="hidden" name="cart_item_id" value="<?php echo $item['cart_item_id']; ?>">
+                                                         <button type="submit" style="border: none; background: none;">
+                                                             <i class="fa fa-trash" style="color: red;"></i>
+                                                         </button>
+                                                     </form>
+                                                 </td>
+                                             </tr>
+                                         <?php endforeach; ?>
+                                     <?php else: ?>
                                          <tr>
-                                             <td class="cr-cart-name">
-                                                 <a href="javascript:void(0)">
-                                                     <img src="view/assets/img/product/1.jpg" alt="product-1"
-                                                         class="cr-cart-img">
-                                                     Organic Lemon
-                                                 </a>
-                                             </td>
-                                             <td class="cr-cart-price">
-                                                 <span class="amount">$56.00</span>
-                                             </td>
-                                             <td class="cr-cart-variants">
-                                                 <span>Yellow,XXL</span>
-                                             </td>
-                                             <td class="cr-cart-qty">
-                                                 <div class="cart-qty-plus-minus">
-                                                     <button type="button" class="plus">+</button>
-                                                     <input type="text" placeholder="." value="1" minlength="1"
-                                                         maxlength="20" class="quantity">
-                                                     <button type="button" class="minus">-</button>
-                                                 </div>
-                                             </td>
-                                             <td class="cr-cart-subtotal">$56.00</td>
-                                             <td class="cr-cart-remove">
-                                                 <a href="javascript:void(0)">
-                                                     <i class="ri-delete-bin-line"></i>
-                                                 </a>
-                                             </td>
+                                             <td colspan="4" style="text-align: center;">Giỏ hàng của bạn đang trống.</td>
                                          </tr>
-                                     </tbody>
+                                     <?php endif; ?>
                                  </table>
                              </div>
                              <div class="row">

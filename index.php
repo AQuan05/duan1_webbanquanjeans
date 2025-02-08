@@ -6,14 +6,15 @@ require_once 'commons/function.php';
 // model
 require_once 'model/Account.php';
 require_once 'model/shopModel.php';
-
+require_once 'model/Cart.php';
 // controller
 require_once 'controller/AccountController.php';
 require_once 'controller/shopController.php';
 require_once 'controller/ValidateController.php';
+require_once 'controller/CartController.php';
 
 if (isset($_GET['act']) && $_GET['act'] != '') {
-    $act = $_GET['act'] ?? '/';
+    $act    = $_GET['act'] ?? '/';
     $action = $_GET['action'] ?? '';
     switch ($act) {
         case '/':
@@ -48,8 +49,17 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $shopController = new shopController();
             $shopController->shopCategory($_GET['category_id']);
             break;
+        case 'viewcart':
+            $cartController = new CartController();
+            $cartController->viewcart(); // Chạy hàm hiển thị giỏ hàng
+            break;
         case 'cart':
-            include 'view/pagines/cart/viewcart.php';
+            $CartController = new CartController();
+            $CartController->addToCart();
+            break;
+        case 'deletecart':
+            $cartController = new CartController();
+            $cartController->deleteCart($_POST['cart_item_id']);
             break;
         case 'logout':
             session_destroy();
@@ -73,6 +83,6 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
     }
 } else {
- header('Location: ?act=/');
+    header('Location: ?act=/');
 }
 ob_end_flush();

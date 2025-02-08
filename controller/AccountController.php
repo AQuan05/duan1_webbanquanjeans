@@ -103,7 +103,7 @@ class AccountController
             if ($user) {
                 // Lưu thông tin người dùng vào session
                 $_SESSION['user'] = $user;
-                header('Location: ?act=index'); // Chuyển hướng đến trang dashboard
+                header('Location: ?act=/'); // Chuyển hướng đến trang dashboard
                 exit();
             } else {
                 // Lỗi đăng nhập
