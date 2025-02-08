@@ -16,7 +16,7 @@ class Cart
     public function addToCart($cart_id, $cart_name, $img, $quantity)
     {
         // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-        $sql_check  = "SELECT * FROM `cart_items` WHERE cart_id = $cart_id AND cart_name = $cart_name";
+        $sql_check  = "SELECT * FROM `cart_items` WHERE cart_id = $cart_id";
         $stmt_check = $this->conn->prepare($sql_check);
         $stmt_check->execute();
         $existingItem = $stmt_check->fetch(PDO::FETCH_ASSOC);
@@ -24,7 +24,7 @@ class Cart
         if ($existingItem) {
             // Nếu sản phẩm đã có, cập nhật số lượng
             $newQuantity = $existingItem['quantity'] + $quantity;
-            $sql_update  = "UPDATE `cart_items` SET quantity = $newQuantity WHERE cart_id = $cart_id AND cart_name = $cart_name";
+            $sql_update  = "UPDATE `cart_items` SET quantity = $newQuantity WHERE cart_id = $cart_id";
             $stmt_update = $this->conn->prepare($sql_update);
             return $stmt_update->execute();
         } else {
