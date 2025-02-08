@@ -1,4 +1,4 @@
-<?php require_once 'view/layout/header.php' ?>
+<?php require_once 'view/layout/header.php'?>
 <!-- Breadcrumb -->
 <section class="section-breadcrumb">
     <div class="cr-breadcrumb-image">
@@ -18,7 +18,7 @@
 <!-- Product -->
 <section class="section-product padding-t-100">
     <div class="container">
-
+        <form id="addToCartForm" action="?act=cart" method="POST" enctype="multipart/form-data">
         <div class="row mb-minus-24" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
             <div class="col-xxl-4 col-xl-5 col-md-6 col-12 mb-24">
                 <div class="vehicle-detail-banner banner-content clearfix">
@@ -26,8 +26,8 @@
                         <div class="slider slider-for">
                             <div class="slider-banner-image">
                                 <div class="zoom-image-hover">
-                                    <img src="admin/view/assets/images/products/<?php echo $productOne['image'] ?>" alt="product-tab-1"
-                                        class="product-image">
+                                    <img src="admin/view/assets/images/products/<?php echo $productOne['image'] ?>" alt="product-tab-1" class="product-image" id="productImage">
+                                    <input type="hidden" name="image" value="<?php echo $productOne['image']?>"> 
                                 </div>
                             </div>
                         </div>
@@ -36,133 +36,31 @@
             </div>
             <div class="col-xxl-8 col-xl-7 col-md-6 col-12 mb-24">
                 <div class="cr-size-and-weight-contain">
-                    <h2 class="heading"><?php echo $productOne['product_name'] ?></h2>
+                    <h2 class="heading" id="productName" name="cart_name"><?php echo $productOne['product_name'] ?></h2>
+                    <input type="hidden" name="cart_name" value="<?php echo $productOne['product_name']?>">
                     <p><?php echo $productOne['description'] ?></p>
                 </div>
                 <div class="cr-size-and-weight">
-                    <div class="cr-review-star">
-                        <div class="cr-star">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                        </div>
-                        <p>( 75 Review )</p>
-                    </div>
-                    <div class="cr-size-weight">
-                        <h5><span>Color</span> :</h5>
-                        <div class="cr-kg">
-                            <label for="color">Chọn màu sắc:</label>
-                            <select id="color" name="color" onchange="updatePrice(this.value)"></select>
-                        </div>
-                    </div>
-
-                    <div class="cr-size-weight">
-                        <h5><span>Size</span> :</h5>
-                        <div class="cr-kg">
-                            <ul>
-                            </ul>
-                        </div>
-                    </div>
 
                     <div class="cr-product-price">
-                        <span class="new-price" id="productPrice">
-                            <?php if ($selectedVariant): ?>
-                                <?= number_format($selectedVariant['price']) ?> VNĐ
-                            <?php endif; ?>
+                        <span class="new-price" id="productPrice" name="price">
+                            <?php echo number_format($productOne['price'])?> VNĐ
                         </span>
                     </div>
-
-                    <script>
-                        const variants = <?php echo json_encode($variants); ?>;
-
-                        function updatePrice(variant_id) {
-                            const selectedVariant = variants.find(v => v.variant_id == variant_id);
-                            if (selectedVariant) {
-                                document.getElementById('productPrice').innerText = formatCurrency(selectedVariant.price) + " VNĐ";
-
-                                const colorSelect = document.getElementById('color');
-                                colorSelect.value = variant_id;
-
-                                const sizeList = document.querySelector('.cr-size-weight ul');
-                                sizeList.querySelectorAll('li').forEach(li => li.classList.remove('active-color', 'active-size'));
-                                const activeSizeLi = sizeList.querySelector(`li[data-size-id="${selectedVariant.size_id}"]`);
-                                if (!activeSizeLi) {
-                                    activeSizeLi.classList.add('active-size');
-                                }
-                                else {
-                                    activeSizeLi.classList.remove('active-size');
-                                    activeSizeLi.classList.add('active-color');
-                                }
-                            }
-                        }
-
-                        function formatCurrency(number) {
-                            return number.toLocaleString('vi-VN');
-                        }
-
-                        window.addEventListener('DOMContentLoaded', () => {
-                            const colorSelect = document.getElementById('color');
-                            const sizeList = document.querySelector('.cr-size-weight ul');
-
-                            if (variants && variants.length > 0) {
-                                variants.forEach(variant => {
-                                    const colorOption = document.createElement('option');
-                                    colorOption.value = variant.variant_id; // Use variant_id for color select
-                                    colorOption.text = variant.color_name;
-                                    colorSelect.appendChild(colorOption);
-
-                                    let sizeItem = sizeList.querySelector(`li[data-size-id="${variant.size_id}"]`);
-                                    if (!sizeItem) { // Create size item only if it doesn't exist
-                                        sizeItem = document.createElement('li');
-                                        sizeItem.textContent = variant.size_name;
-                                        sizeItem.dataset.sizeId = variant.size_id;
-                                        sizeItem.addEventListener('click', () => {
-                                            // Find the correct variant based on selected color *and* clicked size
-                                            const clickedVariant = variants.find(v =>
-                                                v.size_id === variant.size_id && v.variant_id === colorSelect.value
-                                            );
-                                            if (clickedVariant) {
-                                                updatePrice(clickedVariant.variant_id);
-                                            }
-                                            // No need to manually add 'active-size' here, updatePrice handles it
-                                        });
-                                        sizeList.appendChild(sizeItem);
-                                    }
-                                });
-
-                                const urlParams = new URLSearchParams(window.location.search);
-                                const initialVariantId = urlParams.get('variant_id') || variants[0].variant_id;
-                                updatePrice(initialVariantId); // Set initial price and active size
-
-                            } else {
-                                console.log("No variants found!");
-                            }
-
-                            // Event listener for color change (important!)
-                            colorSelect.addEventListener('change', () => {
-                                const selectedVariantId = colorSelect.value; // Get the selected variant ID
-                                updatePrice(selectedVariantId);
-                            });
-                        });
-                    </script>
-
-
                     <div class="cr-add-card">
                         <div class="cr-qty-main">
-                            <input type="text" placeholder="." value="1" minlength="1" maxlength="20"
-                                class="quantity">
+                            <input type="number" placeholder="." value="1" min="1" maxlength="20" name="quantity" class="quantity" required>
                             <button type="button" class="plus">+</button>
                             <button type="button" class="minus">-</button>
                         </div>
                         <div class="cr-add-button">
-                            <button type="button" class="cr-button cr-shopping-bag">Add to cart</button>
+                            <button type="submit" name="add_to_cart" class="cr-button cr-shopping-bag">Add to cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+         </form>
         <div class="row" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
             <div class="col-12">
                 <div class="cr-paking-delivery">
@@ -521,4 +419,4 @@
         </div>
     </div>
 </section>
-<?php require_once 'view/layout/footer.php' ?>
+<?php require_once 'view/layout/footer.php'?>

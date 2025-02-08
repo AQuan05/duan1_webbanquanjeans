@@ -108,7 +108,7 @@
                                 </li>
                             </ul>
 
-                            <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle" onclick="window.location.href='?act=cart'">
+                            <a href="javascript:void(0)" class="cr-right-bar-item Shopping-toggle" onclick="window.location.href='?act=viewcart'">
                                 <i class="ri-shopping-cart-line"></i>
                                 <span>Cart</span>
                             </a>

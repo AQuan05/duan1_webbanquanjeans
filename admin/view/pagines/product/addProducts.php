@@ -67,48 +67,6 @@
                                         </div><!-- end col -->
                                     </div><!-- end row -->
                                 </div>
-
-                                <div class="mt-3">
-                                    <button type="button" id="add-variant-btn" class="btn btn-primary">Thêm biến thể</button>
-                                </div>
-                                <div id="variant-container" class="mt-4">
-                                    <div class="variant-group">
-                                        <div class="row">
-                                            <div class="col-xl-6">
-                                                <div class="mb-3">
-                                                    <label for="color_id" class="form-label">Color</label> <br>
-                                                    <select name="color_id[]" id="color_id" class="form-select">
-                                                        <option value="" selected disabled>Chọn color</option>
-                                                        <?php foreach ($color as $colors) { ?>
-                                                            <option value="<?= $colors['color_id'] ?>"><?= $colors['color_name'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </div><!-- end col -->
-
-                                            <div class="col-xl-6">
-                                                <div class="mb-3">
-                                                    <label for="size_id" class="form-label">Size</label> <br>
-                                                    <select name="size_id[]" id="size_id" class="form-select">
-                                                        <option value="" selected disabled>Chọn size</option>
-                                                        <?php foreach ($size as $sizes) { ?>
-                                                            <option value="<?= $sizes['size_id'] ?>"><?= $sizes['size_name'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-
-                                                </div>
-
-                                            </div><!-- end col -->
-                                            <div class="mb-3">
-                                                <label for="cleave-date" class="form-label">Price</label>
-                                                <input type="number" name="price[]" class="form-control" placeholder="Please enter price" id="cleave-date">
-                                            </div>
-                                        </div><!-- end row -->
-                                    </div>
-                                </div>
-
-
-
                                 <div class="mt-4">
                                     <div>
                                         <div class="col-sm-auto">

@@ -37,43 +37,29 @@
                                          <tr>
                                              <th>Product</th>
                                              <th>price</th>
-                                             <th>Variants</th>
                                              <th class="text-center">Quantity</th>
                                              <th>Total</th>
                                              <th>Action</th>
                                          </tr>
                                      </thead>
-                                     <tbody>
+                                     <?php if (! empty($cartItems)): ?>
+                                         <?php foreach ($cartItems as $item): ?>
+                                             <tr>
+                                                 <td><?php echo htmlspecialchars($item['cart_id']); ?></td>
+                                                 <td><?php echo htmlspecialchars($item['cart_name']); ?></td>
+                                                 <td>
+                                                     <img src="admin/view/assets/images/products/<?php echo htmlspecialchars($item['image']); ?>"
+                                                         alt="<?php echo htmlspecialchars($item['cart_name']); ?>"
+                                                         width="50">
+                                                 </td>
+                                                 <td><?php echo htmlspecialchars($item['quantity']); ?></td>
+                                             </tr>
+                                         <?php endforeach; ?>
+                                     <?php else: ?>
                                          <tr>
-                                             <td class="cr-cart-name">
-                                                 <a href="javascript:void(0)">
-                                                     <img src="view/assets/img/product/1.jpg" alt="product-1"
-                                                         class="cr-cart-img">
-                                                     Organic Lemon
-                                                 </a>
-                                             </td>
-                                             <td class="cr-cart-price">
-                                                 <span class="amount">$56.00</span>
-                                             </td>
-                                             <td class="cr-cart-variants">
-                                                 <span>Yellow,XXL</span>
-                                             </td>
-                                             <td class="cr-cart-qty">
-                                                 <div class="cart-qty-plus-minus">
-                                                     <button type="button" class="plus">+</button>
-                                                     <input type="text" placeholder="." value="1" minlength="1"
-                                                         maxlength="20" class="quantity">
-                                                     <button type="button" class="minus">-</button>
-                                                 </div>
-                                             </td>
-                                             <td class="cr-cart-subtotal">$56.00</td>
-                                             <td class="cr-cart-remove">
-                                                 <a href="javascript:void(0)">
-                                                     <i class="ri-delete-bin-line"></i>
-                                                 </a>
-                                             </td>
+                                             <td colspan="4" style="text-align: center;">Giỏ hàng của bạn đang trống.</td>
                                          </tr>
-                                     </tbody>
+                                     <?php endif; ?>
                                  </table>
                              </div>
                              <div class="row">

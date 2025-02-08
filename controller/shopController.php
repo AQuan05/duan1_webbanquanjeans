@@ -24,17 +24,6 @@ class shopController
         }
     
         $productOne = $this->shopModel->getProductByIdModel($product_id);
-        $variants = $this->shopModel->VariantsByProductId($product_id);
-    
-        // Handle selected variant
-        $selectedVariant = null;
-        if (isset($_GET['variant_id'])) {
-            $variant_id = $_GET['variant_id'];
-            $selectedVariant = $this->shopModel->getVariantById($variant_id);
-        } else {
-            // Default to the first variant if no variant is selected
-            $selectedVariant = $variants[0] ?? null;  // Use null coalescing operator
-        }
     
         require_once 'view/pagines/product/shopSingle.php';
     }
