@@ -40,16 +40,6 @@
                     <p><?php echo $productOne['description'] ?></p>
                 </div>
                 <div class="cr-size-and-weight">
-                    <div class="cr-review-star">
-                        <div class="cr-star">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                        </div>
-                        <p>( 75 Review )</p>
-                    </div>
                     <div class="cr-size-weight">
                         <h5><span>Color</span> :</h5>
                         <div class="cr-kg">
