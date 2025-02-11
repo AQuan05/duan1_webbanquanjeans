@@ -1,4 +1,5 @@
     <!-- Breadcrumb -->
+    <?php require_once 'view/layout/header.php' ?>
     <section class="section-breadcrumb">
         <div class="cr-breadcrumb-image">
             <div class="container">
@@ -13,7 +14,6 @@
             </div>
         </div>
     </section>
-
     <!-- Checkout section -->
     <section class="cr-checkout-section padding-tb-100">
         <div class="container">
@@ -47,7 +47,7 @@
                                             <div class="cr-pro-image-outer">
                                                 <div class="cr-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
-                                                        <img class="main-image" src="assets/img/product/10.jpg"
+                                                        <img class="main-image" src="view/assets/img/product/10.jpg"
                                                             alt="Product">
                                                     </a>
                                                 </div>
@@ -72,7 +72,7 @@
                                             <div class="cr-pro-image-outer">
                                                 <div class="cr-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
-                                                        <img class="main-image" src="assets/img/product/12.jpg"
+                                                        <img class="main-image" src="view/assets/img/product/12.jpg"
                                                             alt="Product">
                                                     </a>
                                                 </div>
@@ -150,12 +150,6 @@
                                         </span>
                                         <span class="cr-pay-option">
                                             <span>
-                                                <input type="radio" id="pay2" name="radio-group">
-                                                <label for="pay2">UPI</label>
-                                            </span>
-                                        </span>
-                                        <span class="cr-pay-option">
-                                            <span>
                                                 <input type="radio" id="pay3" name="radio-group">
                                                 <label for="pay3">Bank Transfer</label>
                                             </span>
@@ -175,7 +169,7 @@
                             <div class="cr-sb-block-content">
                                 <div class="cr-check-pay-img-inner">
                                     <div class="cr-check-pay-img">
-                                        <img src="assets/img/banner/payment.png" alt="payment">
+                                        <img src="view/assets/img/banner/payment.png" alt="payment">
                                     </div>
                                 </div>
                             </div>
@@ -281,39 +275,6 @@
                                                             <option value="5">City 5</option>
                                                         </select>
                                                     </span>
-                                                </span>
-                                                <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>Post Code</label>
-                                                    <input type="text" name="postalcode" placeholder="Post Code">
-                                                </span>
-                                                <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>Country *</label>
-                                                    <span class="cr-bl-select-inner">
-                                                        <select name="cr_select_country" id="cr-select-country"
-                                                            class="cr-bill-select">
-                                                            <option selected disabled>Country</option>
-                                                            <option value="1">Country 1</option>
-                                                            <option value="2">Country 2</option>
-                                                            <option value="3">Country 3</option>
-                                                            <option value="4">Country 4</option>
-                                                            <option value="5">Country 5</option>
-                                                        </select>
-                                                    </span>
-                                                </span>
-                                                <span class="cr-bill-wrap cr-bill-half">
-                                                    <label>Region State</label>
-                                                    <span class="cr-bl-select-inner">
-                                                        <select name="cr_select_state" id="cr-select-state"
-                                                            class="cr-bill-select">
-                                                            <option selected disabled>Region/State</option>
-                                                            <option value="1">Region/State 1</option>
-                                                            <option value="2">Region/State 2</option>
-                                                            <option value="3">Region/State 3</option>
-                                                            <option value="4">Region/State 4</option>
-                                                            <option value="5">Region/State 5</option>
-                                                        </select>
-                                                    </span>
-                                                </span>
                                             </form>
                                         </div>
 
@@ -330,4 +291,5 @@
             </div>
         </div>
     </section>
+    <?php require_once 'view/layout/footer.php' ?>
     <!-- Checkout section End -->

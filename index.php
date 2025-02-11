@@ -57,13 +57,20 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $CartController = new CartController();
             $CartController->addToCart();
             break;
+        case 'updateCartQuantity':
+            $CartController = new CartController();
+            $CartController->updateCartQuantity();
+            break;
+        case 'checkout':
+            include 'view/pagines/cart/checkout.php';
+            break;
         case 'deletecart':
             $cartController = new CartController();
             $cartController->deleteCart($_POST['cart_item_id']);
             break;
         case 'logout':
             session_destroy();
-            header('Location: ?act=index');
+            header('Location: ?act=/');
             exit();
             break;
         case 'ProductCategory':
