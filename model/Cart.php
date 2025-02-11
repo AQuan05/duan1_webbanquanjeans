@@ -42,6 +42,7 @@ class Cart
         $sql_insert  = "INSERT INTO cart_items (cart_id, cart_name, img, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt_insert = $this->conn->prepare($sql_insert);
         return $stmt_insert->execute([$cart_id, $cart_name, $img, $quantity, $price, $total_price]);
+
     }
 }
     public function updateCartItemQuantity($cart_item_id, $quantity)
