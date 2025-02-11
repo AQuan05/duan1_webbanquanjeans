@@ -23,12 +23,16 @@ class cartController
     public function addToCart()
     {
         if (isset($_POST['add_to_cart'])) {
-            $cart_id   = 1;
-            $cart_name = $_POST['cart_name'];
-            $img       = $_POST['image'];
-            $quantity  = $_POST['quantity'];
-            $price     = $_POST['price'];
-            $this->cartModel->addToCart($cart_id, $cart_name, $img, $quantity, $price);
+            $cart_id     = 1;
+            $cart_name   = $_POST['cart_name'];
+            $img         = $_POST['image'];
+            $quantity    = (int) $_POST['quantity'];
+            $price       = (float) $_POST['price'];
+            $total_price = $price * $quantity;
+
+            // Gọi model với đúng thứ tự tham số
+            $this->cartModel->addToCart($cart_id, $cart_name, $img, $quantity, $price, $total_price);
+
             header("Location: ?act=viewcart");
             exit();
         }
@@ -37,17 +41,17 @@ class cartController
     {
         if (isset($_POST['cart_item_id']) && isset($_POST['quantity']) && isset($_POST['update_qty'])) {
             $cart_item_id = $_POST['cart_item_id'];
-            $quantity = (int)$_POST['quantity'];
-            $change = (int)$_POST['update_qty']; // +1 hoặc -1
-            $newQuantity = max(1, $quantity + $change); // Không cho < 1
-    
+            $quantity     = (int) $_POST['quantity'];
+            $change       = (int) $_POST['update_qty'];  // +1 hoặc -1
+            $newQuantity  = max(1, $quantity + $change); // Không cho < 1
+
             // Cập nhật Database
             $this->cartModel->updateCartItemQuantity($cart_item_id, $newQuantity);
-    
+
             // Cập nhật SESSION
             foreach ($_SESSION['cart'] as &$item) {
                 if ($item['cart_item_id'] == $cart_item_id) {
-                    $item['quantity'] = $newQuantity;
+                    $item['quantity']    = $newQuantity;
                     $item['total_price'] = $item['price'] * $newQuantity; // ✅ Cập nhật lại total_price
                     break;
                 }

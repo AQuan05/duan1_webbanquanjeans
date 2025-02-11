@@ -21,26 +21,29 @@ class Cart
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function addToCart($cart_id, $cart_name, $img, $quantity, $price)
-    {
-        // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-        $sql_check  = "SELECT * FROM cart_items WHERE cart_id = ? AND cart_name = ?";
-        $stmt_check = $this->conn->prepare($sql_check);
-        $stmt_check->execute([$cart_id, $cart_name]);
-        $existingItem = $stmt_check->fetch(PDO::FETCH_ASSOC);
+{
+    // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+    $sql_check  = "SELECT * FROM cart_items WHERE cart_id = ? AND cart_name = ?";
+    $stmt_check = $this->conn->prepare($sql_check);
+    $stmt_check->execute([$cart_id, $cart_name]);
+    $existingItem = $stmt_check->fetch(PDO::FETCH_ASSOC);
 
-        if ($existingItem) {
-            // Nếu sản phẩm đã có, cập nhật số lượng
-            $newQuantity = $existingItem['quantity'] + $quantity;
-            $sql_update  = "UPDATE cart_items SET quantity = ? WHERE cart_id = ? AND cart_name = ?";
-            $stmt_update = $this->conn->prepare($sql_update);
-            return $stmt_update->execute([$newQuantity, $cart_id, $cart_name]);
-        } else {
-            // Nếu sản phẩm chưa có, thêm mới
-            $sql_insert  = "INSERT INTO cart_items (cart_id, cart_name, img, quantity, price) VALUES (?, ?, ?, ?, ?)";
-            $stmt_insert = $this->conn->prepare($sql_insert);
-            return $stmt_insert->execute([$cart_id, $cart_name, $img, $quantity, $price]);
-        }
+    if ($existingItem) {
+        // Nếu sản phẩm đã có, cập nhật số lượng và tổng giá
+        $newQuantity  = $existingItem['quantity'] + $quantity;
+        $newTotalPrice = $newQuantity * $price; // Cập nhật total_price
+
+        $sql_update  = "UPDATE cart_items SET quantity = ?, total_price = ? WHERE cart_id = ? AND cart_name = ?";
+        $stmt_update = $this->conn->prepare($sql_update);
+        return $stmt_update->execute([$newQuantity, $newTotalPrice, $cart_id, $cart_name]);
+    } else {
+        // Nếu sản phẩm chưa có, thêm mới
+        $total_price = $price * $quantity;
+        $sql_insert  = "INSERT INTO cart_items (cart_id, cart_name, img, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt_insert = $this->conn->prepare($sql_insert);
+        return $stmt_insert->execute([$cart_id, $cart_name, $img, $quantity, $price, $total_price]);
     }
+}
     public function updateCartItemQuantity($cart_item_id, $quantity)
     {
         // Lấy giá sản phẩm từ database
