@@ -47,6 +47,7 @@
                         <span class="new-price" id="productPrice" name="price">
                             <?php echo number_format($productOne['price'])?> VNĐ
                         </span>
+                        <input type="hidden" name="price" value="<?php echo $productOne['price']; ?>"> 
                     </div>
                     <div class="cr-add-card">
                         <div class="cr-qty-main">

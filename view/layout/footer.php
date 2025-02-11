@@ -8,7 +8,6 @@ include 'view/layout/script.php';
                     <div class="cr-footer-logo">
                         <div class="image">
                             <img src="view/assets/img/logo/logo.png" alt="logo" class="logo">
-                            <img src="view/assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
                         </div>
                         <p>Carrot is the biggest market of grocery products. Get your daily needs from our store.</p>
                     </div>

@@ -31,18 +31,20 @@
              <div class="col-12">
                  <div class="cr-cart-content" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
                      <div class="row">
-                         <form action="#">
+                         <form method="POST" action="?act=updateCartQuantity">
                              <div class="cr-table-content">
                                  <table>
                                      <thead>
                                          <tr>
                                              <th>Id</th>
                                              <th>Product</th>
+                                             <th class="text-center">Price</th>
                                              <th class="text-center">Quantity</th>
+                                             <th>Total</th>
                                              <th>Action</th>
                                          </tr>
                                      </thead>
-                                     <?php if (! empty($cartItems)): ?>
+                                     <?php if (!empty($cartItems)): ?>
                                          <?php foreach ($cartItems as $item): ?>
                                              <tr>
                                                  <td><?php echo htmlspecialchars($item['cart_item_id']); ?></td>
@@ -54,15 +56,33 @@
                                                          <?php echo htmlspecialchars($item['cart_name']); ?>
                                                      </a>
                                                  </td>
-
-                                                 <td class="cr-cart-qty">
-                                                     <div class="cart-qty-plus-minus">
-                                                         <button type="button" class="minus" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, -1)">−</button>
-                                                         <input type="text" name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>"
-                                                             class="quantity" minlength="1" maxlength="20">
-                                                         <button type="button" class="plus" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, 1)">+</button>
-                                                     </div>
+                                                 <td class="cr-cart-price">
+                                                     <span class="amount">
+                                                         <?php
+                                                            $price = isset($item['price']) && is_numeric($item['price']) ? (float)$item['price'] : 0;
+                                                            echo number_format($price, 0, ',', '.') . ' VNĐ';
+                                                            ?>
+                                                     </span>
                                                  </td>
+                                                 <td class="cr-cart-qty">
+                                                     <form method="POST" action="?act=updateCartQuantity">
+                                                         <input type="hidden" name="cart_item_id" value="<?php echo $item['cart_item_id']; ?>">
+                                                         <div class="cart-qty-plus-minus">
+                                                             <button type="submit" name="update_qty" value="-1">−</button>
+                                                             <input type="number" name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1">
+                                                             <button type="submit" name="update_qty" value="1">+</button>
+                                                         </div>
+                                                     </form>
+                                                 </td>
+                                                 <td class="cr-cart-price">
+                                                     <span class="amount">
+                                                         <?php
+                                                            $total_price = isset($item['total_price']) && is_numeric($item['total_price']) ? (float)$item['total_price'] : 0;
+                                                            echo number_format($total_price, 0, ',', '.') . ' VNĐ';
+                                                            ?>
+                                                     </span>
+                                                 </td>
+
                                                  <td class="cr-cart-remove">
                                                      <form action="?act=deletecart" method="POST" onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">
                                                          <input type="hidden" name="cart_item_id" value="<?php echo $item['cart_item_id']; ?>">
@@ -80,17 +100,8 @@
                                      <?php endif; ?>
                                  </table>
                              </div>
-                             <div class="row">
-                                 <div class="col-lg-12">
-                                     <div class="cr-cart-update-bottom">
-                                         <a href="javascript:void(0)" class="cr-links">Continue Shopping</a>
-                                         <a href="cart.html" class="cr-button">
-                                             Check Out
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
                          </form>
+
                      </div>
                  </div>
              </div>
