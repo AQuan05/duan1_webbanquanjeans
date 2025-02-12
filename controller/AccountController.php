@@ -90,29 +90,33 @@ class AccountController
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            // Kiểm tra nếu các trường trống
             if (empty($username) || empty($password)) {
                 $_SESSION['error'] = "Username and Password cannot be empty.";
                 header('Location: ?act=login');
                 exit();
             }
 
-            // Gọi phương thức kiểm tra trong Model
             $user = $this->account->loginModel($username, $password);
 
             if ($user) {
-                // Lưu thông tin người dùng vào session
                 $_SESSION['user'] = $user;
-                header('Location: ?act='); // Chuyển hướng đến trang dashboard
+
+                // Kiểm tra nếu user đã có giỏ hàng chưa
+                $cart = $this->account->getCartByUserId($user['user_id']);
+                if (!$cart) {
+                    $this->account->createCart($user['user_id']);
+                }
+
+                header('Location: ?act='); // Chuyển hướng đến trang chính
                 exit();
             } else {
-                // Lỗi đăng nhập
                 $_SESSION['error'] = "Invalid username or password.";
-                header('Location: ?act=login'); // Quay lại trang login
+                header('Location: ?act=login');
                 exit();
             }
         }
     }
+
     public function forgotPasswordController()
     {
         require_once 'view/pagines/acc/ForgotPassword.php'; // Tạo file forgot_password.php cho form
@@ -143,7 +147,7 @@ class AccountController
             }
 
             // Nếu email tồn tại, chuyển hướng người dùng đến trang reset mật khẩu
-            $_SESSION['email'] = $email; 
+            $_SESSION['email'] = $email;
             header('Location: ?act=resetPassword');
             exit();
         }
