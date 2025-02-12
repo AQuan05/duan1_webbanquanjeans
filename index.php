@@ -69,10 +69,10 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $cartController->deleteCart($_POST['cart_item_id']);
             break;
         case 'logout':
+            unset($_SESSION['cart_id']); // Xóa giỏ hàng khi đăng xuất
             session_destroy();
-            header('Location: ?act=/');
+            header("Location: ?act=/");
             exit();
-            break;
         case 'ProductCategory':
             include 'view/pagines/ProductCategory.php';
             break;

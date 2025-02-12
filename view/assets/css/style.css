@@ -913,7 +913,7 @@ a.back-to-top .back-to-top-wrap svg path {
   padding-bottom: 15px;
 }
 .cr-footer-logo .image img {
-  width: 500px;
+  width: 100px;
 }
 .cr-footer-logo p {
   font-size: 14px;
@@ -1435,8 +1435,8 @@ header {
   z-index: 4;
 }
 .top-header .cr-logo img {
-  width: 80px;
-  height: 80px;
+  width: 115px;
+  height: 35px;
 }
 .top-header .cr-search {
   position: relative;

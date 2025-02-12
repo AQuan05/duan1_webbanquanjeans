@@ -59,12 +59,12 @@ class AccountController
 
             // 3. Kiểm tra trùng lặp trong database (nếu không có lỗi định dạng)
             if (empty($errors)) {
-                $existingUser = $this->account->checkUsernameExists($username);
+                $existingUser = $this->account->checkUsername($username);
                 if ($existingUser) {
                     $errors['username'] = 'Username already exists.';
                 }
 
-                $existingEmail = $this->account->checkEmailExists($email);
+                $existingEmail = $this->account->checkEmail($email);
                 if ($existingEmail) {
                     $errors['email'] = 'Email already exists.';
                 }
@@ -103,7 +103,7 @@ class AccountController
             if ($user) {
                 // Lưu thông tin người dùng vào session
                 $_SESSION['user'] = $user;
-                header('Location: ?act=/'); // Chuyển hướng đến trang dashboard
+                header('Location: ?act='); // Chuyển hướng đến trang dashboard
                 exit();
             } else {
                 // Lỗi đăng nhập
@@ -135,7 +135,7 @@ class AccountController
             }
 
             // Kiểm tra nếu email có trong cơ sở dữ liệu không
-            $emailExists = $this->account->checkEmailExists($email);
+            $emailExists = $this->account->checkEmail($email);
             if (!$emailExists) {
                 $_SESSION['error'] = "Email not found.";
                 header('Location: ?act=forgotPassword');

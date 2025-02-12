@@ -21,7 +21,7 @@
     <title>Carrot - Multipurpose eCommerce HTML Template</title>
 
     <!-- App favicon -->
-
+    <link rel="shortcut icon" href="view/assets/img/logo/favicon.png">
     <!-- Icon CSS -->
     <link rel="stylesheet" href="view/assets/css/vendor/materialdesignicons.min.css">
     <link rel="stylesheet" href="view/assets/css/vendor/remixicon.css">

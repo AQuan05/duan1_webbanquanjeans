@@ -23,7 +23,7 @@ class cartController
     public function addToCart()
     {
         if (isset($_POST['add_to_cart'])) {
-            $cart_id     = 1;
+            $cart_id = 1; // Nếu chưa có đăng nhập, sử dụng giỏ hàng tạm thời với cart_id = 0
             $cart_name   = $_POST['cart_name'];
             $img         = $_POST['image'];
             $quantity    = (int) $_POST['quantity'];
@@ -31,7 +31,7 @@ class cartController
             $total_price = $price * $quantity;
 
             // Gọi model với đúng thứ tự tham số
-            $this->cartModel->addToCart($cart_id, $cart_name, $img, $quantity, $price, $total_price);
+            $this->cartModel->addToCart( $cart_id, $cart_name, $img, $quantity, $price, $total_price);
 
             header("Location: ?act=viewcart");
             exit();
