@@ -69,8 +69,11 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $cartController->deleteCart($_POST['cart_item_id']);
             break;
         case 'logout':
-            session_destroy();
-            header('Location: ?act=/');
+            if (isset($_SESSION['user'])) {
+                unset($_SESSION['user']); // Xóa thông tin user trong session
+            }
+            session_destroy(); // Hủy toàn bộ session
+            header("Location: ?act=/"); // Chuyển hướng về trang chủ
             exit();
             break;
         case 'ProductCategory':

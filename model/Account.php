@@ -11,11 +11,38 @@ class Account
 
     public function addAccountModel($username, $email, $password)
     {
-        $sql = "INSERT INTO `users`(username, email, password) VALUES ('$username','$email','$password')";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute();
+        try {
+            // Bắt đầu transaction để đảm bảo tính nhất quán
+            $this->conn->beginTransaction();
+
+            // Chèn tài khoản vào bảng users
+            $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':username' => $username,
+                ':email' => $email,
+                ':password' => $password
+            ]);
+
+            // Lấy user_id vừa tạo
+            $userId = $this->conn->lastInsertId();
+
+            // Tạo giỏ hàng mới cho user
+            $cartSql = "INSERT INTO carts (user_id) VALUES (:user_id)";
+            $cartStmt = $this->conn->prepare($cartSql);
+            $cartStmt->execute([':user_id' => $userId]);
+
+            // Xác nhận transaction
+            $this->conn->commit();
+
+            return $userId;
+        } catch (Exception $e) {
+            // Nếu có lỗi, rollback transaction
+            $this->conn->rollBack();
+            return false;
+        }
     }
-    public function checkUsernameExists($username)
+    public function checkUsername($username)
     {
         $stmt = $this->conn->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
         $stmt->bindParam(':username', $username);
@@ -24,7 +51,7 @@ class Account
     }
 
     // Kiểm tra email đã tồn tại hay chưa
-    public function checkEmailExists($email)
+    public function checkEmail($email)
     {
         $stmt = $this->conn->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
         $stmt->bindParam(':email', $email);
