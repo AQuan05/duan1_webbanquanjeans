@@ -11,10 +11,31 @@ class cartController
     }
     public function viewcart()
     {
-        $cart_id = 1; // Nếu chưa có đăng nhập, sử dụng giỏ hàng tạm thời với cart_id = 0
+        $user_id = null; // Định nghĩa biến mặc định để tránh lỗi Undefined variable
 
-        // Lấy danh sách sản phẩm trong giỏ hàng từ model
-        $cartItems = $this->cartModel->listCart($cart_id);
+        if (isset($_SESSION['user']) && isset($_SESSION['user']['user_id'])) {
+            $user_id = $_SESSION['user']['user_id'];
+
+            // Lấy cart_id của user từ database
+            $cart = $this->cartModel->getCartByUserId($user_id);
+            if ($cart) {
+                $cart_id = $cart['cart_id'];
+            } else {
+                $_SESSION['error'] = "Không tìm thấy giỏ hàng của bạn.";
+                header('Location: ?act=/');
+                exit();
+            }
+        } else {
+            // Nếu chưa đăng nhập, sử dụng giỏ hàng tạm thời (cart_id = 0)
+            $cart_id = 0;
+        }
+
+        // Nếu user chưa đăng nhập, không gọi listCart để tránh lỗi
+        if ($user_id) {
+            $cartItems = $this->cartModel->listCart($user_id);
+        } else {
+            $cartItems = [];
+        }
 
         // Gửi dữ liệu sang view
         include "view/pagines/cart/viewcart.php";
@@ -23,20 +44,38 @@ class cartController
     public function addToCart()
     {
         if (isset($_POST['add_to_cart'])) {
-            $cart_id     = 1;
+            if (!isset($_SESSION['user'])) {
+                $_SESSION['error'] = "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.";
+                header('Location: ?act=login');
+                exit();
+            }
+
+            $user_id = $_SESSION['user']['user_id'];
+
+            // Lấy cart_id của user từ database
+            $cart = $this->cartModel->getCartByUserId($user_id);
+            if (!$cart) {
+                $_SESSION['error'] = "Không tìm thấy giỏ hàng.";
+                header('Location: ?act=viewcart');
+                exit();
+            }
+
+            $cart_id = $cart['cart_id']; // Lấy cart_id của user
+
             $cart_name   = $_POST['cart_name'];
             $img         = $_POST['image'];
             $quantity    = (int) $_POST['quantity'];
             $price       = (float) $_POST['price'];
             $total_price = $price * $quantity;
 
-            // Gọi model với đúng thứ tự tham số
+            // Gọi model để thêm sản phẩm vào giỏ hàng
             $this->cartModel->addToCart($cart_id, $cart_name, $img, $quantity, $price, $total_price);
 
             header("Location: ?act=viewcart");
             exit();
         }
     }
+
     public function updateCartQuantity()
     {
         if (isset($_POST['cart_item_id']) && isset($_POST['quantity']) && isset($_POST['update_qty'])) {
