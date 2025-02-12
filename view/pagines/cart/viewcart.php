@@ -100,7 +100,18 @@
                                      <?php endif; ?>
                                  </table>
                              </div>
+                             <div class="row">
+                                 <div class="col-lg-12">
+                                     <div class="cr-cart-update-bottom">
+                                         <a href="javascript:void(0)" class="cr-links">Continue Shopping</a>
+                                         <a href="cart.html" class="cr-button">
+                                             Check Out
+                                         </a>
+                                     </div>
+                                 </div>
+                             </div>
                          </form>
+
 
                      </div>
                  </div>
