@@ -60,7 +60,8 @@ class cartController
                 exit();
             }
 
-            $cart_id = $cart['cart_id']; // Lấy cart_id của user
+            $cart_id = $cart['cart_id']; // Lấy cart_id của user từ database
+            $cartItems = $this->cartModel->getCartItemsByUserId($user_id);
 
             $cart_name   = $_POST['cart_name'];
             $img         = $_POST['image'];
@@ -82,7 +83,7 @@ class cartController
             $cart_item_id = $_POST['cart_item_id'];
             $quantity     = (int) $_POST['quantity'];
             $change       = (int) $_POST['update_qty'];  // +1 hoặc -1
-            $newQuantity  = max(1, $quantity + $change); // Không cho < 1
+            $newQuantity  = max(1, min(10, $quantity + $change)); // Không cho < 1
 
             // Cập nhật Database
             $this->cartModel->updateCartItemQuantity($cart_item_id, $newQuantity);
@@ -99,6 +100,27 @@ class cartController
             exit();
         }
     }
+        public function viewCheckout()
+    {
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = "Bạn cần đăng nhập để thanh toán.";
+            header('Location: ?act=login');
+            exit();
+        }
+
+        $user_id = $_SESSION['user']['user_id'];
+        $cart = $this->cartModel->getCartByUserId($user_id);
+
+        if (!$cart) {
+            $_SESSION['error'] = "Giỏ hàng của bạn đang trống.";
+            header('Location: ?act=viewcart');
+            exit();
+        }
+
+        $cart_items = $this->cartModel->getCartItems($cart['cart_id']);
+        include 'view/pagines/cart/checkout.php';
+    }
+
     public function deleteCart($cart_item_id)
     {
         if (! isset($cart_item_id)) {

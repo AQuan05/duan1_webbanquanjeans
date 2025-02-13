@@ -62,7 +62,8 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $CartController->updateCartQuantity();
             break;
         case 'checkout':
-            include 'view/pagines/cart/checkout.php';
+            $cartController = new CartController();
+            $cartController->viewCheckout();
             break;
         case 'deletecart':
             $cartController = new CartController();

@@ -16,6 +16,18 @@ class Cart
         $stmt->execute([$user_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getCartItemsByUserId($user_id) {
+        $sql  = "SELECT * FROM cart_items WHERE cart_id = (SELECT cart_id FROM carts WHERE user_id = ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getCartItems($cart_id) {
+        $query = "SELECT * FROM cart_items WHERE cart_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$cart_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getCartByUserId($user_id)
     {
         $sql  = "SELECT cart_id FROM carts WHERE user_id = ?";

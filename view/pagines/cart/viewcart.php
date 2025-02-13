@@ -69,7 +69,7 @@
                                                          <input type="hidden" name="cart_item_id" value="<?php echo $item['cart_item_id']; ?>">
                                                          <div class="cart-qty-plus-minus">
                                                              <button type="submit" name="update_qty" value="-1">−</button>
-                                                             <input type="number" name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1">
+                                                             <input type="number" name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1" max="10">
                                                              <button type="submit" name="update_qty" value="1">+</button>
                                                          </div>
                                                      </form>

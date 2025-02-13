@@ -9,7 +9,6 @@ class AccountController
     {
         $this->account = new Account(); // Model
     }
-
     public function addAccController()
     {
         require_once 'view/pagines/acc/register.php';

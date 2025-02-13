@@ -9463,6 +9463,28 @@ iframe {
 .cr-common-wrapper .cr-cgi-block p {
   line-height: 28px;
 }
+.phone-container {
+  display: flex;
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: space-between; /* Đẩy các phần tử ra hai bên */
+  gap: 10px; /* Khoảng cách giữa input và button */
+}
+
+.cr-check-order-btn {
+  display: inline-block;
+}
+
+.cr-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+}
 
 /*  Responsive  */
 @media only screen and (max-width: 991px) {
