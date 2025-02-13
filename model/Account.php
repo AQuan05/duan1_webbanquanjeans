@@ -8,7 +8,13 @@ class Account
     {
         $this->conn = DB();
     }
-
+    public function getUser($user_id)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_id = :user_id");
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     public function addAccountModel($username, $email, $password)
     {
         try {
