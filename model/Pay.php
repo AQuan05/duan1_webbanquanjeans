@@ -36,9 +36,9 @@ class Pay {
         }
     }
     
-    // public function deleteCart($id_cart) {
-    //     $sql = "DELETE FROM `carts` WHERE cart_id = ?";
-    //     $stmt = $this->conn->prepare($sql);
-    //     return $stmt->execute([$id_cart]);
-    // }
+    public function deleteCart($id_cart) {
+        $sql = "DELETE FROM `cart_items` WHERE cart_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([$id_cart]);
+    }
 }
