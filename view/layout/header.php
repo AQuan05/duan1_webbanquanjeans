@@ -37,6 +37,7 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="view/assets/css/style.css">
+    
 </head>
 
 <body class="body-bg-6">
@@ -53,7 +54,7 @@
                 <div class="col-lg-12">
                     <div class="top-header">
                         <a href="?act=/" class="cr-logo">
-                            <img src="view/assets/img/logo/logo-bg.png" alt="logo" class="logo">
+                            <img style="width: 50px ; height: 45px" src="view/assets/img/logo/logo-bg.png" alt="logo" class="logo">
                         </a>
                         <form class="cr-search" method="POST" action="?act=shop">
                             <input class="search-input" type="text" placeholder="Search For items..." name="search">

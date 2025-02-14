@@ -7,11 +7,13 @@ require_once 'commons/function.php';
 require_once 'model/Account.php';
 require_once 'model/shopModel.php';
 require_once 'model/Cart.php';
+require_once 'model/Pay.php';
 // controller
 require_once 'controller/AccountController.php';
 require_once 'controller/shopController.php';
 require_once 'controller/ValidateController.php';
 require_once 'controller/CartController.php';
+require_once 'controller/PayController.php';
 
 if (isset($_GET['act']) && $_GET['act'] != '') {
     $act    = $_GET['act'] ?? '/';
@@ -65,6 +67,11 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $cartController = new CartController();
             $cartController->viewCheckout();
             break;
+        case 'payment':
+            $payController = new PayController();
+            $payController->placeOrder();
+            break;
+        case 'addCart':
         case 'deletecart':
             $cartController = new CartController();
             $cartController->deleteCart($_POST['cart_item_id']);

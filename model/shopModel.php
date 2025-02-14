@@ -23,9 +23,12 @@ ORDER BY
     public function getProductByIdModel($product_id)
     {
         $sql = "SELECT
-                p.*
+                p.*,
+                c.category_name  -- Select category_name
             FROM
                 products p
+            JOIN
+    categories c ON p.category_id = c.category_id
             WHERE
                 p.product_id = $product_id";
         return $this->conn->query($sql)->fetch();
@@ -53,5 +56,4 @@ ORDER BY
         $sql = "SELECT * FROM products WHERE product_name LIKE '%" . $key . "%'";
         return $this->conn->query($sql)->fetchAll();
     }
-
 }
