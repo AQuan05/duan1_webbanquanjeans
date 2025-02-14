@@ -38,6 +38,7 @@
                 <div class="cr-size-and-weight-contain">
                     <h2 class="heading" id="productName" name="cart_name"><?php echo $productOne['product_name'] ?></h2>
                     <input type="hidden" name="cart_name" value="<?php echo $productOne['product_name']?>">
+                    <p ><?php echo $productOne['category_name']?></p>
                     <p><?php echo $productOne['description'] ?></p>
                 </div>
                 <div class="cr-size-and-weight">
