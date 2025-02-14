@@ -31,9 +31,9 @@ class PayController
             $shipping_address = $_POST['address'] ?? 'No address';
             $phone = $_POST['phonenumber'] ?? '0000000000';
             $order_id = $this->pay->createOrderWithItems($user['user_id'], $total_amount, $shipping_address, $phone, $cart_items);
-            // if($order_id) {
-            //     $this->pay->deleteCart($cart['cart_id']);
-            // }
+            if($order_id) {
+                $this->pay->deleteCart($cart['cart_id']);
+            }
             header("Location: ?act=shop");
         }
     }
