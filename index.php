@@ -71,7 +71,6 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $payController = new PayController();
             $payController->placeOrder();
             break;
-        case 'addCart':
         case 'deletecart':
             $cartController = new CartController();
             $cartController->deleteCart($_POST['cart_item_id']);
