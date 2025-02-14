@@ -36,6 +36,7 @@
                                     <div class="cr-checkout-summary">
                                         <?php foreach ($cart_items as $item): ?>
                                             <?php
+                                            // $order_name = $item['order_name'] ?? 'Unknown Product'; // Gán giá trị mặc định nếu thiếu
                                             $totalAmount += $item['total_price'];                                // Cộng dồn tổng giá
                                             $quantity = ! empty($item['quantity']) ? (int) $item['quantity'] : 1; // Kiểm tra số lượng
                                             ?>
