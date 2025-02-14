@@ -4,10 +4,10 @@ class Pay{
     public function __construct(){
         $this->conn = DB();
     }
-    public function createOrder($user_id, $total_amount,$user_adress,$user_phone){
-        $sql = "INSERT INTO orders (user_id, total_amount, user_adress, user_phone) VALUES (?, ?, ?, ?)";
+    public function createOrder($user_id, $total_price,$user_address,$Phone){
+        $sql = "INSERT INTO orders (user_id, total_price, user_address, Phone) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$user_id, $total_amount, $user_adress, $user_phone]);
+        $stmt->execute([$user_id, $total_price, $user_address, $Phone]);
         return $this->conn->lastInsertId();
     }
     public function addOrderItems($order_id,$cart_items){
