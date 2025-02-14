@@ -20,30 +20,21 @@ class PayController
             exit();
         }
 
-
         if (isset($_POST['place_order'])) {
             $user = $_SESSION['user'] ?? null;
-            $cart_items = $_SESSION['cart_items'] ?? [];
             $cart = $this->cartModel->getCartByUserId($user['user_id']);
             $cart_items = $this->cartModel->getCartItems($cart['cart_id']);
             $total_amount = array_sum(array_map(function ($item) {
                 return $item['price'] * $item['quantity'];
             }, $cart_items));
 
-
             $shipping_address = $_POST['address'] ?? 'No address';
             $phone = $_POST['phonenumber'] ?? '0000000000';
-
-            // Thêm đơn hàng vào bảng orders
-            $order_id = $this->pay->createOrder($user['user_id'], $total_amount, $shipping_address, $phone);
-
-            // Kiểm tra nếu có sản phẩm thì thêm vào order_items
-            $this->pay->addOrderItems($order_id, $cart_items);
-
-            // Xóa giỏ hàng sau khi đặt hàng thành công
-            unset($_SESSION['cart_items']);
-            header("Location: ?act=viewcart");
+            $order_id = $this->pay->createOrderWithItems($user['user_id'], $total_amount, $shipping_address, $phone, $cart_items);
+            // if($order_id) {
+            //     $this->pay->deleteCart($cart['cart_id']);
+            // }
+            header("Location: ?act=shop");
         }
     }
-    
 }
