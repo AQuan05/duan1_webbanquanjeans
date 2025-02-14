@@ -14,7 +14,7 @@ class PayController{
         }
         if(isset($_POST['place_order'])){
 
-        $user = $_SESSION['user_id'];
+        $user = $_SESSION['user'] ?? null;
         $cart_items = $_SESSION['cart_items'] ?? [];
         $total_amount = array_sum(array_column($cart_items, 'total_price'));
         $shipping_address = $user['user_address'] ?? 'No address';
