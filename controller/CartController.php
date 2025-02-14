@@ -123,7 +123,7 @@ class cartController
 
     public function deleteCart($cart_item_id)
     {
-        if (! isset($cart_item_id)) {
+        if (! isset($cart_item_id)){
             $_SESSION['message'] = "Lỗi: Không tìm thấy sản phẩm cần xóa!";
             header("Location: ?act=viewcart");
             exit();
