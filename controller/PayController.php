@@ -20,6 +20,7 @@ class PayController
             exit();
         }
 
+
         if (isset($_POST['place_order'])) {
             $user = $_SESSION['user'] ?? null;
             $cart_items = $_SESSION['cart_items'] ?? [];
@@ -28,6 +29,7 @@ class PayController
             $total_amount = array_sum(array_map(function ($item) {
                 return $item['price'] * $item['quantity'];
             }, $cart_items));
+
 
             $shipping_address = $_POST['address'] ?? 'No address';
             $phone = $_POST['phonenumber'] ?? '0000000000';
