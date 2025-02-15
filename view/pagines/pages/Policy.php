@@ -7,7 +7,7 @@
                     <div class="col-lg-12">
                         <div class="cr-breadcrumb-title">
                             <h2>Privacy Policy</h2>
-                            <span> <a href="index.php">Home</a> - Privacy Policy</span>
+                            <span> <a href="?act=/">Home</a> - Privacy Policy</span>
                         </div>
                     </div>
                 </div>

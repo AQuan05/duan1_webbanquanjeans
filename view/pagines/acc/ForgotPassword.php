@@ -1,5 +1,5 @@
 <?php
-
+require_once 'view/layout/header.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,3 +51,4 @@
 </body>
 
 </html>
+<?php require_once 'view/layout/footer.php'; ?>

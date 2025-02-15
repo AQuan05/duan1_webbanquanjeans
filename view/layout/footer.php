@@ -8,7 +8,6 @@ include 'view/layout/script.php';
                     <div class="cr-footer-logo">
                         <div class="image">
                             <img src="view/assets/img/logo/logo.png" alt="logo" class="logo">
-                            <img src="view/assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
                         </div>
                         <p>Carrot is the biggest market of grocery products. Get your daily needs from our store.</p>
                     </div>
@@ -87,49 +86,49 @@ include 'view/layout/script.php';
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="view/assets/img/insta/1.jpg" alt="insta">
+                                            <img src="view/assets/img/insta/ig-1.jpg" width="50px" height="50px" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="view/assets/img/insta/2.jpg" alt="insta">
+                                            <img src="view/assets/img/insta/ig-2.jpg" width="50px" height="50px" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="view/assets/img/insta/3.jpg" alt="insta">
+                                            <img src="view/assets/img/insta/ig-3.jpg" width="50px" height="50px" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="view/assets/img/insta/4.jpg" alt="insta">
+                                            <img src="view/assets/img/insta/ig-4.jpg" width="50px" height="50px" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="view/assets/img/insta/5.jpg" alt="insta">
+                                            <img src="view/assets/img/insta/ig-5.jpg" width="50px" height="50px" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="view/assets/img/insta/6.jpg" alt="insta">
+                                            <img src="view/assets/img/insta/ig-6.jpg" width="50px" height="50px" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="view/assets/img/insta/7.jpg" alt="insta">
+                                            <img src="view/assets/img/insta/ig-7.jpg" width="50px" height="50px" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="swiper-slide">
                                         <a href="#" class="cr-payment-image">
-                                            <img src="view/assets/img/insta/8.jpg" alt="insta">
+                                            <img src="view/assets/img/insta/ig-8.jpg" width="50px" height="50px" alt="insta">
                                             <div class="payment-overlay"></div>
                                         </a>
                                     </div>

@@ -8,14 +8,47 @@ class Account
     {
         $this->conn = DB();
     }
-
+    public function getUser($user_id)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_id = :user_id");
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     public function addAccountModel($username, $email, $password)
     {
-        $sql = "INSERT INTO `users`(username, email, password) VALUES ('$username','$email','$password')";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute();
+        try {
+            // Bắt đầu transaction để đảm bảo tính nhất quán
+            $this->conn->beginTransaction();
+
+            // Chèn tài khoản vào bảng users
+            $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':username' => $username,
+                ':email' => $email,
+                ':password' => $password
+            ]);
+
+            // Lấy user_id vừa tạo
+            $userId = $this->conn->lastInsertId();
+
+            // Tạo giỏ hàng mới cho user
+            $cartSql = "INSERT INTO carts (user_id) VALUES (:user_id)";
+            $cartStmt = $this->conn->prepare($cartSql);
+            $cartStmt->execute([':user_id' => $userId]);
+
+            // Xác nhận transaction
+            $this->conn->commit();
+
+            return $userId;
+        } catch (Exception $e) {
+            // Nếu có lỗi, rollback transaction
+            $this->conn->rollBack();
+            return false;
+        }
     }
-    public function checkUsernameExists($username)
+    public function checkUsername($username)
     {
         $stmt = $this->conn->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
         $stmt->bindParam(':username', $username);
@@ -24,7 +57,7 @@ class Account
     }
 
     // Kiểm tra email đã tồn tại hay chưa
-    public function checkEmailExists($email)
+    public function checkEmail($email)
     {
         $stmt = $this->conn->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
         $stmt->bindParam(':email', $email);
@@ -44,7 +77,7 @@ class Account
         if ($user) {
             // Lưu thông tin người dùng vào session
             $_SESSION['user'] = $user;  // Kiểm tra xem dữ liệu có lưu vào session chưa
-            header('Location: ?act=index'); // Chuyển hướng đến trang dashboard
+            header('Location: ?act=/'); // Chuyển hướng đến trang dashboard
             exit();
         } else {
             // Lỗi đăng nhập

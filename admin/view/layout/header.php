@@ -465,21 +465,6 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarIcons" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarIcons">
-                                <i class="ri-compasses-2-line"></i> <span data-key="t-icons">Variants Products</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarIcons">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="?act=listColors" class="nav-link"><span data-key="t-feather">Color</span> <span class="badge badge-pill bg-info">v4.29.2</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?act=listSize" class="nav-link"> <span data-key="t-crypto-svg">Size</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarForms" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarForms">
                                 <i class="ri-file-list-3-line"></i> <span data-key="t-forms">Comments</span>
                             </a>

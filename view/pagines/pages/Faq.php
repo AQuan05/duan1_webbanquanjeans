@@ -7,7 +7,7 @@
                     <div class="col-lg-12">
                         <div class="cr-breadcrumb-title">
                             <h2>Faq</h2>
-                            <span> <a href="index.php">Home</a> - Faq</span>
+                            <span> <a href="?act=/">Home</a> - Faq</span>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="cr-faq-img">
-                        <img src="view/assets/img/about/1.jpg" alt="about">
+                        <img src="view/assets/img/about/2.jpg" alt="about">
                     </div>
                 </div>
                 <div class="col-lg-6">

@@ -1,4 +1,4 @@
-<?php require_once 'view/layout/header.php' ?>
+<?php require_once 'view/layout/header.php'?>
 <!-- Breadcrumb -->
 <section class="section-breadcrumb">
     <div class="cr-breadcrumb-image">
@@ -18,7 +18,7 @@
 <!-- Product -->
 <section class="section-product padding-t-100">
     <div class="container">
-
+        <form id="addToCartForm" action="?act=cart" method="POST" enctype="multipart/form-data">
         <div class="row mb-minus-24" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
             <div class="col-xxl-4 col-xl-5 col-md-6 col-12 mb-24">
                 <div class="vehicle-detail-banner banner-content clearfix">
@@ -26,8 +26,8 @@
                         <div class="slider slider-for">
                             <div class="slider-banner-image">
                                 <div class="zoom-image-hover">
-                                    <img src="admin/view/assets/images/products/<?=$productOne['image']?>" alt="product-tab-1"
-                                        class="product-image">
+                                    <img src="admin/view/assets/images/products/<?php echo $productOne['image'] ?>" alt="product-tab-1" class="product-image" id="productImage">
+                                    <input type="hidden" name="image" value="<?php echo $productOne['image']?>"> 
                                 </div>
                             </div>
                         </div>
@@ -36,52 +36,34 @@
             </div>
             <div class="col-xxl-8 col-xl-7 col-md-6 col-12 mb-24">
                 <div class="cr-size-and-weight-contain">
-                    <h2 class="heading"><?=$productOne['product_name']?></h2>
-                    <p><?=$productOne['description']?></p>
+                    <h2 class="heading" id="productName" name="cart_name"><?php echo $productOne['product_name'] ?></h2>
+                    <input type="hidden" name="cart_name" value="<?php echo $productOne['product_name']?>">
+                    <p ><?php echo $productOne['category_name']?></p>
+                    <p><?php echo $productOne['description'] ?></p>
                 </div>
                 <div class="cr-size-and-weight">
-                    <div class="cr-review-star">
-                        <div class="cr-star">
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                            <i class="ri-star-fill"></i>
-                        </div>
-                        <p>( 75 Review )</p>
-                    </div>
+
+
                     <div class="cr-product-price">
-                        <span class="new-price"><?=number_format($productOne['price'])?> VNĐ</span>
-                    </div>
-                    <div class="cr-size-weight">
-                        <h5><span>Size</span></h5>
-                        <div class="cr-kg">
-                            <ul>
-                                <li class="active-color"><?=$productOne['size_name']?></li>
-                            </ul>
-                        </div>
-                        <br>
-                        <h5><span>Color</span> :</h5>
-                        <div class="cr-kg">
-                            <ul>
-                                <li class="active-color"><?=$productOne['color_name']?></li>
-                            </ul>
-                        </div>
+                        <span class="new-price" id="productPrice" name="price">
+                            <?php echo number_format($productOne['price'])?> VNĐ
+                        </span>
+                        <input type="hidden" name="price" value="<?php echo $productOne['price']; ?>"> 
                     </div>
                     <div class="cr-add-card">
                         <div class="cr-qty-main">
-                            <input type="text" placeholder="." value="1" minlength="1" maxlength="20"
-                                class="quantity">
+                            <input type="number" placeholder="." value="1" min="1" maxlength="20" name="quantity" class="quantity" required>
                             <button type="button" class="plus">+</button>
                             <button type="button" class="minus">-</button>
                         </div>
                         <div class="cr-add-button">
-                            <button type="button" class="cr-button cr-shopping-bag">Add to cart</button>
+                            <button type="submit" name="add_to_cart" class="cr-button cr-shopping-bag">Add to cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+         </form>
         <div class="row" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
             <div class="col-12">
                 <div class="cr-paking-delivery">
@@ -440,4 +422,4 @@
         </div>
     </div>
 </section>
-<?php require_once 'view/layout/footer.php' ?>
+<?php require_once 'view/layout/footer.php'?>

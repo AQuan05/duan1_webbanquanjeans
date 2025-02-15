@@ -1,36 +1,23 @@
 <?php
 require_once '../admin/model/Product.php';
-require_once '../admin/model/Size.php';
-require_once '../admin/model/Color.php';
-require_once '../admin/model/Variant.php';
 class productController
 {
     public $Product;
-    public $Color;
-    public $Size;
-    public $Variant;
     public function __construct()
     {
         $this->Product = new Product();
-        $this->Color = new Color();
-        $this->Size = new Size();
-        $this->Variant = new Variant();
     }
     public function listProductsController()
     {
         $listProducts = $this->Product->listProductModel();
         foreach ($listProducts as &$product) {
             $product_id = $product['product_id'];
-            $variants = $this->Variant->getVariantsByProductId($product_id);
-            $product['variants'] = $variants;
         }
         require_once '../admin/view/pagines/product/listProducts.php';
     }
     public function addProductsController()
     {
         $Categories = $this->Product->getProductsWithCategoryNames();
-        $color = $this->Color->listColorModel();
-        $size = $this->Size->listSizeModel();
         require_once '../admin/view/pagines/product/addProducts.php';
 
         if (isset($_POST['addPro'])) {
@@ -75,13 +62,6 @@ class productController
                     $color_ids = $_POST['color_id'];
                     $size_ids = $_POST['size_id'];
                     $prices = $_POST['price'];
-
-                    foreach ($color_ids as $key => $color_id) {
-                        $size_id = $size_ids[$key];
-                        $color_id = $color_ids[$key];
-                        $price = $prices[$key];
-                        $this->Variant->addProductvariantsModel($product_id, $size_id, $color_id, $price);
-                    }
                 }
                 echo '<script>
                 document.addEventListener("DOMContentLoaded", function() {
@@ -125,9 +105,6 @@ class productController
         // Lấy dữ liệu cần thiết từ model
         $Categories = $this->Product->getProductsWithCategoryNames();
         $oneProduct = $this->Product->findProductModel($product_id);
-        $color = $this->Color->listColorModel();
-        $size = $this->Size->listSizeModel();
-        $variants = $this->Variant->getVariantsByProductId($product_id);
 
         // Hiển thị trang editProduct
         require_once '../admin/view/pagines/product/editProduct.php';
@@ -204,19 +181,7 @@ class productController
             if ($updateSuccess) {
                 // Nếu sản phẩm có biến thể, cập nhật thông tin biến thể
                 if (!empty($_POST['variant_id'])) {
-                    $variant_ids = $_POST['variant_id'];
-                    $color_ids = $_POST['color_id'];
-                    $size_ids = $_POST['size_id'];
                     $prices = $_POST['price'];
-
-                    foreach ($variant_ids as $key => $variant_id) {
-                        $color_id = $color_ids[$key];
-                        $size_id = $size_ids[$key];
-                        $price = $prices[$key];
-
-                        // Cập nhật biến thể
-                        $this->Variant->updateProductVariantModel($variant_id, $size_id, $color_id, $price);
-                    }
                 }
                 // Hiển thị thông báo thành công
                 echo '<script>

@@ -1,6 +1,4 @@
-<?php
-
-?>
+<?php require_once 'view/layout/header.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,6 +89,8 @@
             </div>
         </div>
     </section>
+
 </body>
 
 </html>
+<?php require_once 'view/layout/footer.php' ?>
