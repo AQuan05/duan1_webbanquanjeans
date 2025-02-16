@@ -85,20 +85,20 @@
                                     <div class="cr-checkout-pay">
                                         <div class="cr-pay-desc">Please select the preferred payment method to use on this
                                             order.</div>
-                                        <form action="#" class="payment-options">
+                                        
                                             <span class="cr-pay-option">
                                                 <span>
-                                                    <input type="radio" id="pay1" name="radio-group" checked>
-                                                    <label for="pay1">Cash On Delivery</label>
+                                                    <input type="radio" id="pay1" name="pttt"  value="tt" checked>
+                                                    <label for="pay1">tt</label>
                                                 </span>
                                             </span>
                                             <span class="cr-pay-option">
                                                 <span>
-                                                    <input type="radio" id="pay3" name="radio-group">
-                                                    <label for="pay3">Bank Transfer</label>
+                                                    <input type="radio" id="pay3" name="pttt" value="vnpay">
+                                                    <label for="pay3">vnpay</label>
                                                 </span>
                                             </span>
-                                        </form>
+                                      
                                     </div>
                                 </div>
                             </div>

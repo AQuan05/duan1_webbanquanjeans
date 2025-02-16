@@ -6,28 +6,24 @@ class Pay {
         $this->conn = DB();
     }
     
-    public function createOrderWithItems($user_id, $total_price, $user_address, $phone, $cart_items) {
+    public function createOrderWithItems($user_id, $total_price, $user_address, $phone, $pttt,$cart_items) {
         try {
             $this->conn->beginTransaction();
-            
-            // Tạo đơn hàng
-            $sql = "INSERT INTO `orders` (user_id, total_price, user_address, Phone) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO `orders` (user_id, total_price, user_address, Phone,pttt) VALUES (?, ?, ?, ?, ?)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$user_id, $total_price, $user_address, $phone]);
+            $stmt->execute([$user_id, $total_price, $user_address, $phone,$pttt]);
             $order_id = $this->conn->lastInsertId();
-            
-            // Kiểm tra nếu giỏ hàng trống
+
             if (!empty($cart_items)) {
                 $sql = "INSERT INTO `order_items` (order_id, order_name, quantity, price) VALUES (?, ?, ?, ?)";
                 $stmt = $this->conn->prepare($sql);
                 foreach ($cart_items as $item) {
-                    $order_name = $item['cart_name'] ?? 'Unknown Product'; // Gán giá trị mặc định nếu thiếu
+                    $order_name = $item['cart_name'] ?? 'Unknown Product';
                     $quantity = $item['quantity'] ?? 1;
                     $price = $item['price'] ?? 0;
                     $stmt->execute([$order_id, $order_name, $quantity, $price]);
                 }
             }
-            
             $this->conn->commit();
             return $order_id;
         } catch (Exception $e) {
