@@ -55,8 +55,8 @@
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" name="username" value="" placeholder="Enter Your Username" class="cr-form-control">
+                                        <label>Email</label>
+                                        <input type="text" name="email" value="" placeholder="Enter Your Email" class="cr-form-control">
                                         <?php if (isset($_SESSION['error'])): ?>
                                             <div class="error-message"><?php echo $_SESSION['error']; ?></div>
                                             <?php unset($_SESSION['error']); ?> <!-- Xóa lỗi sau khi hiển thị -->

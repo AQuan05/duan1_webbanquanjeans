@@ -86,16 +86,16 @@ class AccountController
     {
         require_once 'view/pagines/acc/login.php';
         if (isset($_POST['login']) && $_POST['login']) {
-            $username = $_POST['username'];
+            $email = $_POST['email'];
             $password = $_POST['password'];
 
-            if (empty($username) || empty($password)) {
-                $_SESSION['error'] = "Username and Password cannot be empty.";
+            if (empty($email) || empty($password)) {
+                $_SESSION['error'] = "Email and Password cannot be empty.";
                 header('Location: ?act=login');
                 exit();
             }
 
-            $user = $this->account->loginModel($username, $password);
+            $user = $this->account->loginModel($email, $password);
 
             if ($user) {
                 $_SESSION['user'] = $user;
@@ -109,7 +109,7 @@ class AccountController
                 header('Location: ?act='); // Chuyển hướng đến trang chính
                 exit();
             } else {
-                $_SESSION['error'] = "Invalid username or password.";
+                $_SESSION['error'] = "Invalid email or password.";
                 header('Location: ?act=login');
                 exit();
             }

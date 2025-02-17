@@ -64,11 +64,11 @@ class Account
         $stmt->execute();
         return $stmt->fetchColumn() > 0; // Trả về true nếu email đã tồn tại
     }
-    public function loginModel($username, $password)
+    public function loginModel($email, $password)
     {
         // Truy vấn để kiểm tra người dùng trong cơ sở dữ liệu (chỉ kiểm tra theo username)
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->bindParam(':username', $username);
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
 
         // Lấy thông tin người dùng từ cơ sở dữ liệu
