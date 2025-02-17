@@ -20,7 +20,6 @@ class PayController
             header("Location: login.php");
             exit();
         }
-
         if(isset($_POST['pttt']) && $_POST['pttt'] == "tt"){
             if (isset($_POST['place_order'])) {
                 $user = $_SESSION['user'] ?? null;
