@@ -61,7 +61,7 @@ class PayController
                 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
                 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-                $vnp_Returnurl = "http://duan1_webbanquanjeans.test/?act=success";
+                $vnp_Returnurl = "http://localhost/duan1_webbanquanjeans/?act=success";
                 $vnp_TmnCode = "WG6RCT6R"; 
                 $vnp_HashSecret = "EMNBSNLHGWLGFOQXDXZZQGNONOSETZZF";
                 $startTime = date("YmdHis");
