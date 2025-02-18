@@ -64,9 +64,6 @@
                                                             <div class="edit">
                                                                 <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal"><a href="?act=updateCategories&category_id=<?= $Category['category_id'] ?>">Edit</a></button>
                                                             </div>
-                                                            <div class="remove">
-                                                                <button onclick="return confirm('Bạn có muốn xóa không?')" class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal"><a href="?act=deleteCategories&category_id=<?= $Category['category_id'] ?>">Remove</a></button>
-                                                            </div>
                                                         </div>
                                                     </td>
 
