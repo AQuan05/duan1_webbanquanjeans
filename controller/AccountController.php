@@ -95,6 +95,7 @@ class AccountController
                 exit();
             }
 
+            // Gọi model để kiểm tra đăng nhập
             $user = $this->account->loginModel($email, $password);
 
             if ($user) {
@@ -106,7 +107,12 @@ class AccountController
                     $this->account->createCart($user['user_id']);
                 }
 
-                header('Location: ?act='); // Chuyển hướng đến trang chính
+                // Chuyển hướng theo vai trò của người dùng
+                if ($user['role_id'] == 1) {
+                    header('Location: admin/?act=index'); // Chuyển đến trang admin
+                } else {
+                    header('Location: ?act=/'); // Chuyển đến trang client
+                }
                 exit();
             } else {
                 $_SESSION['error'] = "Invalid email or password.";
@@ -115,7 +121,6 @@ class AccountController
             }
         }
     }
-
     public function forgotPasswordController()
     {
         require_once 'view/pagines/acc/ForgotPassword.php'; // Tạo file forgot_password.php cho form

@@ -64,27 +64,52 @@ class Account
         $stmt->execute();
         return $stmt->fetchColumn() > 0; // Trả về true nếu email đã tồn tại
     }
+    public function getCartByUserId($user_id)
+    {
+        try {
+            // Truy vấn giỏ hàng của người dùng từ cơ sở dữ liệu
+            $stmt = $this->conn->prepare("SELECT * FROM carts WHERE user_id = :user_id");
+            $stmt->bindParam(':user_id', $user_id);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);  // Trả về giỏ hàng của người dùng nếu có
+        } catch (PDOException $e) {
+            // Xử lý lỗi cơ sở dữ liệu
+            error_log("Database error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function createCart($user_id)
+    {
+        try {
+            // Tạo mới giỏ hàng cho người dùng
+            $stmt = $this->conn->prepare("INSERT INTO carts (user_id) VALUES (:user_id)");
+            $stmt->bindParam(':user_id', $user_id);
+            return $stmt->execute();  // Trả về true nếu thành công, false nếu lỗi
+        } catch (PDOException $e) {
+            // Xử lý lỗi cơ sở dữ liệu
+            error_log("Database error: " . $e->getMessage());
+            return false;
+        }
+    }
+
     public function loginModel($email, $password)
     {
-        // Truy vấn để kiểm tra người dùng trong cơ sở dữ liệu (chỉ kiểm tra theo username)
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
+        // Truy vấn để kiểm tra người dùng trong cơ sở dữ liệu và lấy thông tin vai trò
+        $stmt = $this->conn->prepare(
+            "SELECT users.*, roles.role_name, roles.role_id 
+        FROM users 
+        INNER JOIN roles ON users.role_id = roles.role_id 
+        WHERE users.email = :email AND users.password = :password"
+        );
         $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
         $stmt->execute();
 
         // Lấy thông tin người dùng từ cơ sở dữ liệu
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user) {
-            // Lưu thông tin người dùng vào session
-            $_SESSION['user'] = $user;  // Kiểm tra xem dữ liệu có lưu vào session chưa
-            header('Location: ?act=/'); // Chuyển hướng đến trang dashboard
-            exit();
-        } else {
-            // Lỗi đăng nhập
-            $_SESSION['error'] = "Invalid username or password.";
-            header('Location: ?act=login'); // Quay lại trang login
-            exit();
-        }
+        return $user ? $user : false;
     }
     public function updatePasswordModel($email, $newPassword)
     {
