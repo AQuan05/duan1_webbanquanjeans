@@ -15,7 +15,7 @@ require_once 'controller/ValidateController.php';
 require_once 'controller/CartController.php';
 require_once 'controller/PayController.php';
 
-if (isset($_GET['act']) && $_GET['act'] != '' ) {
+if (isset($_GET['act']) && $_GET['act'] != '') {
     // if(!isset($_SESSION['mycart'])) $_SESSION['mycart']=[];
     $act    = $_GET['act'] ?? '/';
     $action = $_GET['action'] ?? '';
@@ -71,6 +71,9 @@ if (isset($_GET['act']) && $_GET['act'] != '' ) {
         case 'payment':
             $payController = new PayController();
             $payController->placeOrder();
+            break;
+        case 'success':
+            include 'view/pagines/cart/success.php';
             break;
         case 'deletecart':
             $cartController = new CartController();

@@ -86,16 +86,17 @@ class AccountController
     {
         require_once 'view/pagines/acc/login.php';
         if (isset($_POST['login']) && $_POST['login']) {
-            $username = $_POST['username'];
+            $email = $_POST['email'];
             $password = $_POST['password'];
 
-            if (empty($username) || empty($password)) {
-                $_SESSION['error'] = "Username and Password cannot be empty.";
+            if (empty($email) || empty($password)) {
+                $_SESSION['error'] = "Email and Password cannot be empty.";
                 header('Location: ?act=login');
                 exit();
             }
 
-            $user = $this->account->loginModel($username, $password);
+            // Gọi model để kiểm tra đăng nhập
+            $user = $this->account->loginModel($email, $password);
 
             if ($user) {
                 $_SESSION['user'] = $user;
@@ -106,16 +107,20 @@ class AccountController
                     $this->account->createCart($user['user_id']);
                 }
 
-                header('Location: ?act='); // Chuyển hướng đến trang chính
+                // Chuyển hướng theo vai trò của người dùng
+                if ($user['role_id'] == 1) {
+                    header('Location: admin/?act=index'); // Chuyển đến trang admin
+                } else {
+                    header('Location: ?act=/'); // Chuyển đến trang client
+                }
                 exit();
             } else {
-                $_SESSION['error'] = "Invalid username or password.";
+                $_SESSION['error'] = "Invalid email or password.";
                 header('Location: ?act=login');
                 exit();
             }
         }
     }
-
     public function forgotPasswordController()
     {
         require_once 'view/pagines/acc/ForgotPassword.php'; // Tạo file forgot_password.php cho form

@@ -1,13 +1,14 @@
 <?php
 require_once 'model/Cart.php';
-
+require_once 'model/shopModel.php';
 class cartController
 {
     private $cartModel;
-
+    private $shopModel;
     public function __construct()
     {
         $this->cartModel = new Cart();
+        $this->shopModel = new shopModel();
     }
     public function viewcart()
     {
@@ -57,25 +58,33 @@ class cartController
             if (!$cart) {
                 $_SESSION['error'] = "Không tìm thấy giỏ hàng.";
                 header('Location: ?act=viewcart');
+                exit(); 
+            }
+            $product_id = $this->shopModel->getProductById($_POST['product_id']);
+            // var_dump($product_id);
+            // die();   
+            if (!$product_id) {
+                $_SESSION['error'] = "Sản phẩm không tồn tại.";
+                header('Location: ?act=viewcart');
                 exit();
             }
 
             $cart_id = $cart['cart_id']; // Lấy cart_id của user từ database
             $cartItems = $this->cartModel->getCartItemsByUserId($user_id);
 
-            $cart_name   = $_POST['cart_name'];
-            $img         = $_POST['image'];
+            $product_id  = (int) $_POST['product_id'];
             $quantity    = (int) $_POST['quantity'];
             $price       = (float) $_POST['price'];
             $total_price = $price * $quantity;
 
             // Gọi model để thêm sản phẩm vào giỏ hàng
-            $this->cartModel->addToCart($cart_id, $cart_name, $img, $quantity, $price, $total_price);
+            $this->cartModel->addToCart($cart_id, $product_id, $quantity, $price, $total_price);
 
             header("Location: ?act=viewcart");
             exit();
         }
     }
+    
 
     public function updateCartQuantity()
     {
