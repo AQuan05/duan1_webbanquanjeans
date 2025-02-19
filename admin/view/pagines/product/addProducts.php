@@ -65,6 +65,12 @@
                                                 <input type="text" name="description" class="form-control" placeholder="Please description" id="cleave-time-format">
                                             </div>
                                         </div><!-- end col -->
+                                        <div class="col-xl-6">
+                                            <div class="mb-3">
+                                                <label for="cleave-time-format" class="form-label">Price</label>
+                                                <input type="text" name="price" class="form-control" placeholder="Please price" id="cleave-time-format">
+                                            </div>
+                                        </div>
                                     </div><!-- end row -->
                                 </div>
                                 <div class="mt-4">

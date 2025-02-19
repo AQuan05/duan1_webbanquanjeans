@@ -55,49 +55,6 @@
                             }
                         </script>
                     </div>
-                    <div class="cr-shop-price">
-                        <h4 class="cr-shop-sub-title">Price</h4>
-                        <div class="price-range-slider">
-                            <div id="slider-range" class="range-bar"></div>
-                            <p class="range-value">
-                                <label>Price :</label>
-                                <input type="text" id="amount" placeholder="'" readonly>
-                            </p>
-                            <button type="button" class="cr-button">Filter</button>
-                        </div>
-                    </div>
-                    <div class="cr-shop-color">
-                        <h4 class="cr-shop-sub-title">Colors</h4>
-                        <select class="form-select" id="colorSelect">
-                            <option value="">All Colors</option>
-                            <option value="blue">Blue</option>
-                            <option value="yellow">Yellow</option>
-                            <option value="red">Red</option>
-                        </select>
-
-                    </div>
-                    <div class="cr-shop-weight">
-                        <h4 class="cr-shop-sub-title">Weight</h4>
-                        <select class="form-select" id="weightSelect">
-                            <option value="">All Weights</option>
-                            <option value="2kg">2kg Pack</option>
-                            <option value="20kg">20kg Pack</option>
-                            <option value="30kg">30kg Pack</option>
-                        </select>
-                    </div>
-                    <div class="cr-shop-tags">
-                        <h4 class="cr-shop-sub-title">Tages</h4>
-                        <div class="cr-shop-tags-inner">
-                            <ul class="cr-tags">
-                                <li><a href="javascript:void(0)">Vegetables</a></li>
-                                <li><a href="javascript:void(0)">juice</a></li>
-                                <li><a href="javascript:void(0)">Food</a></li>
-                                <li><a href="javascript:void(0)">Dry Fruits</a></li>
-                                <li><a href="javascript:void(0)">Vegetables</a></li>
-                                <li><a href="javascript:void(0)">juice</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-9 col-12 md-30" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">

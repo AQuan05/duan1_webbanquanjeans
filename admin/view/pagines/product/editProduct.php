@@ -67,10 +67,14 @@
                                                 <input type="text" name="description" class="form-control" value="<?= htmlspecialchars($oneProduct['description']) ?>" placeholder="Please description" id="description">
                                             </div>
                                         </div><!-- end col -->
+                                        <div class="col-xl-6">
+                                            <div class="mb-3">
+                                                <label for="price" class="form-label">Price</label>
+                                                <input type="text" name="price" class="form-control" value="<?= htmlspecialchars($oneProduct['price']) ?>" placeholder="Please enter price" id="price">
+                                            </div>
+                                        </div><!-- end col -->
                                     </div><!-- end row -->
                                 </div>
-
-
                                 <div class="mt-4">
                                     <div>
                                         <div class="col-sm-auto">
