@@ -53,17 +53,19 @@ ORDER BY
     }
     public function searchProduct($key)
     {
-        $sql = "SELECT * FROM products WHERE product_name LIKE '%" . $key . "%'";
+        $sql = "SELECT products.*, categories.category_name 
+        FROM products 
+        JOIN categories ON products.category_id = categories.category_id 
+        WHERE products.product_name LIKE '%" . $key . "%'";
         return $this->conn->query($sql)->fetchAll();
     }
     public function getProductById($product_id)
     {
         if (!$product_id) return false; // Nếu product_id rỗng, trả về false để tránh lỗi SQL
-        
+
         $sql  = "SELECT * FROM products WHERE product_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$product_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-     
 }
