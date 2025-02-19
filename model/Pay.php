@@ -23,6 +23,7 @@ class Pay {
                     $quantity = $item['quantity'] ?? 1;
                     $price = $item['price'] ?? 0;
                     $stmt->execute([$order_id,$product_id, $product_name, $quantity, $price]);
+
                 }
             }
             $this->conn->commit();
