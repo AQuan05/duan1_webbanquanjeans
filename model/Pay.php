@@ -15,13 +15,14 @@ class Pay {
             $order_id = $this->conn->lastInsertId();
 
             if (!empty($cart_items)) {
-                $sql = "INSERT INTO `order_items` (order_id, order_name, quantity, price) VALUES (?, ?, ?, ?)";
+                $sql = "INSERT INTO `order_items` (order_id, product_id,product_name, quantity, price) VALUES (?, ?, ?, ?, ?)";
                 $stmt = $this->conn->prepare($sql);
                 foreach ($cart_items as $item) {
-                    $order_name = $item['cart_name'] ?? 'Unknown Product';
+                    $product_id = $item['product_id'] ?? 0;
+                    $product_name = $item['product_name'] ?? 'unknown product';
                     $quantity = $item['quantity'] ?? 1;
                     $price = $item['price'] ?? 0;
-                    $stmt->execute([$order_id, $order_name, $quantity, $price]);
+                    $stmt->execute([$order_id,$product_id, $product_name, $quantity, $price]);
                 }
             }
             $this->conn->commit();

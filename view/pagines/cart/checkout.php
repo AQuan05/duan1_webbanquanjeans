@@ -46,14 +46,14 @@
                                                         <div class="cr-pro-image-outer">
                                                             <div class="cr-pro-image">
                                                                 <a href="#" class="image">
-                                                                    <img class="main-image" src="admin/view/assets/images/products/<?php echo ! empty($item['img']) ? htmlspecialchars($item['img']) : 'default.jpg' ?>"
-                                                                        alt="<?php echo ! empty($item['cart_name']) ? htmlspecialchars($item['cart_name']) : 'Sản phẩm không có tên' ?>">
+                                                                    <img class="main-image" src="admin/view/assets/images/products/<?php echo ! empty($item['image']) ? htmlspecialchars($item['image']) : 'default.jpg' ?>"
+                                                                        alt="<?php echo ! empty($item['product_name']) ? htmlspecialchars($item['product_name']) : 'Sản phẩm không có tên' ?>">
                                                                 </a>
                                                             </div>
                                                         </div>
                                                         <div class="cr-pro-content cr-product-details">
                                                             <h5 class="cr-pro-title">
-                                                                <a href="#"><?php echo ! empty($item['cart_name']) ? htmlspecialchars($item['cart_name']) : 'Sản phẩm không có tên' ?></a>
+                                                                <a href="#"><?php echo ! empty($item['product_name']) ? htmlspecialchars($item['product_name']) : 'Sản phẩm không có tên' ?></a>
                                                             </h5>
                                                             <p class="cr-price">
                                                                 <span class="new-price"><?php echo number_format($item['total_price']) ?> VNĐ</span>

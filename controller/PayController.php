@@ -36,7 +36,7 @@ class PayController
                 if($order_id) {
                     $this->pay->deleteCart($cart['cart_id']);
                 }
-                header("Location: ?act=shop");
+                header("Location: ?act=success");
             }
         }elseif(isset($_POST['pttt']) && $_POST['pttt'] == "vnpay"){
             if (isset($_POST['place_order'])) {
