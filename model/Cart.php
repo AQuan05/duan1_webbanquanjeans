@@ -31,7 +31,8 @@ class Cart
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getCartItems($cart_id) {
-        $query = "SELECT * FROM cart_items WHERE cart_id = ?";
+        $query = "SELECT ci.*,p.image,p.product_name FROM cart_items ci
+        JOIN products p ON ci.product_id = p.product_id WHERE cart_id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$cart_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

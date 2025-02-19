@@ -56,7 +56,7 @@
                             <button type="button" class="plus">+</button>
                             <button type="button" class="minus">-</button>
                         </div>
-                        <input type="hidden" name="product_id" value="<?php echo $productOne['product_id']?>">
+                        <input type="hidden" name="product_id" value="<?php echo $productOne['product_id']; ?>">
                         <div class="cr-add-button">
                             <button type="submit" name="add_to_cart" class="cr-button cr-shopping-bag">Add to cart</button>
                         </div>
