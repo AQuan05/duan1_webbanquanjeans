@@ -21,6 +21,7 @@ switch ($act) {
         if (isset($_SESSION['user'])) {
             unset($_SESSION['user']); // Xóa thông tin người dùng khỏi session
         }
+        session_destroy(); // Hủy tố bộ session
         header('Location: ../?act=login'); // Chuyển hướng về trang login trong view
         exit(); // Thêm exit() để đảm bảo việc chuyển hướng được thực thi ngay lập tức
         break;
@@ -60,6 +61,14 @@ switch ($act) {
     case 'listOrders':
         $orderController = new orderController();
         $orderController->listOrders();
+        break;
+    case 'detailOrder':
+        $orderController = new orderController();
+        $orderController->orderDetails($_GET['order_id']);
+        break;
+    case 'updateOrderStatus':
+        $orderController = new orderController();
+        $orderController->updateOrderStatus($_POST['order_id'], $_POST['status_id']);
         break;
     default:
         header('Location: ?act=index');
