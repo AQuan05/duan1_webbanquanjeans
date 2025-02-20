@@ -68,4 +68,16 @@ ORDER BY
         $stmt->execute([$product_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function getSimilarProducts($category_id, $product_id, $limit = 4)
+    {
+        $sql = "SELECT p.*, c.category_name 
+                FROM products p
+                JOIN categories c ON p.category_id = c.category_id 
+                WHERE p.category_id = $category_id 
+                AND p.product_id != $product_id 
+                ORDER BY p.product_id DESC 
+                LIMIT $limit";
+        $stmt = $this->conn->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

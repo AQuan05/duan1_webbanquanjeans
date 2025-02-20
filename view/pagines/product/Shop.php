@@ -84,15 +84,7 @@
                                 </div>
                                 <div class="cr-product-details">
                                     <div class="cr-brand">
-                                        <a href="shop-left-sidebar.html"><?= $pro['category_name'] ?></a>
-                                        <div class="cr-star">
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-line"></i>
-                                            <p>(4.5)</p>
-                                        </div>
+                                        <a href="#"><?= $pro['category_name'] ?></a>
                                     </div>
                                     <a href="?act=shopSingle&product_id=<?= $pro['product_id'] ?>" class="title"><?= $pro['product_name'] ?></a>
 

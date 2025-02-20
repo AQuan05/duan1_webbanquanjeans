@@ -8,12 +8,14 @@ require_once 'model/Account.php';
 require_once 'model/shopModel.php';
 require_once 'model/Cart.php';
 require_once 'model/Pay.php';
+require_once 'model/Product.php';
 // controller
 require_once 'controller/AccountController.php';
 require_once 'controller/shopController.php';
 require_once 'controller/ValidateController.php';
 require_once 'controller/CartController.php';
 require_once 'controller/PayController.php';
+require_once 'controller/ProductController.php';
 
 if (isset($_GET['act']) && $_GET['act'] != '') {
     // if(!isset($_SESSION['mycart'])) $_SESSION['mycart']=[];
@@ -21,7 +23,8 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
     $action = $_GET['action'] ?? '';
     switch ($act) {
         case '/':
-            include 'view/pagines/product/home.php';
+            $productController = new ProductController();
+            $productController->showLatestProducts();
             break;
 
         case 'register':
