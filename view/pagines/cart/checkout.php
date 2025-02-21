@@ -125,22 +125,12 @@
                         <!-- checkout content Start -->
                         <div class="cr-checkout-content">
                             <div class="cr-checkout-inner">
+                               
                                 <?php
-                                // Kiểm tra người dùng đã đăng nhập chưa
-                                $user = $_SESSION['user'] ?? null;
-
-                                // Nếu chưa có user trong session, lấy từ CSDL
-                                if (!$user && isset($_SESSION['user_id'])) {
-                                    require_once 'model/Account.php'; // Load model
+                                require_once 'model/Account.php'; // Load model
                                     $userModel = new Account();
-                                    $user = $userModel->getUserById($_SESSION['user_id']);
-
-                                    // Lưu vào session để dùng lần sau
-                                    if ($user) {
-                                        $_SESSION['user'] = $user;
-                                    }
-                                }
-
+                                    $user = $userModel->getUserById($_SESSION['user']['user_id']);
+                                
                                 // Gán giá trị để hiển thị
                                 $username = htmlspecialchars($user['username'] ?? '');
                                 $user_address = htmlspecialchars($user['user_address'] ?? '');
@@ -161,7 +151,7 @@
                                                     <div class="col-12 mb-3">
                                                         <label class="form-label">Address *</label>
                                                         <input type="text" name="address" class="form-control"
-                                                            value="<?= $user_address ?>"
+                                                            value="<?= $user_address?>"
                                                             placeholder="Address Line 1" required>
                                                     </div>
                                                     <div class="col-12">
