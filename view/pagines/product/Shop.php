@@ -22,14 +22,14 @@
                         <h4 class="cr-shop-sub-title">Category</h4>
                         <select id="category-select" class="form-select">
                             <option value="?act=shop">All Categories</option>
-                            <?php foreach ($categories as $value): ?>
+                            <?php foreach ($categories as $value){ ?>
                                 <option value="?act=shopCategory&category_id=<?= $value['category_id'] ?>"
                                     <?php if (isset($_GET['category_id']) && $_GET['category_id'] == $value['category_id']): ?>
                                     selected
                                     <?php endif; ?>>
                                     <?= $value['category_name'] ?>
                                 </option>
-                            <?php endforeach; ?>
+                            <?php } ?>
                         </select>
 
                         <script>

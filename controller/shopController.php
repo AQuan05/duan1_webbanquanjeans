@@ -9,14 +9,11 @@ class shopController
     }
     public function allProducts()
     {
-        $searchKey = isset($_POST['search']) ? trim($_POST['search']) : '';
-    
-        if (!empty($searchKey)) {
-            $products = $this->shopModel->searchProduct($searchKey);
+        if (isset($_POST['search'])) {
+            $products = $this->shopModel->searchProduct($_POST['search']);
         } else {
             $products = $this->shopModel->allProducts();
         }
-    
         $categories = $this->shopModel->allCategories();
         require_once 'view/pagines/product/Shop.php';
     }
@@ -44,11 +41,11 @@ class shopController
     public function shopCategory($id)
     {
         if (isset($_POST['search'])) {
-            $product = $this->shopModel->searchProduct($_POST['search']);
+            $products = $this->shopModel->searchProduct($_POST['search']);
         } else {
-            $product = $this->shopModel->cat_pro($id);
+            $products = $this->shopModel->cat_pro($id);
         }
-        $category = $this->shopModel->allCategories();
+        $categories = $this->shopModel->allCategories();
         require_once 'view/pagines/product/Shop.php';
     }
 }
