@@ -68,8 +68,13 @@ switch ($act) {
         break;
     case 'updateOrderStatus':
         $orderController = new orderController();
-        $orderController->updateOrderStatus($_POST['order_id'], $_POST['status_id']);
+        $result = $orderController->updateOrderStatus($_POST['order_id'], $_POST['status_id']);
+
+        if (!$result) {
+            echo "Cập nhật trạng thái thất bại!";
+        }
         break;
+
     default:
         header('Location: ?act=index');
         break;

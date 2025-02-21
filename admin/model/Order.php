@@ -51,18 +51,23 @@ class Order
     }
     public function updateOrderStatus($order_id, $status_id)
     {
-        $sql = "UPDATE orders SET status_id = :status_id, updated_at = NOW() WHERE order_id = :order_id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':status_id', $status_id, PDO::PARAM_INT);
-        $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
-        return $stmt->execute();
-    }    
-    public function getOrderById($order_id)
-    {
-        $sql = "SELECT * FROM orders WHERE order_id = :order_id";
+        // Lấy trạng thái hiện tại của đơn hàng
+        $sql = "SELECT status_id FROM orders WHERE order_id = :order_id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $current_status = $stmt->fetchColumn();
+
+        // Kiểm tra trạng thái mới chỉ tăng đúng 1 nấc
+        if ($status_id == $current_status + 1) {
+            $sql = "UPDATE orders SET status_id = :status_id, updated_at = NOW() WHERE order_id = :order_id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':status_id', $status_id, PDO::PARAM_INT);
+            $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } else {
+            echo "Không thể cập nhật: Trạng thái không hợp lệ!";
+            return false;
+        }
     }
 }
