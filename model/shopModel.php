@@ -57,13 +57,13 @@ ORDER BY
                 FROM products 
                 JOIN categories ON products.category_id = categories.category_id 
                 WHERE products.product_name LIKE :key";
-    
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['key' => "%$key%"]);
-    
+
         return $stmt->fetchAll();
     }
-    
+
     public function getProductById($product_id)
     {
         if (!$product_id) return false; // Nếu product_id rỗng, trả về false để tránh lỗi SQL
@@ -84,5 +84,12 @@ ORDER BY
                 LIMIT $limit";
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getCommentsByProductId($product_id)
+    {
+        $sql = "SELECT * FROM comments WHERE product_id = :product_id ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['product_id' => $product_id]);
+        return $stmt->fetchAll();
     }
 }
