@@ -1,7 +1,31 @@
-<?php require_once 'view/layout/header.php' ?>
+<?php require_once 'view/layout/header.php'; ?>
 
 <section class="order-list container">
     <h2 class="text-center">Danh sách đơn hàng của người dùng</h2>
+
+    <!-- Thanh điều hướng trạng thái đơn hàng -->
+    <ul class="nav nav-pills justify-content-center mb-3">
+        <?php 
+        $statusTabs = [
+            "" => "Tất cả",
+            "0" => "Đã hủy",
+            "1" => "Chưa xác nhận",
+            "2" => "Đã xác nhận",
+            "3" => "Đang giao hàng",
+            "4" => "Giao hàng thành công"
+        ];
+        $currentStatus = isset($_GET['status']) ? $_GET['status'] : ""; 
+        ?>
+
+        <?php foreach ($statusTabs as $key => $label): ?>
+            <li class="nav-item">
+                <a class="nav-link <?= ($currentStatus === (string)$key) ? 'active' : '' ?>" 
+                   href="?act=orders&status=<?= $key ?>">
+                    <?= $label ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
@@ -62,4 +86,4 @@ function getStatusBadge($status_id)
     }
 }
 ?>
-<?php require_once 'view/layout/footer.php' ?>
+<?php require_once 'view/layout/footer.php'; ?>
