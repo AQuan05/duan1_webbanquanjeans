@@ -128,6 +128,10 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $AccountController = new AccountController();
             $AccountController->edit($_GET['user_id']);
             break;
+            case 'orders':
+                $orderController = new OrderController();
+                $orderController->index();
+                break;
         default:
         echo "Trang bạn tìm kiếm không tồn tại.";
         break;

@@ -17,4 +17,10 @@ class OrderController{
         $orderItems = $this->order->getOrderItemsByOrderId($order_id);
         require_once 'view/pagines/order/orderDetails.php';
     }
+    public function index()
+    {
+        $status = isset($_GET['status']) ? $_GET['status'] : "";
+        $orders = $this->order->getAllOrders($status);
+        require_once 'view/pagines/order/listOrder.php';
+    }
 }

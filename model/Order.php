@@ -57,4 +57,24 @@ class Order
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getAllOrders($status = null)
+    {
+        $sql = "SELECT orders.*, status.status_name 
+                FROM orders 
+                JOIN status ON orders.status_id = status.status_id";
+
+        if ($status !== null && $status !== '') {
+            $sql .= " WHERE orders.status_id = :status";
+        }
+
+        $stmt = $this->conn->prepare($sql);
+
+        if ($status !== null && $status !== '') {
+            $stmt->execute(['status' => $status]);
+        } else {
+            $stmt->execute();
+        }
+
+        return $stmt->fetchAll();
+    }
 }
