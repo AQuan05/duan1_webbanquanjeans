@@ -36,7 +36,7 @@
                                                     <td class="user_address"><?= $order['user_address']; ?></td>
                                                     <td class="phone"><?= $order['Phone']; ?></td>
                                                     <td class="created_at"><?= $order['created_at']; ?></td>
-                                                    <td class="status_name"><?= $order['status_name']; ?></td>
+                                                    <td class="badge <?= getStatusBadge($order['status_id']) ?>"><?= $order['status_name']; ?></td>
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
@@ -72,3 +72,23 @@
         </div>
         <!-- container-fluid -->
     </div>
+    <?php
+// Hàm trả về màu sắc theo trạng thái đơn hàng
+function getStatusBadge($status_id)
+{
+    switch ($status_id) {
+        case 0:
+            return "bg-danger"; // Đã hủy
+        case 1:
+            return "bg-secondary"; // Chưa xác nhận
+        case 2:
+            return "bg-primary"; // Đã xác nhận
+        case 3:
+            return "bg-warning"; // Đang giao hàng
+        case 4:
+            return "bg-success"; // Hoàn thành
+        default:
+            return "bg-dark";
+    }
+}
+?>
