@@ -37,17 +37,23 @@
                                         <strong>Status:</strong>
                                         <select name="status_id" class="form-select">
                                             <?php
-                                            // Lấy danh sách trạng thái từ DB
+                                            $current_status = $orderDetails[0]['status_id']; // Trạng thái hiện tại của đơn hàng
+                                            $next_status = $current_status + 1; // Trạng thái tiếp theo có thể chọn
+
                                             foreach ($statuses as $status) {
-                                                // Chỉ hiển thị trạng thái hiện tại hoặc cao hơn
-                                                if ($status['status_id'] >= $orderDetails[0]['status_id']) {
-                                            ?>
-                                                    <option value="<?= $status['status_id'] ?>"
-                                                        <?= ($status['status_id'] == $orderDetails[0]['status_id']) ? 'selected' : '' ?>>
-                                                        <?= $status['status_name'] ?>
-                                                    </option>
-                                            <?php
+                                                // Ẩn trạng thái đã chọn qua (chỉ hiển thị trạng thái hiện tại và kế tiếp)
+                                                if ($status['status_id'] < $current_status) {
+                                                    continue;
                                                 }
+
+                                                // Kiểm tra trạng thái nào có thể chọn
+                                                $isSelected = ($status['status_id'] == $current_status) ? 'selected' : '';
+                                                $isDisabled = ($status['status_id'] != $next_status && $status['status_id'] != $current_status) ? 'disabled' : '';
+                                            ?>
+                                                <option value="<?= $status['status_id'] ?>" <?= $isSelected ?> <?= $isDisabled ?>>
+                                                    <?= $status['status_name'] ?>
+                                                </option>
+                                            <?php
                                             }
                                             ?>
                                         </select>
@@ -56,13 +62,12 @@
                                     <li class="list-group-item"><strong>Date Created:</strong> <?= $orderDetails[0]['created_at'] ?></li>
                                 </ul>
 
-                                <!-- Hidden field to pass order_id -->
+                                <!-- Hidden field để gửi order_id -->
                                 <input type="hidden" name="order_id" value="<?= $orderDetails[0]['order_id'] ?>">
 
-                                <button type="submit" name="updateOrder" class="btn btn-success" style="margin-left: 1170px;margin-top: 10px">
-                                    <i class="ri-add-line align-bottom me-1"></i> Update Order
-                                </button>
+                                <button type="submit" class="btn btn-primary btn-sm mt-2" style="margin-left: 1200px;">Update Order</button>
                             </form>
+
                         </div>
                     </div>
                 </div>

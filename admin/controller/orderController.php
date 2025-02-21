@@ -16,9 +16,9 @@ class orderController
     {
         if (isset($_GET['order_id'])) {
             $order_id = intval($_GET['order_id']);
-            
+
             // Lấy chi tiết đơn hàng
-           $orderDetails = $this->Order->getOrderDetails($order_id);
+            $orderDetails = $this->Order->getOrderDetails($order_id);
             // Lấy danh sách trạng thái từ bảng status
             $statuses = $this->Order->getAllStatuses();
 
@@ -33,13 +33,22 @@ class orderController
     }
     public function updateOrderStatus($order_id, $status_id)
     {
-        if (isset($_POST['updateOrder']) && isset($_POST['order_id']) && isset($_POST['status_id'])) {
-            $order_id = intval($_POST['order_id']);
-            $status_id = intval($_POST['status_id']);
-            $this->Order->updateOrderStatus($order_id, $status_id);
-            header('Location: ?act=listOrders');
-        } else {
+        // Kiểm tra đầu vào hợp lệ
+        if (!isset($order_id) || !isset($status_id)) {
             echo "Thiếu order_id hoặc status_id!";
+            return;
+        }
+        $order_id = intval($order_id);
+        $status_id = intval($status_id);
+
+        // Cập nhật trạng thái
+        $result = $this->Order->updateOrderStatus($order_id, $status_id);
+
+        if ($result) {
+            header('Location: ?act=listOrders');
+            exit();
+        } else {
+            echo "Cập nhật trạng thái thất bại!";
         }
     }
 }
