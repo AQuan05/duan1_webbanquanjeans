@@ -54,11 +54,16 @@ ORDER BY
     public function searchProduct($key)
     {
         $sql = "SELECT products.*, categories.category_name 
-        FROM products 
-        JOIN categories ON products.category_id = categories.category_id 
-        WHERE products.product_name LIKE '%" . $key . "%'";
-        return $this->conn->query($sql)->fetchAll();
+                FROM products 
+                JOIN categories ON products.category_id = categories.category_id 
+                WHERE products.product_name LIKE :key";
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['key' => "%$key%"]);
+    
+        return $stmt->fetchAll();
     }
+    
     public function getProductById($product_id)
     {
         if (!$product_id) return false; // Nếu product_id rỗng, trả về false để tránh lỗi SQL

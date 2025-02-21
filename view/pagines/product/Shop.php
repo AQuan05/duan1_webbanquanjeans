@@ -22,7 +22,7 @@
                         <h4 class="cr-shop-sub-title">Category</h4>
                         <select id="category-select" class="form-select">
                             <option value="?act=shop">All Categories</option>
-                            <?php foreach ($category as $value): ?>
+                            <?php foreach ($categories as $value): ?>
                                 <option value="?act=shopCategory&category_id=<?= $value['category_id'] ?>"
                                     <?php if (isset($_GET['category_id']) && $_GET['category_id'] == $value['category_id']): ?>
                                     selected
@@ -62,7 +62,7 @@
                 </div>
                 <div class="row col-100 mb-minus-24">
                     <?php ?>
-                    <?php foreach ($product as $key => $pro) { ?>
+                    <?php foreach ($products as $key => $pro) { ?>
                         <div class="col-xxl-3 col-xl-4 col-6 cr-product-box mb-24">
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
