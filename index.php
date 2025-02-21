@@ -9,6 +9,7 @@ require_once 'model/shopModel.php';
 require_once 'model/Cart.php';
 require_once 'model/Pay.php';
 require_once 'model/Product.php';
+require_once 'model/Order.php';
 // controller
 require_once 'controller/AccountController.php';
 require_once 'controller/shopController.php';
@@ -16,6 +17,7 @@ require_once 'controller/ValidateController.php';
 require_once 'controller/CartController.php';
 require_once 'controller/PayController.php';
 require_once 'controller/ProductController.php';
+require_once 'controller/OrderController.php';
 
 if (isset($_GET['act']) && $_GET['act'] != '') {
     // if(!isset($_SESSION['mycart'])) $_SESSION['mycart']=[];
@@ -105,6 +107,34 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
         case 'Faq':
             include 'view/pagines/pages/Faq.php';
             break;
+        case 'listOrder':
+            $orderController = new OrderController();
+
+            // Kiểm tra nếu có user_id trong URL
+            $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+            
+            if ($user_id > 0) {
+                $orderController->listOrdersByUser($user_id);
+            } else {
+                echo "Vui lòng cung cấp user_id hợp lệ.";
+            }
+            break;
+        case 'orderDetail':
+            $orderController = new OrderController();
+            $order_id = isset($_GET['order_id'])? intval($_GET['order_id']) : 0;
+            $orderController->orderDetails($order_id);
+            break;
+        case 'editprofile':
+            $AccountController = new AccountController();
+            $AccountController->edit($_GET['user_id']);
+            break;
+            case 'orders':
+                $orderController = new OrderController();
+                $orderController->index();
+                break;
+        default:
+        echo "Trang bạn tìm kiếm không tồn tại.";
+        break;
     }
 } else {
     header('Location: ?act=/');

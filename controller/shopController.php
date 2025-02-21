@@ -9,14 +9,18 @@ class shopController
     }
     public function allProducts()
     {
-        if (isset($_POST['search'])) {
-            $product = $this->shopModel->searchProduct($_POST['search']);
+        $searchKey = isset($_POST['search']) ? trim($_POST['search']) : '';
+    
+        if (!empty($searchKey)) {
+            $products = $this->shopModel->searchProduct($searchKey);
         } else {
-            $product = $this->shopModel->allProducts();
+            $products = $this->shopModel->allProducts();
         }
-        $category = $this->shopModel->allCategories();
+    
+        $categories = $this->shopModel->allCategories();
         require_once 'view/pagines/product/Shop.php';
     }
+    
     public function productDetails($product_id)
     {
         // Nếu có tìm kiếm, lấy sản phẩm theo từ khóa
