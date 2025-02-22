@@ -11,7 +11,7 @@ class Category
 
     function listCategoriesModel()
     {
-        $sql = "SELECT * FROM categories";
+        $sql = "SELECT * FROM categories ORDER BY category_id DESC";
         return $this->conn->query($sql)->fetchAll();
     }
     function addCategoriesModel($category_name,$status)

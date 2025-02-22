@@ -70,4 +70,16 @@ class Order
             return false;
         }
     }
+    public function getOrderStatus($order_id)
+{
+    $sql = "SELECT status_id FROM orders WHERE order_id = :order_id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    return $result ? $result['status_id'] : null;
+}
+
 }

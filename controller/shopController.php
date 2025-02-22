@@ -1,22 +1,22 @@
 <?php
 require_once 'model/shopModel.php';
+require_once 'model/Comment.php';
 class shopController
 {
     public $shopModel;
+    public $commentModel;
     public function __construct()
     {
         $this->shopModel = new shopModel();
+        $this->commentModel = new Comment();
     }
     public function allProducts()
     {
-        $searchKey = isset($_POST['search']) ? trim($_POST['search']) : '';
-    
-        if (!empty($searchKey)) {
-            $products = $this->shopModel->searchProduct($searchKey);
+        if (isset($_POST['search'])) {
+            $products = $this->shopModel->searchProduct($_POST['search']);
         } else {
             $products = $this->shopModel->allProducts();
         }
-    
         $categories = $this->shopModel->allCategories();
         require_once 'view/pagines/product/Shop.php';
     }
@@ -29,7 +29,7 @@ class shopController
         }
         // Lấy thông tin sản phẩm hiện tại
         $productOne = $this->shopModel->getProductByIdModel($product_id);
-
+        $comments = $this->commentModel->getCommentsByProduct($product_id);
         // Kiểm tra nếu sản phẩm không tồn tại
         if (!$productOne) {
             echo "Sản phẩm không tồn tại!";

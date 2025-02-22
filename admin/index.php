@@ -17,6 +17,12 @@ require_once '../admin/controller/orderController.php';
 require_once '../admin/controller/commentController.php';
 require_once '../admin/controller/accountController.php';
 
+// Kiểm tra nếu không có session user hoặc role khác 1 thì quay về trang chính
+if (!isset($_SESSION['user']) || $_SESSION['user']['role_id'] != 1) {
+    header('Location: ../?act=/');
+    exit();
+}
+
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
     case 'index':
@@ -26,9 +32,9 @@ switch ($act) {
         if (isset($_SESSION['user'])) {
             unset($_SESSION['user']); // Xóa thông tin người dùng khỏi session
         }
-        session_destroy(); // Hủy tố bộ session
-        header('Location: ../?act=login'); // Chuyển hướng về trang login trong view
-        exit(); // Thêm exit() để đảm bảo việc chuyển hướng được thực thi ngay lập tức
+        session_destroy(); // Hủy toàn bộ session
+        header('Location: ../?act=login'); // Chuyển hướng về trang login
+        exit(); // Đảm bảo việc chuyển hướng thực thi ngay lập tức
         break;
     case 'listCategories':
         $categoriesController = new categoriesController();
@@ -45,7 +51,6 @@ switch ($act) {
     case 'updateCategories':
         $categoriesController = new categoriesController();
         $categoriesController->updateCategoriesController($_GET['category_id']);
-
         break;
     case 'listProducts':
         $productsController = new productController();
@@ -92,7 +97,6 @@ switch ($act) {
         $accountController->detailUserController($_GET['user_id']);
         break;
     default:
-        header('Location: ?act=index');
         break;
 }
 include '../admin/view/layout/footer.php';

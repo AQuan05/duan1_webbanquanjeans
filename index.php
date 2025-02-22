@@ -133,10 +133,9 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
         case 'review':
             $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
             $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
-
             // Lấy thông tin sản phẩm từ database
             $shopModel = new ShopModel();
-            $productOne = $shopModel->getProductByIdModel($product_id);            
+            $productOne = $shopModel->getProductByIdModel($product_id); 
             // Kiểm tra nếu sản phẩm không tồn tại
             if (!$productOne) {
                 echo "<p class='text-danger'>Sản phẩm không tồn tại hoặc đã bị xóa.</p>";
@@ -146,7 +145,7 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'editprofile':
             $AccountController = new AccountController();
-            $AccountController->edit($_GET['user_id']);
+            $AccountController->edit($_GET['user_id']); 
             break;
         case 'orders':
             $orderController = new OrderController();
