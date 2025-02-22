@@ -151,6 +151,10 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $orderController = new OrderController();
             $orderController->index();
             break;
+        case 'cancelOrder':
+            $orderController = new OrderController();
+            $orderController->cancelOrder();
+            break;
         default:
             echo "Trang bạn tìm kiếm không tồn tại.";
             break;
