@@ -118,7 +118,6 @@ $commentModel = new Comment();
                         <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                             <div class="cr-tab-content">
                                 <h4 class="heading">Đánh giá sản phẩm</h4>
-
                                 <!-- Hiển thị danh sách comment -->
                                 <?php if (!empty($comments)): ?>
                                     <?php foreach ($comments as $comment): ?>
