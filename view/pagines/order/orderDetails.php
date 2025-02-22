@@ -111,6 +111,7 @@ $commentModel = new Comment(); // Nếu `$db` là biến kết nối PDO của b
                                     <!-- Form hủy đơn hàng -->
                                     <form action="?act=cancelOrder" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn hủy đơn hàng này?')">
                                         <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
+                                        <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?? '' ?>">
                                         <button type="submit" class="btn btn-danger btn-sm" style="height: 40px;margin-top: 10px">Hủy đơn</button>
                                     </form>
                                 </td>

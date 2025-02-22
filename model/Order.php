@@ -88,12 +88,15 @@ class Order
     }
     public function cancelOrder($order_id)
     {
-        // Câu lệnh SQL để cập nhật trạng thái đơn hàng thành "Đã hủy" (status_id = 0)
+        // Câu lệnh SQL để cập nhật trạng thái đơn hàng thành "Đã hủy" (status_id = 0), chỉ với điều kiện là đơn hàng thuộc về user_id cụ thể
         $query = "UPDATE orders SET status_id = 0 WHERE order_id = :order_id AND status_id IN (1, 2)";
         $stmt = $this->conn->prepare($query);
+    
+        // Gắn giá trị vào các tham số trong câu lệnh SQL
         $stmt->bindParam(':order_id', $order_id);
-
+    
         // Thực thi câu lệnh
         return $stmt->execute();
     }
+    
 }
