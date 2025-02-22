@@ -1,4 +1,7 @@
-<?php require_once 'view/layout/header.php' ?>
+<?php require_once 'view/layout/header.php';
+require_once "model/Comment.php"; // Đảm bảo đường dẫn đúng
+$commentModel = new Comment(); // Nếu `$db` là biến kết nối PDO của bạn
+?>
 <div class="container mt-4">
 
     <!-- Tiêu đề -->
@@ -37,15 +40,8 @@
             <tr>
                 <th>Phương thức thanh toán:</th>
                 <td>
-                    <?php
-                    if (strtolower($order['pttt']) == 'tructiep') {
-                        echo 'Trực Tiếp';
-                    } else {
-                        echo strtoupper($order['pttt']);
-                    }
-                    ?>
+                    <?= strtolower($order['pttt']) == 'tructiep' ? 'Trực Tiếp' : strtoupper($order['pttt']); ?>
                 </td>
-
             </tr>
             <tr>
                 <th>Ngày đặt hàng:</th>
@@ -53,7 +49,6 @@
             </tr>
         </table>
     </section>
-
 
     <!-- Danh sách sản phẩm -->
     <section class="product-list">
@@ -66,18 +61,22 @@
                     <th>Số lượng</th>
                     <th>Giá</th>
                     <th>Thành tiền</th>
+                    <?php if ($order['status_id'] == 4): // Kiểm tra trạng thái hoàn thành 
+                    ?>
+                        <th>Đánh giá</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $total = 0; // Biến lưu tổng tiền
-                $totalQuantity = 0; // Biến lưu tổng số lượng
+                $total = 0;
+                $totalQuantity = 0;
 
                 if (!empty($orderItems)) :
                     foreach ($orderItems as $item):
                         $subtotal = $item['quantity'] * $item['price'];
                         $total += $subtotal;
-                        $totalQuantity += $item['quantity']; // Cộng dồn số lượng
+                        $totalQuantity += $item['quantity'];
                 ?>
                         <tr>
                             <td><?= $item['product_name'] ?></td>
@@ -85,24 +84,42 @@
                             <td><?= $item['quantity'] ?></td>
                             <td><?= number_format($item['price'], 0, ',', '.') ?> đ</td>
                             <td><?= number_format($subtotal, 0, ',', '.') ?> đ</td>
+
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4" class="text-center text-muted">Không có sản phẩm nào.</td>
+                        <td colspan="6" class="text-center text-muted">Không có sản phẩm nào.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="2" class="text-end fw-bold">Tổng cộng:</td>
-
                     <td class="fw-bold"><?= number_format($totalQuantity, 0, ',', '.') ?> sản phẩm</td>
                     <td colspan="1" class="text-end fw-bold">Tổng tiền:</td>
                     <td class="fw-bold"><?= number_format($total, 0, ',', '.') ?> đ</td>
+                    <?php if ($order['status_id'] == 4): // Chỉ hiển thị đánh giá khi đơn hàng đã hoàn thành 
+                    ?>
+                        <td>
+                            <?php
+                            $comment = $commentModel->getCommentsByProduct($order['order_id'], $item['product_id']);
+                            if ($comment):
+                            ?>
+                                <p><strong><?= htmlspecialchars($comment['username']) ?>:</strong> <?= htmlspecialchars($comment['content']) ?></p>
+                            <?php else: ?>
+                                <form action="index.php?act=addComment" method="POST">
+                                    <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?? '' ?>">
+                                    <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
+                                    <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                    <textarea name="content" placeholder="Nhập đánh giá..." required></textarea>
+                                    <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
+                                </form>
+                            <?php endif; ?>
+                        </td>
+                    <?php endif; ?>
                 </tr>
             </tfoot>
-
         </table>
     </section>
 

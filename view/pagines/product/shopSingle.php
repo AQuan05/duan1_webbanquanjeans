@@ -1,20 +1,46 @@
-<?php require_once 'view/layout/header.php' ?>
+<?php require_once 'view/layout/header.php';
+require_once 'model/Comment.php';
+$commentModel = new Comment();
+
+?>
 <!-- Breadcrumb -->
 <section class="section-breadcrumb">
     <div class="cr-breadcrumb-image">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="cr-breadcrumb-title">
-                        <h2>Product</h2>
-                        <span> <a href="index.html">Home</a> - product</span>
-                    </div>
+                    <h2>Product</h2>
+                    <span> <a href="index.html">Home</a> - product</span>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </section>
+<style>
+    .cr-t-review-rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: start;
+        font-size: 24px;
+    }
 
+    .cr-t-review-rating input {
+        display: none;
+    }
+
+    .cr-t-review-rating label {
+        cursor: pointer;
+        color: #ccc;
+        transition: color 0.3s;
+    }
+
+    .cr-t-review-rating label:hover,
+    .cr-t-review-rating label:hover~label,
+    .cr-t-review-rating input:checked~label {
+        color: #FFD700;
+    }
+</style>
 <!-- Product -->
 <section class="section-product padding-t-100">
     <div class="container">
@@ -74,6 +100,11 @@
                                 data-bs-target="#description" type="button" role="tab" aria-controls="description"
                                 aria-selected="true">Description</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                                type="button" role="tab" aria-controls="review"
+                                aria-selected="false">Review</button>
+                        </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="description" role="tabpanel"
@@ -84,90 +115,32 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-tab">
-                            <div class="cr-tab-content">
-                                <div class="cr-description">
-                                    <p><?php echo $productOne['additional'] ?></p>
-                                </div>
-                                <div class="list">
-                                    <ul>
-                                        <li><label>Brand <span>:</span></label>ESTA BETTERU CO</li>
-                                        <li><label>Flavour <span>:</span></label>Super Saver Pack</li>
-                                        <li><label>Diet Type <span>:</span></label>Vegetarian</li>
-                                        <li><label>Weight <span>:</span></label>200 Grams</li>
-                                        <li><label>Speciality <span>:</span></label>Gluten Free, Sugar Free</li>
-                                        <li><label>Info <span>:</span></label>Egg Free, Allergen-Free</li>
-                                        <li><label>Items <span>:</span></label>1</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        <div class="tab-pane fade show active" id="review" role="tabpanel">
                             <div class="cr-tab-content-from">
-                                <div class="post">
-                                    <div class="content">
-                                        <img src="assets/img/review/1.jpg" alt="review">
-                                        <div class="details">
-                                            <span class="date">Jan 08, 2024</span>
-                                            <span class="name">Oreo Noman</span>
-                                        </div>
-                                        <div class="cr-t-review-rating">
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-fill"></i>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error in vero
-                                        sapiente doloribus debitis corporis, eaque dicta, repellat amet, illum
-                                        adipisci vel
-                                        perferendis dolor! quae vero in perferendis provident quis.</p>
-                                    <div class="content mt-30">
-                                        <img src="assets/img/review/2.jpg" alt="review">
-                                        <div class="details">
-                                            <span class="date">Mar 22, 2024</span>
-                                            <span class="name">Lina Wilson</span>
-                                        </div>
-                                        <div class="cr-t-review-rating">
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-line"></i>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error in vero
-                                        sapiente doloribus debitis corporis, eaque dicta, repellat amet, illum
-                                        adipisci vel
-                                        perferendis dolor! quae vero in perferendis provident quis.</p>
-                                </div>
+                                <h4 class="heading">Đánh giá sản phẩm</h4>
 
-                                <h4 class="heading">Add a Review</h4>
-                                <form action="javascript:void(0)">
-                                    <div class="cr-ratting-star">
-                                        <span>Your rating :</span>
-                                        <div class="cr-t-review-rating">
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-fill"></i>
-                                            <i class="ri-star-s-line"></i>
-                                            <i class="ri-star-s-line"></i>
-                                            <i class="ri-star-s-line"></i>
+                                <?php
+                                $order_id = isset($_GET['order_id']) ? $_GET['order_id'] : 0; // Lấy order_id từ URL hoặc đặt mặc định
+                                $comments = $commentModel->getCommentsByProduct($order_id, $productOne['product_id']);                                
+                                if (!empty($comments)):
+                                    foreach ($comments as $comment): ?>
+                                        <div class="post">
+                                            <div class="content mt-30">
+                                                <img src="assets/img/review/user-default.png" alt="review">
+                                                <div class="details">
+                                                    <span class="name"><?= htmlspecialchars($comment['username']) ?></span>
+                                                    <span class="date"><?= date("d/m/Y", strtotime($comment['created_at'])) ?></span>
+                                                </div>
+                                            </div>
+                                            <p><?= htmlspecialchars($comment['content']) ?></p>
                                         </div>
-                                    </div>
-                                    <div class="cr-ratting-input">
-                                        <input name="your-name" placeholder="Name" type="text">
-                                    </div>
-                                    <div class="cr-ratting-input">
-                                        <input name="your-email" placeholder="Email*" type="email" required="">
-                                    </div>
-                                    <div class="cr-ratting-input form-submit">
-                                        <textarea name="your-commemt" placeholder="Enter Your Comment"></textarea>
-                                        <button class="cr-button" type="submit" value="Submit">Submit</button>
-                                    </div>
-                                </form>
+                                    <?php endforeach;
+                                else: ?>
+                                    <p>Chưa có đánh giá nào.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -209,7 +182,7 @@
                                 </div>
                                 <div class="cr-product-details">
                                     <div class="cr-brand">
-                                        <a href="shop-left-sidebar.html"><?php echo $simiPro['category_name'] ?></a>
+                                        <a href="#"><?php echo $simiPro['category_name'] ?></a>
                                     </div>
                                     <a href="?act=shopSingle&product_id=<?= $simiPro['product_id'] ?>" class="title"><?php echo $simiPro['product_name'] ?></a>
                                     <p class="cr-price"><span class="new-price"><?= number_format($simiPro['price']) ?>VNĐ</span></p>

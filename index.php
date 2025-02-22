@@ -10,6 +10,7 @@ require_once 'model/Cart.php';
 require_once 'model/Pay.php';
 require_once 'model/Product.php';
 require_once 'model/Order.php';
+require_once 'model/Comment.php';
 // controller
 require_once 'controller/AccountController.php';
 require_once 'controller/shopController.php';
@@ -18,6 +19,7 @@ require_once 'controller/CartController.php';
 require_once 'controller/PayController.php';
 require_once 'controller/ProductController.php';
 require_once 'controller/OrderController.php';
+require_once 'controller/CommentController.php';
 
 if (isset($_GET['act']) && $_GET['act'] != '') {
     // if(!isset($_SESSION['mycart'])) $_SESSION['mycart']=[];
@@ -112,7 +114,7 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
 
             // Kiểm tra nếu có user_id trong URL
             $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
-            
+
             if ($user_id > 0) {
                 $orderController->listOrdersByUser($user_id);
             } else {
@@ -121,20 +123,38 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'orderDetail':
             $orderController = new OrderController();
-            $order_id = isset($_GET['order_id'])? intval($_GET['order_id']) : 0;
+            $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
             $orderController->orderDetails($order_id);
+            break;
+        case 'addComment':
+            $commentController = new CommentController();
+            $commentController->store();
+            break;
+        case 'review':
+            $order_id = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
+            $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
+
+            // Lấy thông tin sản phẩm từ database
+            $shopModel = new ShopModel();
+            $productOne = $shopModel->getProductByIdModel($product_id);            
+            // Kiểm tra nếu sản phẩm không tồn tại
+            if (!$productOne) {
+                echo "<p class='text-danger'>Sản phẩm không tồn tại hoặc đã bị xóa.</p>";
+                exit();
+            }
+            require_once 'view/pagines/product/shopSingle.php';
             break;
         case 'editprofile':
             $AccountController = new AccountController();
             $AccountController->edit($_GET['user_id']);
             break;
-            case 'orders':
-                $orderController = new OrderController();
-                $orderController->index();
-                break;
+        case 'orders':
+            $orderController = new OrderController();
+            $orderController->index();
+            break;
         default:
-        echo "Trang bạn tìm kiếm không tồn tại.";
-        break;
+            echo "Trang bạn tìm kiếm không tồn tại.";
+            break;
     }
 } else {
     header('Location: ?act=/');
