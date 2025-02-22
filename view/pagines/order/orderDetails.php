@@ -65,6 +65,10 @@ $commentModel = new Comment(); // Nếu `$db` là biến kết nối PDO của b
                     ?>
                         <th>Đánh giá</th>
                     <?php endif; ?>
+                    <?php if ($order['status_id'] == 1 || $order['status_id'] == 2): // Kiểm tra trạng thái Chưa xác nhận hoặc Đã xác nhận 
+                    ?>
+                        <th class="text-center">Hủy đơn</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
@@ -84,7 +88,34 @@ $commentModel = new Comment(); // Nếu `$db` là biến kết nối PDO của b
                             <td><?= $item['quantity'] ?></td>
                             <td><?= number_format($item['price'], 0, ',', '.') ?> đ</td>
                             <td><?= number_format($subtotal, 0, ',', '.') ?> đ</td>
+                            <?php if ($order['status_id'] == 4): ?>
+                                <td>
+                                    <?php
+                                    $comment = $commentModel->getCommentsByProduct($order['order_id'], $item['product_id']);
+                                    if ($comment):
+                                    ?>
+                                        <p><strong><?= htmlspecialchars($comment['username']) ?>:</strong> <?= htmlspecialchars($comment['content']) ?></p>
+                                    <?php else: ?>
+                                        <form action="index.php?act=addComment" method="POST">
+                                            <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?? '' ?>">
+                                            <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
+                                            <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                            <textarea name="content" placeholder="Nhập đánh giá..." required></textarea>
+                                            <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
+                                        </form>
+                                    <?php endif; ?>
+                                </td>
+                            <?php endif; ?>
+                            <?php if ($order['status_id'] == 1 || $order['status_id'] == 2): ?>
+                                <td class="text-end">
+                                    <!-- Form hủy đơn hàng -->
+                                    <form action="?act=cancelOrder" method="POST" onsubmit="return confirm('Bạn chắc chắn muốn hủy đơn hàng này?')">
+                                        <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm" style="height: 40px;margin-top: 10px">Hủy đơn</button>
+                                    </form>
+                                </td>
 
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -99,28 +130,26 @@ $commentModel = new Comment(); // Nếu `$db` là biến kết nối PDO của b
                     <td class="fw-bold"><?= number_format($totalQuantity, 0, ',', '.') ?> sản phẩm</td>
                     <td colspan="1" class="text-end fw-bold">Tổng tiền:</td>
                     <td class="fw-bold"><?= number_format($total, 0, ',', '.') ?> đ</td>
-                    <?php if ($order['status_id'] == 4): // Chỉ hiển thị đánh giá khi đơn hàng đã hoàn thành 
-                    ?>
+                    <?php if ($order['status_id'] == 4): ?>
                         <td>
-                            <?php
-                            $comment = $commentModel->getCommentsByProduct($order['order_id'], $item['product_id']);
-                            if ($comment):
-                            ?>
-                                <p><strong><?= htmlspecialchars($comment['username']) ?>:</strong> <?= htmlspecialchars($comment['content']) ?></p>
-                            <?php else: ?>
-                                <form action="index.php?act=addComment" method="POST">
-                                    <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?? '' ?>">
-                                    <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
-                                    <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
-                                    <textarea name="content" placeholder="Nhập đánh giá..." required></textarea>
-                                    <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
-                                </form>
-                            <?php endif; ?>
+                            <!-- Đánh giá nếu đơn hàng đã hoàn thành -->
                         </td>
                     <?php endif; ?>
                 </tr>
             </tfoot>
         </table>
+
+        <script>
+            function validateCancelForm() {
+                var cancelReason = document.getElementById("cancel_reason").value;
+                if (!cancelReason) {
+                    alert("Vui lòng chọn lý do hủy.");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+
     </section>
 
 </div>

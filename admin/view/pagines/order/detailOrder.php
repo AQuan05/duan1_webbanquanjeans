@@ -1,5 +1,4 @@
 <div class="main-content">
-
     <div class="page-content">
         <div class="container-fluid">
 
@@ -35,18 +34,30 @@
                                     <li class="list-group-item"><strong>Address:</strong> <?= $orderDetails[0]['user_address'] ?></li>
                                     <li class="list-group-item">
                                         <strong>Status:</strong>
-                                        <select name="status_id" class="form-select">
-                                            <?php
-                                            $current_status = $orderDetails[0]['status_id']; // Trạng thái hiện tại của đơn hàng
-                                            $next_status = $current_status + 1; // Trạng thái tiếp theo có thể chọn
+                                        <?php
+                                        // Lấy trạng thái hiện tại của đơn hàng
+                                        $current_status = $orderDetails[0]['status_id'];
 
+                                        // Hiển thị trạng thái "Đã hủy" dưới dạng select
+                                        ?>
+                                        <select name="status_id" class="form-select" <?= $current_status == 0 ? 'disabled' : ''; ?>>
+                                            <?php
                                             foreach ($statuses as $status) {
-                                                // Ẩn trạng thái đã chọn qua (chỉ hiển thị trạng thái hiện tại và kế tiếp)
+                                                // Nếu trạng thái là "Đã hủy", không cho chọn trạng thái mới
+                                                if ($current_status == 0) {
+                                                    // Nếu trạng thái là "Đã hủy", chỉ hiển thị trạng thái này và vô hiệu hóa nó
+                                                    if ($status['status_id'] == 0) {
+                                                        echo '<option value="' . $status['status_id'] . '" selected disabled>' . $status['status_name'] . '</option>';
+                                                    }
+                                                    continue; // Dừng vòng lặp sau khi hiển thị "Đã hủy"
+                                                }
+
+                                                // Chỉ hiển thị trạng thái hiện tại và kế tiếp
                                                 if ($status['status_id'] < $current_status) {
                                                     continue;
                                                 }
 
-                                                // Kiểm tra trạng thái nào có thể chọn
+                                                // Xác định trạng thái đã chọn và bị vô hiệu hóa
                                                 $isSelected = ($status['status_id'] == $current_status) ? 'selected' : '';
                                                 $isDisabled = ($status['status_id'] != $next_status && $status['status_id'] != $current_status) ? 'disabled' : '';
                                             ?>
@@ -57,15 +68,16 @@
                                             }
                                             ?>
                                         </select>
+                                        <?php
+                                        ?>
                                     </li>
-
                                     <li class="list-group-item"><strong>Date Created:</strong> <?= $orderDetails[0]['created_at'] ?></li>
                                 </ul>
 
                                 <!-- Hidden field để gửi order_id -->
                                 <input type="hidden" name="order_id" value="<?= $orderDetails[0]['order_id'] ?>">
 
-                                <button type="submit" class="btn btn-primary btn-sm mt-2" style="margin-left: 1200px;">Update Order</button>
+                                <button type="submit" class="btn btn-primary btn-sm mt-2" style="margin-left: 1200px;" <?= $current_status == 0 ? 'disabled' : ''; ?>>Update Order</button>
                             </form>
 
                         </div>
@@ -73,6 +85,7 @@
                 </div>
             </div>
             <!-- End Order Information -->
+
             <!-- Order Items -->
             <div class="row">
                 <div class="col-md-12">
