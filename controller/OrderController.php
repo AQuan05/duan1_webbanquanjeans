@@ -31,22 +31,29 @@ class OrderController
         // Kiểm tra xem dữ liệu có được gửi lên không
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
             $order_id = $_POST['order_id'];
+            // Kiểm tra nếu order_id hợp lệ
+            if ($order_id <= 0) {
+                echo "<script>alert('Vui lòng cung cấp order_id hợp lệ.'); window.history.back();</script>";
+                return;
+            }
 
-            // Khởi tạo đối tượng Order// Giả sử $this->db là đối tượng PDO đã được khởi tạo
-
-            // Gọi phương thức hủy đơn
+            // Gọi phương thức cancelOrder từ model để hủy đơn
             $result = $this->order->cancelOrder($order_id);
 
+            // Kiểm tra kết quả
             if ($result) {
-                // Nếu hủy thành công, chuyển hướng đến trang đơn hàng hoặc trang thông báo thành công
-                echo "<script>alert('Đơn hàng đã được hủy thành công.'); window.location.href = 'orders.php';</script>";
+                // Hủy đơn hàng thành công, chuyển hướng về trang danh sách đơn hàng
+                echo "<script>alert('Hủy đơn hàng thành công.');</script>";
+                header("Location: ?act=listOrder");
+                exit();
             } else {
                 // Nếu có lỗi khi hủy đơn
                 echo "<script>alert('Có lỗi xảy ra trong quá trình hủy đơn hàng.'); window.history.back();</script>";
             }
         } else {
             // Nếu không có POST request, chuyển hướng về trang đơn hàng
-            header("Location: ?act=listOrders");
+            header("Location: ?act=listOrder");
+            exit();
         }
     }
 }
