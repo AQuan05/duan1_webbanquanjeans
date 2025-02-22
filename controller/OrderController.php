@@ -11,9 +11,11 @@ class OrderController
     }
     public function listOrdersByUser($user_id)
     {
-        $orders = $this->order->getOrderByUserId($user_id);
+        $status = isset($_GET['status']) ? $_GET['status'] : ""; // Lấy trạng thái từ URL
+        $orders = $this->order->getOrdersByUserAndStatus($user_id, $status);
         require_once 'view/pagines/order/listOrder.php';
     }
+    
     public function orderDetails($order_id)
     {
         $order = $this->order->getOrderById($order_id);
@@ -29,8 +31,9 @@ class OrderController
     public function cancelOrder()
     {
         // Kiểm tra xem dữ liệu có được gửi lên không
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
+        if (isset($_POST['cancel']) && isset($_POST['order_id']) ) {
             $order_id = $_POST['order_id'];
+            $user_id = $_POST['user_id'];
             // Kiểm tra nếu order_id hợp lệ
             if ($order_id <= 0) {
                 echo "<script>alert('Vui lòng cung cấp order_id hợp lệ.'); window.history.back();</script>";
@@ -43,8 +46,7 @@ class OrderController
             // Kiểm tra kết quả
             if ($result) {
                 // Hủy đơn hàng thành công, chuyển hướng về trang danh sách đơn hàng
-                echo "<script>alert('Hủy đơn hàng thành công.');</script>";
-                header("Location: ?act=listOrder");
+                echo "<script>alert('Hủy đơn hàng thành công.'); window.location.href = '?act=listOrder&user_id=$user_id';</script>";
                 exit();
             } else {
                 // Nếu có lỗi khi hủy đơn
@@ -52,7 +54,7 @@ class OrderController
             }
         } else {
             // Nếu không có POST request, chuyển hướng về trang đơn hàng
-            header("Location: ?act=listOrder");
+            echo '<script>alert("Vui lòng cung cấp order_id hợp lệ."); window.history.back();</script>';
             exit();
         }
     }
