@@ -115,15 +115,13 @@ $commentModel = new Comment();
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade show active" id="review" role="tabpanel">
-                            <div class="cr-tab-content-from">
+                        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                            <div class="cr-tab-content">
                                 <h4 class="heading">Đánh giá sản phẩm</h4>
 
-                                <?php
-                                $order_id = isset($_GET['order_id']) ? $_GET['order_id'] : 0; // Lấy order_id từ URL hoặc đặt mặc định
-                                $comments = $commentModel->getCommentsByProduct($order_id, $productOne['product_id']);                                
-                                if (!empty($comments)):
-                                    foreach ($comments as $comment): ?>
+                                <!-- Hiển thị danh sách comment -->
+                                <?php if (!empty($comments)): ?>
+                                    <?php foreach ($comments as $comment): ?>
                                         <div class="post">
                                             <div class="content mt-30">
                                                 <img src="assets/img/review/user-default.png" alt="review">
@@ -134,19 +132,17 @@ $commentModel = new Comment();
                                             </div>
                                             <p><?= htmlspecialchars($comment['content']) ?></p>
                                         </div>
-                                    <?php endforeach;
-                                else: ?>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
                                     <p>Chưa có đánh giá nào.</p>
                                 <?php endif; ?>
+
                             </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-        </div>
 
-    </div>
+            </div>
 
 </section>
 

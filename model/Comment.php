@@ -48,7 +48,7 @@ class Comment
     }
     // Lấy đánh giá của một sản phẩm trong đơn hàng
     public function getCommentsByProduct($product_id) {
-        $query = "SELECT c.content, c.rating, u.username, c.created_at 
+        $query = "SELECT c.content, u.username, c.created_at 
                   FROM comments c 
                   JOIN users u ON c.user_id = u.user_id 
                   WHERE c.product_id = ?";
@@ -56,5 +56,5 @@ class Comment
         $stmt->execute([$product_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
 }
