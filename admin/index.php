@@ -1,16 +1,21 @@
 <?php
 ob_start();
 session_start();
+
 require_once '../commons/function.php';
 //model
 require_once '../admin/model/Category.php';
 require_once '../admin/model/Product.php';
 require_once '../admin/model/Order.php';
+require_once '../admin/model/Comment.php';
+require_once '../admin/model/Account.php';
 //controller
 require_once '../admin/controller/categoriesController.php';
 require_once '../admin/controller/productController.php';
 include '../admin/view/layout/header.php';
 require_once '../admin/controller/orderController.php';
+require_once '../admin/controller/commentController.php';
+require_once '../admin/controller/accountController.php';
 
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
@@ -74,7 +79,18 @@ switch ($act) {
             echo "Cập nhật trạng thái thất bại!";
         }
         break;
-
+    case 'listComments':
+        $commentController = new commentController();
+        $commentController->listCommentsController();
+        break;
+    case 'listUsers':
+        $accountController = new accountController();
+        $accountController->listUserController();
+        break;
+    case 'detailUser':
+        $accountController = new accountController();
+        $accountController->detailUserController($_GET['user_id']);
+        break;
     default:
         header('Location: ?act=index');
         break;

@@ -1,4 +1,7 @@
-<?php require_once 'view/layout/header.php' ?>
+<?php require_once 'view/layout/header.php';
+require_once "model/Comment.php"; // Đảm bảo đường dẫn đúng
+$commentModel = new Comment(); // Nếu `$db` là biến kết nối PDO của bạn
+?>
 <div class="container mt-4">
 
     <!-- Tiêu đề -->
@@ -82,18 +85,6 @@
                             <td><?= number_format($item['price'], 0, ',', '.') ?> đ</td>
                             <td><?= number_format($subtotal, 0, ',', '.') ?> đ</td>
 
-                            <?php if ($order['status_id'] == 4): // Chỉ hiển thị đánh giá khi đơn hàng đã hoàn thành 
-                            ?>
-                                <td>
-                                    <?php if (!empty($comment)): ?>
-                                        <span class="badge bg-success"><?= $comment['rating'] ?>⭐</span>
-                                        <p><?= htmlspecialchars($comment['content']) ?></p>
-                                    <?php else: ?>
-                                        <a href="index.php?act=review&order_id=<?= $order['order_id'] ?>&product_id=<?= $item['product_id'] ?>"
-                                            class="btn btn-primary btn-sm">Đánh giá</a>
-                                    <?php endif; ?>
-                                </td>
-                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -108,6 +99,25 @@
                     <td class="fw-bold"><?= number_format($totalQuantity, 0, ',', '.') ?> sản phẩm</td>
                     <td colspan="1" class="text-end fw-bold">Tổng tiền:</td>
                     <td class="fw-bold"><?= number_format($total, 0, ',', '.') ?> đ</td>
+                    <?php if ($order['status_id'] == 4): // Chỉ hiển thị đánh giá khi đơn hàng đã hoàn thành 
+                    ?>
+                        <td>
+                            <?php
+                            $comment = $commentModel->getCommentsByProduct($order['order_id'], $item['product_id']);
+                            if ($comment):
+                            ?>
+                                <p><strong><?= htmlspecialchars($comment['username']) ?>:</strong> <?= htmlspecialchars($comment['content']) ?></p>
+                            <?php else: ?>
+                                <form action="index.php?act=addComment" method="POST">
+                                    <input type="hidden" name="user_id" value="<?= $_SESSION['user']['user_id'] ?? '' ?>">
+                                    <input type="hidden" name="order_id" value="<?= $order['order_id'] ?>">
+                                    <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                                    <textarea name="content" placeholder="Nhập đánh giá..." required></textarea>
+                                    <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
+                                </form>
+                            <?php endif; ?>
+                        </td>
+                    <?php endif; ?>
                 </tr>
             </tfoot>
         </table>

@@ -13,37 +13,30 @@ class CommentController
 
     // Xử lý thêm đánh giá từ form
     public function store()
-    {
-        if (isset($_POST['content'])) {
-            // Kiểm tra nếu user_id được truyền qua URL hoặc từ session
-            if (isset($_GET['user_id'])) {
-                $user_id = $_GET['user_id'];
-            } elseif (isset($_SESSION['user_id'])) {
-                $user_id = $_SESSION['user_id'];
-            } else {
-                // Xử lý nếu không có user_id
-                die("User not logged in");
-            }
+{
+    if (isset($_POST['content'])) {
+        $user_id = $_POST['user_id'] ?? $_SESSION['user']['user_id'] ?? null;
+        $order_id = $_POST['order_id'];
+        $product_id = $_POST['product_id'];
+        $content = $_POST['content'];
 
-            $order_id = $_POST['order_id'];
-            $product_id = $_POST['product_id'];
-            $user_id = $_POST['user_id'];
-            $content = $_POST['content'];
-            $rating = $_POST['rating'];
+        if (!$user_id) {
+            die("User ID not found!");
+        }
 
-            // Kiểm tra nếu đơn hàng đã hoàn thành và chưa có đánh giá
-            if ($this->commentModel->isOrderCompleted($order_id, $user_id) && !$this->commentModel->hasCommented($order_id, $product_id, $user_id)) {
-                if ($this->commentModel->addComment($order_id, $product_id, $user_id, $content, $rating)) {
-                    header("Location: index.php?act=orderDetail&order_id=$order_id&success=1");
-                    exit();
-                } else {
-                    header("Location: index.php?act=orderDetail&order_id=$order_id&error=1");
-                    exit();
-                }
+        if ($this->commentModel->isOrderCompleted($order_id, $user_id) && !$this->commentModel->hasCommented($order_id, $product_id, $user_id)) {
+            if ($this->commentModel->addComment($order_id, $product_id, $user_id, $content)) {
+                header("Location: index.php?act=orderDetail&order_id=$order_id&success=1");
+                exit();
             } else {
-                header("Location: index.php?act=orderDetail&order_id=$order_id&error=2"); // Không hợp lệ
+                header("Location: index.php?act=orderDetail&order_id=$order_id&error=1");
                 exit();
             }
+        } else {
+            header("Location: index.php?act=orderDetail&order_id=$order_id&error=2"); // Không hợp lệ
+            exit();
         }
     }
+}
+
 }
