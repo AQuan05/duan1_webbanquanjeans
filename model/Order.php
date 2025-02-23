@@ -6,19 +6,32 @@ class Order
     {
         $this->conn = DB();
     }
-    public function getOrderByUserId($user_id)
+    public function getOrdersByUserAndStatus($user_id, $status = "")
     {
-        $sql = "SELECT o.order_id, o.user_id, o.total_price, o.status_id, s.status_name, o.created_at 
-        FROM orders o 
-        JOIN status s ON o.status_id = s.status_id 
-        JOIN users u ON o.user_id = u.user_id
-        WHERE o.user_id = :user_id
-        ORDER BY o.order_id DESC";
+        $sql = "SELECT o.order_id, o.total_price, o.status_id, o.user_id,u.username, s.status_name, o.created_at 
+                FROM orders o 
+                JOIN status s ON o.status_id = s.status_id 
+                JOIN users u ON o.user_id = u.user_id
+                WHERE o.user_id = :user_id";
+    
+        // Nếu có lọc theo trạng thái, thêm điều kiện vào SQL
+        if ($status !== "") {
+            $sql .= " AND o.status_id = :status";
+        }
+    
+        $sql .= " ORDER BY o.order_id DESC";
+    
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    
+        if ($status !== "") {
+            $stmt->bindParam(':status', $status, PDO::PARAM_INT);
+        }
+    
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     // 1️⃣ Lấy thông tin đơn hàng theo order_id
     public function getOrderById($order_id)
     {
