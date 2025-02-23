@@ -11,10 +11,11 @@ class Product
     public function getTop8Product($limit)
     {
         $stmt = $this->conn->prepare("
-    SELECT products.*, categories.category_name 
-    FROM products 
-    JOIN categories ON products.category_id = categories.category_id 
-    ORDER BY products.product_id DESC 
+    SELECT pro.*, categories.category_name 
+    FROM products pro
+    JOIN categories ON pro.category_id = categories.category_id 
+    WHERE categories.status = 'Active'
+    ORDER BY pro.product_id DESC 
     LIMIT :limit");
 
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
