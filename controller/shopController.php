@@ -20,7 +20,7 @@ class shopController
         $categories = $this->shopModel->allCategories();
         require_once 'view/pagines/product/Shop.php';
     }
-    
+
     public function productDetails($product_id)
     {
         // Nếu có tìm kiếm, lấy sản phẩm theo từ khóa
@@ -29,7 +29,10 @@ class shopController
         }
         // Lấy thông tin sản phẩm hiện tại
         $productOne = $this->shopModel->getProductByIdModel($product_id);
-        $comments = $this->commentModel->getCommentsByProduct($product_id);
+        $order_id = $_GET['order_id'] ?? null; // Hoặc $_POST nếu gửi bằng form
+
+        $comments = $this->commentModel->getCommentsByProduct($product_id, $order_id);
+
         // Kiểm tra nếu sản phẩm không tồn tại
         if (!$productOne) {
             echo "Sản phẩm không tồn tại!";

@@ -20,21 +20,13 @@ class Comment
         $stmt->execute([$order_id, $user_id]);
         return $stmt->fetchColumn() > 0;
     }
-
-
     // Kiểm tra xem sản phẩm trong đơn hàng đã được đánh giá chưa
-    public function hasCommented($order_id, $product_id, $user_id)
-    {
-        $query = "SELECT COUNT(*) 
-                  FROM comments c 
-                  JOIN users u ON c.user_id = u.user_id
-                  WHERE c.order_id = ? AND c.product_id = ? AND c.user_id = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute([$order_id, $product_id, $user_id]);
+    public function hasCommented($user_id, $product_id) {
+        $sql = "SELECT COUNT(*) FROM comments WHERE user_id = ? AND product_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$user_id, $product_id]);
         return $stmt->fetchColumn() > 0;
     }
-
-
     // Thêm đánh giá
     public function addComment($order_id, $product_id, $user_id, $content)
     {
@@ -47,14 +39,15 @@ class Comment
         return $stmt->execute([$order_id, $product_id, $user_id, $content]);
     }
     // Lấy đánh giá của một sản phẩm trong đơn hàng
-    public function getCommentsByProduct($product_id) {
-        $query = "SELECT c.content, u.username, c.created_at 
-                  FROM comments c 
-                  JOIN users u ON c.user_id = u.user_id 
-                  WHERE c.product_id = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute([$product_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    public function getCommentsByProduct($product_id, $order_id)
+{
+    $query = "SELECT c.content, u.username, c.created_at 
+              FROM comments c 
+              JOIN users u ON c.user_id = u.user_id 
+              WHERE c.product_id = ? AND c.order_id = ?";
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute([$product_id, $order_id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
 }
