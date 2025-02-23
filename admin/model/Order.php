@@ -71,15 +71,54 @@ class Order
         }
     }
     public function getOrderStatus($order_id)
-{
-    $sql = "SELECT status_id FROM orders WHERE order_id = :order_id";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
-    $stmt->execute();
-    
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    return $result ? $result['status_id'] : null;
-}
+    {
+        $sql = "SELECT status_id FROM orders WHERE order_id = :order_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
+        $stmt->execute();
 
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? $result['status_id'] : null;
+    }
+    public function sumOrdersStatusSuccess()
+    {
+        $sql = "SELECT SUM(total_price) as total FROM orders WHERE status_id = 4";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result['total'] ?? 0; // Trả về tổng giá hoặc 0 nếu không có kết quả
+    }
+    public function orderToady()
+    {
+        $sql = "SELECT COUNT(*) as total FROM orders WHERE DATE(created_at) = CURDATE()";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result['total'] ?? 0;
+    }
+
+    public function statusPie()
+    {
+        $sql = "SELECT COUNT(*) as total FROM orders where status_id in(1, 4)  group by status_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $data =  [
+            'cancelled' => 0,
+            'success' => 0
+        ];
+        foreach ($result as $key) {
+            if ($key['status_id'] == 1) {
+                $data['cancelled'] = $key['total'];
+            }
+            if ($key['status_id'] == 4) {
+                $data['success'] = $key['total'];
+            }
+        }
+        return $data;
+    }
 }
