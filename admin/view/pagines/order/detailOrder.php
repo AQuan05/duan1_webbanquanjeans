@@ -38,39 +38,38 @@
                                         // Lấy trạng thái hiện tại của đơn hàng
                                         $current_status = $orderDetails[0]['status_id'];
 
-                                        // Hiển thị trạng thái "Đã hủy" dưới dạng select
+                                        // Xác định trạng thái kế tiếp
+                                        $next_status = null;
+                                        foreach ($statuses as $status) {
+                                            if ($status['status_id'] > $current_status) {
+                                                $next_status = $status['status_id'];
+                                                break; // Lấy trạng thái kế tiếp đầu tiên và dừng vòng lặp
+                                            }
+                                        }
                                         ?>
                                         <select name="status_id" class="form-select" <?= $current_status == 0 ? 'disabled' : ''; ?>>
                                             <?php
                                             foreach ($statuses as $status) {
-                                                // Nếu trạng thái là "Đã hủy", không cho chọn trạng thái mới
+                                                // Nếu trạng thái là "Đã hủy", chỉ hiển thị nó và vô hiệu hóa dropdown
                                                 if ($current_status == 0) {
-                                                    // Nếu trạng thái là "Đã hủy", chỉ hiển thị trạng thái này và vô hiệu hóa nó
                                                     if ($status['status_id'] == 0) {
                                                         echo '<option value="' . $status['status_id'] . '" selected disabled>' . $status['status_name'] . '</option>';
                                                     }
-                                                    continue; // Dừng vòng lặp sau khi hiển thị "Đã hủy"
-                                                }
-
-                                                // Chỉ hiển thị trạng thái hiện tại và kế tiếp
-                                                if ($status['status_id'] < $current_status) {
                                                     continue;
                                                 }
 
-                                                // Xác định trạng thái đã chọn và bị vô hiệu hóa
+                                                // Xác định trạng thái đã chọn và trạng thái có thể chọn
                                                 $isSelected = ($status['status_id'] == $current_status) ? 'selected' : '';
                                                 $isDisabled = ($status['status_id'] != $next_status && $status['status_id'] != $current_status) ? 'disabled' : '';
-                                            ?>
-                                                <option value="<?= $status['status_id'] ?>" <?= $isSelected ?> <?= $isDisabled ?>>
-                                                    <?= $status['status_name'] ?>
-                                                </option>
-                                            <?php
+
+                                                echo '<option value="' . $status['status_id'] . '" ' . $isSelected . ' ' . $isDisabled . '>';
+                                                echo $status['status_name'];
+                                                echo '</option>';
                                             }
                                             ?>
                                         </select>
-                                        <?php
-                                        ?>
                                     </li>
+
                                     <li class="list-group-item"><strong>Date Created:</strong> <?= $orderDetails[0]['created_at'] ?></li>
                                 </ul>
 
