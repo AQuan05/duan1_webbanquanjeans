@@ -60,4 +60,26 @@ class orderController
             echo "Cập nhật trạng thái thất bại!";
         }
     }
+    public function sumOrdersStatusSuccessController()
+    {
+        $sumStatusSucces = $this->Order->sumOrdersStatusSuccess();
+        $orderToday = $this->Order->orderToady();
+        $statusPie = $this->Order->statusPie();
+        if ($sumStatusSucces !== false && $orderToday !== false) {
+            // Nếu cả hai hàm đều trả về dữ liệu hợp lệ
+            require_once '../admin/view/layout/home.php';
+        } elseif ($sumStatusSucces !== false) {
+            // Nếu chỉ có $sumStatusSucces có giá trị hợp lệ
+            echo "Chỉ có dữ liệu tổng đơn hàng thành công.";
+        } elseif ($orderToday !== false) {
+            // Nếu chỉ có $orderToday có giá trị hợp lệ
+            echo "Chỉ có dữ liệu đơn hàng hôm nay.";
+        }elseif($statusPie === false){
+            echo "Chỉ có dữ liệu đơn hàng hôm nay.";
+        } 
+        else {
+            // Nếu cả hai đều thất bại
+            echo "Không thể lấy dữ liệu.";
+        }
+    }    
 }

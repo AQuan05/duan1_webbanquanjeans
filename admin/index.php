@@ -26,7 +26,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role_id'] != 1) {
 $act = isset($_GET['act']) ? $_GET['act'] : '';
 switch ($act) {
     case 'index':
-        include '../admin/view/layout/home.php';
+        $sumOrdersStatusSuccessController = new orderController();
+        $sumOrdersStatusSuccessController->sumOrdersStatusSuccessController();
         break;
     case 'logout':
         if (isset($_SESSION['user'])) {
