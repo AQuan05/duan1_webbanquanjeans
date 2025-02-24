@@ -211,4 +211,29 @@ class AccountController
             }
         }
     }
+    public function edit($user_id) {
+        $user = $this->account->getUser($user_id);
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+            $username = trim($_POST['username']);
+            $email = trim($_POST['email']);
+            $password = $_POST['password'] ?? null;
+            $user_address = trim($_POST['user_address']);
+            $user_phone = trim($_POST['user_phone']);
+            
+            $errors = [];
+            if (empty($username)) $errors['username'] = "Username không được để trống.";
+            if (empty($email)) $errors['email'] = "Email không được để trống.";
+            if (empty($user_address)) $errors['user_address'] = "Địa chỉ không được để trống.";
+            if (empty($user_phone)) $errors['user_phone'] = "Số điện thoại không được để trống.";
+    
+            if (empty($errors)) {
+                $this->account->updateUser($user_id, $username, $email, $password, null, $user_address, $user_phone);
+                header('Location: ?act=/');
+                exit();
+            }
+        }
+    
+        require_once 'view/pagines/acc/editProfile.php'; // Hiển thị giao diện sau khi xử lý form
+    }
 }

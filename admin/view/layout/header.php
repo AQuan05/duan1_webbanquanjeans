@@ -424,9 +424,7 @@
                 <ul class="navbar-nav" id="navbar-nav">
                     <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                            <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
-                        </a>
+                    <a href="?act=index" class="nav-link" data-key="t-alerts">Dashboard</a>
                     </li> <!-- end Dashboard Menu -->
                     <li class="nav-item">
                     </li>
@@ -499,8 +497,7 @@
                         <div class="collapse menu-dropdown" id="sidebarAuth">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="#sidebarSignIn" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin"> List of accounts
-                                    </a>
+                                    <a href="?act=listUsers" class="nav-link" data-key="t-signin"> List of accounts</a>
                                 </li>
                             </ul>
                         </div>

@@ -58,12 +58,6 @@
                         </a>
                         <form class="cr-search" method="POST" action="?act=shop">
                             <input class="search-input" type="text" placeholder="Search For items..." name="search">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>All Categories</option>
-                                <option value="1">Mens</option>
-                                <option value="2">Womens</option>
-                                <option value="3">Electronics</option>
-                            </select>
                             <button type="submit" class="search-btn">
                                 <i class="ri-search-line"></i>
                             </button>
@@ -97,6 +91,12 @@
                                                 <a class="dropdown-item" href="?act=login">Login</a>
                                             </li>
                                         <?php else: ?>
+                                            <li>
+                                                <a class="dropdown-item" href="?act=listOrder&user_id=<?= $_SESSION['user']['user_id'] ?>">Danh sách đơn hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="?act=editprofile&user_id=<?= $_SESSION['user']['user_id'] ?>" class="dropdown-item">Cập nhật thông tin</a>
+                                            </li>
                                             <!-- Nếu đã đăng nhập, hiển thị mục "Logout" -->
                                             <li>
                                                 <a class="dropdown-item" href="?act=logout">Logout</a>

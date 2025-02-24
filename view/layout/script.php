@@ -1,4 +1,5 @@
-<script src="view/assets/js/vendor/jquery-3.6.4.min.js"></script>
+><script src="view/assets/js/vendor/jquery-3.6.4.min.js"></script>
+
     <script src="view/assets/js/vendor/jquery.zoom.min.js"></script>
     <script src="view/assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="view/assets/js/vendor/mixitup.min.js"></script>

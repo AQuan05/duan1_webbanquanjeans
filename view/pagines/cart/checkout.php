@@ -46,14 +46,14 @@
                                                         <div class="cr-pro-image-outer">
                                                             <div class="cr-pro-image">
                                                                 <a href="#" class="image">
-                                                                    <img class="main-image" src="admin/view/assets/images/products/<?php echo ! empty($item['img']) ? htmlspecialchars($item['img']) : 'default.jpg' ?>"
-                                                                        alt="<?php echo ! empty($item['cart_name']) ? htmlspecialchars($item['cart_name']) : 'Sản phẩm không có tên' ?>">
+                                                                    <img class="main-image" src="admin/view/assets/images/products/<?php echo ! empty($item['image']) ? htmlspecialchars($item['image']) : 'default.jpg' ?>"
+                                                                        alt="<?php echo ! empty($item['product_name']) ? htmlspecialchars($item['product_name']) : 'Sản phẩm không có tên' ?>">
                                                                 </a>
                                                             </div>
                                                         </div>
                                                         <div class="cr-pro-content cr-product-details">
                                                             <h5 class="cr-pro-title">
-                                                                <a href="#"><?php echo ! empty($item['cart_name']) ? htmlspecialchars($item['cart_name']) : 'Sản phẩm không có tên' ?></a>
+                                                                <a href="#"><?php echo ! empty($item['product_name']) ? htmlspecialchars($item['product_name']) : 'Sản phẩm không có tên' ?></a>
                                                             </h5>
                                                             <p class="cr-price">
                                                                 <span class="new-price"><?php echo number_format($item['total_price']) ?> VNĐ</span>
@@ -85,20 +85,20 @@
                                     <div class="cr-checkout-pay">
                                         <div class="cr-pay-desc">Please select the preferred payment method to use on this
                                             order.</div>
-                                        
-                                            <span class="cr-pay-option">
-                                                <span>
-                                                    <input type="radio" id="pay1" name="pttt"  value="tt" checked>
-                                                    <label for="pay1">tt</label>
-                                                </span>
+
+                                        <span class="cr-pay-option">
+                                            <span>
+                                                <input type="radio" id="pay1" name="pttt" value="tt" checked>
+                                                <label for="pay1">Trực tiếp</label>
                                             </span>
-                                            <span class="cr-pay-option">
-                                                <span>
-                                                    <input type="radio" id="pay3" name="pttt" value="vnpay">
-                                                    <label for="pay3">vnpay</label>
-                                                </span>
+                                        </span>
+                                        <span class="cr-pay-option">
+                                            <span>
+                                                <input type="radio" id="pay3" name="pttt" value="vnpay">
+                                                <label for="pay3">VN Pay</label>
                                             </span>
-                                      
+                                        </span>
+
                                     </div>
                                 </div>
                             </div>
@@ -125,9 +125,16 @@
                         <!-- checkout content Start -->
                         <div class="cr-checkout-content">
                             <div class="cr-checkout-inner">
+                               
                                 <?php
-                                // Giả sử thông tin user đã đăng nhập được lưu trong session
-                                $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+                                require_once 'model/Account.php'; // Load model
+                                    $userModel = new Account();
+                                    $user = $userModel->getUserById($_SESSION['user']['user_id']);
+                                
+                                // Gán giá trị để hiển thị
+                                $username = htmlspecialchars($user['username'] ?? '');
+                                $user_address = htmlspecialchars($user['user_address'] ?? '');
+                                $user_phone = htmlspecialchars($user['user_phone'] ?? '');
                                 ?>
                                 <div class="cr-checkout-wrap">
                                     <div class="cr-checkout-block cr-check-bill">
@@ -138,20 +145,20 @@
                                                     <div class="col-12 mb-3">
                                                         <label class="form-label">User Name *</label>
                                                         <input type="text" name="username" class="form-control"
-                                                            value="<?php echo htmlspecialchars($user['username'] ?? '') ?>"
+                                                            value="<?= $username ?>"
                                                             placeholder="Enter your user name" required>
                                                     </div>
                                                     <div class="col-12 mb-3">
                                                         <label class="form-label">Address *</label>
                                                         <input type="text" name="address" class="form-control"
-                                                            value="<?php echo htmlspecialchars($user['user_address'] ?? '') ?>"
+                                                            value="<?= $user_address?>"
                                                             placeholder="Address Line 1" required>
                                                     </div>
                                                     <div class="col-12">
                                                         <label class="form-label">Phone Number *</label>
                                                         <div class="input-group">
                                                             <input type="text" name="phonenumber" class="form-control"
-                                                                value="<?php echo htmlspecialchars($user['user_phone'] ?? '') ?>"
+                                                                value="<?= $user_phone ?>"
                                                                 placeholder="Phone Number" required>
                                                         </div>
                                                     </div>
@@ -161,7 +168,7 @@
                                     </div>
                                 </div>
                                 <span class="cr-check-order-btn">
-                                <button type="submit" class="cr-button mt-30" name="place_order">Place Order</button>
+                                    <button type="submit" class="cr-button mt-30" name="place_order">Place Order</button>
                                 </span>
                             </div>
                         </div>

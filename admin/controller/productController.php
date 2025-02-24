@@ -24,6 +24,7 @@ class productController
             $product_name = $_POST['product_name'];
             $category_id = $_POST['category_id'];
             $description = $_POST['description'];
+            $price = $_POST['price'];
             $image = '';
             if (empty($product_name)) {
                 echo '<script>
@@ -56,13 +57,8 @@ class productController
                 $image = $_FILES['image']['name'];
                 move_uploaded_file($_FILES['image']['tmp_name'], '../admin/view/assets/images/products/' . $image);
             }
-            if ($this->Product->addProductModel($product_name, $image, $category_id, $description)) {
+            if ($this->Product->addProductModel($product_name, $image, $category_id, $description,$price)) {
                 $product_id = $this->Product->getLastInsertedId();
-                if (!empty($_POST['color_id']) && !empty($_POST['size_id'])) {
-                    $color_ids = $_POST['color_id'];
-                    $size_ids = $_POST['size_id'];
-                    $prices = $_POST['price'];
-                }
                 echo '<script>
                 document.addEventListener("DOMContentLoaded", function() {
                     Swal.fire({
@@ -116,6 +112,7 @@ class productController
             $description = htmlspecialchars(trim($_POST['description']));
             $category_id = $_POST['category_id'];
             $product_name = htmlspecialchars(trim($_POST['product_name']));
+            $price = htmlspecialchars(trim($_POST['price']));
 
             // Validate tên sản phẩm
             if (empty($product_name)) {
@@ -176,7 +173,7 @@ class productController
             }
 
             // Cập nhật thông tin sản phẩm
-            $updateSuccess = $this->Product->updateProductModel($product_id, $product_name, $image, $category_id, $description);
+            $updateSuccess = $this->Product->updateProductModel($product_id, $product_name, $image, $category_id, $description,$price);
 
             if ($updateSuccess) {
                 // Nếu sản phẩm có biến thể, cập nhật thông tin biến thể

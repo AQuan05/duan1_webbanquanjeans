@@ -22,14 +22,14 @@
                         <h4 class="cr-shop-sub-title">Category</h4>
                         <select id="category-select" class="form-select">
                             <option value="?act=shop">All Categories</option>
-                            <?php foreach ($category as $value): ?>
+                            <?php foreach ($categories as $value){ ?>
                                 <option value="?act=shopCategory&category_id=<?= $value['category_id'] ?>"
                                     <?php if (isset($_GET['category_id']) && $_GET['category_id'] == $value['category_id']): ?>
                                     selected
                                     <?php endif; ?>>
                                     <?= $value['category_name'] ?>
                                 </option>
-                            <?php endforeach; ?>
+                            <?php } ?>
                         </select>
 
                         <script>
@@ -55,49 +55,6 @@
                             }
                         </script>
                     </div>
-                    <div class="cr-shop-price">
-                        <h4 class="cr-shop-sub-title">Price</h4>
-                        <div class="price-range-slider">
-                            <div id="slider-range" class="range-bar"></div>
-                            <p class="range-value">
-                                <label>Price :</label>
-                                <input type="text" id="amount" placeholder="'" readonly>
-                            </p>
-                            <button type="button" class="cr-button">Filter</button>
-                        </div>
-                    </div>
-                    <div class="cr-shop-color">
-                        <h4 class="cr-shop-sub-title">Colors</h4>
-                        <select class="form-select" id="colorSelect">
-                            <option value="">All Colors</option>
-                            <option value="blue">Blue</option>
-                            <option value="yellow">Yellow</option>
-                            <option value="red">Red</option>
-                        </select>
-
-                    </div>
-                    <div class="cr-shop-weight">
-                        <h4 class="cr-shop-sub-title">Weight</h4>
-                        <select class="form-select" id="weightSelect">
-                            <option value="">All Weights</option>
-                            <option value="2kg">2kg Pack</option>
-                            <option value="20kg">20kg Pack</option>
-                            <option value="30kg">30kg Pack</option>
-                        </select>
-                    </div>
-                    <div class="cr-shop-tags">
-                        <h4 class="cr-shop-sub-title">Tages</h4>
-                        <div class="cr-shop-tags-inner">
-                            <ul class="cr-tags">
-                                <li><a href="javascript:void(0)">Vegetables</a></li>
-                                <li><a href="javascript:void(0)">juice</a></li>
-                                <li><a href="javascript:void(0)">Food</a></li>
-                                <li><a href="javascript:void(0)">Dry Fruits</a></li>
-                                <li><a href="javascript:void(0)">Vegetables</a></li>
-                                <li><a href="javascript:void(0)">juice</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-9 col-12 md-30" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="600">
@@ -105,7 +62,7 @@
                 </div>
                 <div class="row col-100 mb-minus-24">
                     <?php ?>
-                    <?php foreach ($product as $key => $pro) { ?>
+                    <?php foreach ($products as $key => $pro) { ?>
                         <div class="col-xxl-3 col-xl-4 col-6 cr-product-box mb-24">
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
@@ -127,15 +84,7 @@
                                 </div>
                                 <div class="cr-product-details">
                                     <div class="cr-brand">
-                                        <a href="shop-left-sidebar.html"><?= $pro['category_name'] ?></a>
-                                        <div class="cr-star">
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-fill"></i>
-                                            <i class="ri-star-line"></i>
-                                            <p>(4.5)</p>
-                                        </div>
+                                        <a href="#"><?= $pro['category_name'] ?></a>
                                     </div>
                                     <a href="?act=shopSingle&product_id=<?= $pro['product_id'] ?>" class="title"><?= $pro['product_name'] ?></a>
 

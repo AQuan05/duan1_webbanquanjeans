@@ -1,4 +1,4 @@
-<?php require_once 'view/layout/header.php' ?>
+<?php require_once 'view/layout/header.php';?>
 <!DOCTYPE html>
 <html lang="en">
 

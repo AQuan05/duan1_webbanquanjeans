@@ -85,7 +85,6 @@ class cartController
         }
     }
     
-
     public function updateCartQuantity()
     {
         if (isset($_POST['cart_item_id']) && isset($_POST['quantity']) && isset($_POST['update_qty'])) {

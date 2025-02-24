@@ -2363,7 +2363,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 .cr-banner-image-one {
   width: 100%;
-  background-image: url("../img/banner/banner.jpg");
+  background-image: url("../img/banner/banner-1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -2371,7 +2371,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 .cr-banner-image-two {
   width: 100%;
-  background-image: url("../img/banner/banner-2.jpg");
+  background-image: url("../img/banner/banner-3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -2542,7 +2542,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
     margin-bottom: 0;
   }
   .cr-hero-banner {
-    height: 400px;
+    height: 800px;
   }
   .cr-slider .swiper-wrapper .swiper-slide p {
     display: none;

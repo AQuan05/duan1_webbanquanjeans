@@ -15,6 +15,11 @@ class Account
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function getUserById($user_id) {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_id = ?");
+        $stmt->execute([$user_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     public function addAccountModel($username, $email, $password)
     {
         try {
@@ -119,5 +124,26 @@ class Account
         $stmt->bindParam(':email', $email);
 
         return $stmt->execute(); // Trả về true nếu thành công, false nếu thất bại
+    }
+    public function updateUser($id, $username, $email, $password, $status = null, $address = null, $phone = null) {
+        $sql = "UPDATE users SET username = :username, password = :password,email = :email, status = :status, user_address = :address, user_phone = :phone";
+        $params = [
+            ':username' => $username,
+            ':password' => $password,
+            ':email' => $email,
+            ':status' => $status,
+            ':address' => $address,
+            ':phone' => $phone,
+            ':id' => $id
+        ];
+
+        if ($password) {
+            $sql .= ", password = :password";
+            //  
+        }
+
+        $sql .= " WHERE user_id = :id";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute($params);
     }
 }
