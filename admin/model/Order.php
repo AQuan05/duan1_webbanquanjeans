@@ -100,25 +100,35 @@ class Order
         return $result['total'] ?? 0;
     }
 
-    public function statusPie()
-    {
-        $sql = "SELECT COUNT(*) as total FROM orders where status_id in(1, 4)  group by status_id";
-        $stmt = $this->conn->prepare($sql);
+
+    public function getRevenueByDate() {
+        $query = "SELECT DATE(created_at) as order_date, SUM(total_price) as total_revenue 
+                  FROM orders 
+                  GROUP BY DATE(created_at) 
+                  ORDER BY order_date ASC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $dates = [];
+        $revenues = [];
+        foreach ($result as $row) {
+            $dates[] = $row['order_date'];
+            $revenues[] = (float)$row['total_revenue']; // Ép kiểu để tránh lỗi JS sau này
+        }
+        return ['dates' => $dates, 'revenues' => $revenues];
+    }
+    public function getOrderStatusRatio() {
+        $query = "SELECT 
+                    SUM(CASE WHEN status_id = 0 THEN 1 ELSE 0 END) as canceled,
+                    SUM(CASE WHEN status_id = 4 THEN 1 ELSE 0 END) as successful
+                  FROM orders";
+        $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $data =  [
-            'cancelled' => 0,
-            'success' => 0
+        
+        return [
+            'canceled' => (int)($result['canceled'] ?? 0),
+            'successful' => (int)($result['successful'] ?? 0)
         ];
-        foreach ($result as $key) {
-            if ($key['status_id'] == 1) {
-                $data['cancelled'] = $key['total'];
-            }
-            if ($key['status_id'] == 4) {
-                $data['success'] = $key['total'];
-            }
-        }
-        return $data;
     }
 }
