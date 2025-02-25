@@ -60,26 +60,35 @@ class orderController
             echo "Cập nhật trạng thái thất bại!";
         }
     }
-    public function sumOrdersStatusSuccessController()
-    {
+    public function sumOrdersStatusSuccessController() {
         $sumStatusSucces = $this->Order->sumOrdersStatusSuccess();
         $orderToday = $this->Order->orderToady();
-        $statusPie = $this->Order->statusPie();
+
+    
+        $revenueData = $this->Order->getRevenueByDate();
+        $dates = $revenueData['dates'] ?? [];
+        $revenues = $revenueData['revenues'] ?? [];
+        $statusRatio = $this->Order->getOrderStatusRatio();
+        $canceled = $statusRatio['canceled'] ?? 0;
+        $successful = $statusRatio['successful'] ?? 0;
         if ($sumStatusSucces !== false && $orderToday !== false) {
-            // Nếu cả hai hàm đều trả về dữ liệu hợp lệ
+            $data = [
+                'sumStatusSucces' => $sumStatusSucces,
+                'orderToday' => $orderToday,
+        
+                'dates' => json_encode($dates),
+                'revenues' => json_encode($revenues),
+                'canceled' => $canceled,
+                'successful' => $successful
+            ];
+            // var_dump($data); die;
             require_once '../admin/view/layout/home.php';
         } elseif ($sumStatusSucces !== false) {
-            // Nếu chỉ có $sumStatusSucces có giá trị hợp lệ
             echo "Chỉ có dữ liệu tổng đơn hàng thành công.";
         } elseif ($orderToday !== false) {
-            // Nếu chỉ có $orderToday có giá trị hợp lệ
             echo "Chỉ có dữ liệu đơn hàng hôm nay.";
-        }elseif($statusPie === false){
-            echo "Chỉ có dữ liệu đơn hàng hôm nay.";
-        } 
-        else {
-            // Nếu cả hai đều thất bại
+        } else {
             echo "Không thể lấy dữ liệu.";
         }
-    }    
+    }
 }

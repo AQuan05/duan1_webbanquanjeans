@@ -5,9 +5,7 @@
     <script src="../admin/view/assets/libs/feather-icons/feather.min.js"></script>
     <script src="../admin/view/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
     <script src="../admin/view/assets/js/plugins.js"></script>
-
-    <!-- apexcharts -->
-    <script src="../admin/view/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
     <!-- Vector map-->
     <script src="../admin/view/assets/libs/jsvectormap/jsvectormap.min.js"></script>

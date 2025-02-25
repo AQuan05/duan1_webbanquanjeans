@@ -38,9 +38,19 @@
                                         <div class="col-xl-6">
                                             <div class="mb-3">
                                                 <label for="image" class="form-label">Image</label>
-                                                <input type="file" name="image" class="form-control" value="<?= htmlspecialchars($oneProduct['image']) ?>" placeholder="Please select a photo" id="image">
+                                                <?php if (!empty($oneProduct['image'])): ?>
+                                                    <div class="mt-2">
+                                                        <img src="../admin/view/assets/images/products/<?= htmlspecialchars($oneProduct['image']) ?>"
+                                                            alt="Product Image"
+                                                            width="150">
+                                                    </div>
+                                                <?php endif; ?>
+                                                <input type="file" name="image" class="form-control" id="image">
+
+                                                <!-- Thêm phần hiển thị ảnh cũ -->
                                             </div>
-                                        </div><!-- end col -->
+                                        </div>
+
                                     </div><!-- end row -->
                                 </div>
 
