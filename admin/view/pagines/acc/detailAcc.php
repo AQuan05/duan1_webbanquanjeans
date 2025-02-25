@@ -32,7 +32,7 @@
                                                     <label for="username" class="form-label">Username</label>
                                                     <input type="text" name="username" class="form-control"
                                                         value="<?= htmlspecialchars($oneUser['username']) ?>"
-                                                        placeholder="Please enter username" id="username">
+                                                        placeholder="Please enter username" id="username" readonly>
                                                 </div>
                                             </div><!-- end col -->
 
@@ -41,7 +41,7 @@
                                                     <label for="email" class="form-label">Email</label>
                                                     <input type="email" name="email" class="form-control"
                                                         value="<?= htmlspecialchars($oneUser['email']) ?>"
-                                                        placeholder="Please enter email" id="email">
+                                                        placeholder="Please enter email" id="email" readonly>
                                                 </div>
                                             </div><!-- end col -->
                                         </div><!-- end row -->
@@ -54,7 +54,7 @@
                                                     <label for="password" class="form-label">Password</label>
                                                     <input type="password" name="password" class="form-control"
                                                         value="<?= htmlspecialchars($oneUser['password']) ?>"
-                                                        placeholder="Please enter password" id="password">
+                                                        placeholder="Please enter password" id="password" readonly>
                                                 </div>
                                             </div><!-- end col -->
 
@@ -63,7 +63,7 @@
                                                     <label for="phone" class="form-label">Phone</label>
                                                     <input type="text" name="phone" class="form-control"
                                                         value="<?= htmlspecialchars($oneUser['user_phone'] ?? '') ?>"
-                                                        placeholder="Please enter phone number" id="phone">
+                                                        placeholder="Please enter phone number" id="phone" readonly>
                                                 </div>
                                             </div><!-- end col -->
 
@@ -72,7 +72,7 @@
                                                     <label for="address" class="form-label">Address</label>
                                                     <input type="text" name="address" class="form-control"
                                                         value="<?= htmlspecialchars($oneUser['user_address'] ?? '') ?>"
-                                                        placeholder="Please enter address" id="address">
+                                                        placeholder="Please enter address" id="address" readonly>
                                                 </div>
                                             </div><!-- end col -->
                                         </div><!-- end row -->
