@@ -1,6 +1,5 @@
 <?php
 require_once 'model/Account.php';
-
 class AccountController
 {
     public $account;
