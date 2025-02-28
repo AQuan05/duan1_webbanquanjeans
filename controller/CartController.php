@@ -38,7 +38,6 @@ class cartController
             $cartItems = [];
         }
 
-        // Gửi dữ liệu sang view
         include "view/pagines/cart/viewcart.php";
     }
 
