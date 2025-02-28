@@ -36,7 +36,6 @@ class AccountController
             if (empty($password)) {
                 $errors['password'] = 'Password cannot be blank';
             }
-
             // Nếu không có lỗi trống thì kiểm tra định dạng
             if (empty($errors)) {
                 // 2. Kiểm tra định dạng
@@ -44,7 +43,6 @@ class AccountController
                 if ($usernameValidation !== true) {
                     $errors['username'] = $usernameValidation;
                 }
-
                 $emailValidation = Validator::validateEmail($email);
                 if ($emailValidation !== true) {
                     $errors['email'] = $emailValidation;
@@ -55,7 +53,6 @@ class AccountController
                     $errors['password'] = $passwordValidation;
                 }
             }
-
             // 3. Kiểm tra trùng lặp trong database (nếu không có lỗi định dạng)
             if (empty($errors)) {
                 $existingUser = $this->account->checkUsername($username);
@@ -204,7 +201,6 @@ class AccountController
                 header('Location: ?act=login');
                 exit();
             } else {
-                // Nếu không thành công, hiển thị thông báo lỗi
                 $_SESSION['error'] = "Failed to reset password. Please try again.";
                 header('Location: ?act=resetPassword');
                 exit();
@@ -234,6 +230,6 @@ class AccountController
             }
         }
     
-        require_once 'view/pagines/acc/editProfile.php'; // Hiển thị giao diện sau khi xử lý form
+        require_once 'view/pagines/acc/editProfile.php';
     }
 }
