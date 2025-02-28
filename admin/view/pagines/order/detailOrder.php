@@ -46,13 +46,24 @@
                                                 break; // Lấy trạng thái kế tiếp đầu tiên và dừng vòng lặp
                                             }
                                         }
+
+                                        // Kiểm tra nếu trạng thái hiện tại là 4, thì không cho phép sửa
+                                        $isDisabled = ($current_status == 4) ? 'disabled' : '';
                                         ?>
-                                        <select name="status_id" class="form-select" <?= $current_status == 0 ? 'disabled' : ''; ?>>
+                                        <select name="status_id" class="form-select" <?= $current_status == 0 || $isDisabled ? 'disabled' : ''; ?>>
                                             <?php
                                             foreach ($statuses as $status) {
                                                 // Nếu trạng thái là "Đã hủy", chỉ hiển thị nó và vô hiệu hóa dropdown
                                                 if ($current_status == 0) {
                                                     if ($status['status_id'] == 0) {
+                                                        echo '<option value="' . $status['status_id'] . '" selected disabled>' . $status['status_name'] . '</option>';
+                                                    }
+                                                    continue;
+                                                }
+
+                                                // Nếu trạng thái là 4, không cho phép chọn bất kỳ trạng thái nào khác
+                                                if ($current_status == 4) {
+                                                    if ($status['status_id'] == 4) {
                                                         echo '<option value="' . $status['status_id'] . '" selected disabled>' . $status['status_name'] . '</option>';
                                                     }
                                                     continue;
@@ -76,7 +87,8 @@
                                 <!-- Hidden field để gửi order_id -->
                                 <input type="hidden" name="order_id" value="<?= $orderDetails[0]['order_id'] ?>">
 
-                                <button type="submit" class="btn btn-primary btn-sm mt-2" style="margin-left: 1200px;" <?= $current_status == 0 ? 'disabled' : ''; ?>>Update Order</button>
+                                <button type="submit" class="btn btn-primary btn-sm mt-2" style="margin-left: 1200px;" <?= ($current_status == 0 || $current_status == 4) ? 'disabled' : ''; ?>>Update Order</button>
+                                            <button type="button" class="btn btn-primary btn-sm mt-2"><a href="index.php?act=listOrders" style="color: aliceblue;">Back</a></button>
                             </form>
 
                         </div>
