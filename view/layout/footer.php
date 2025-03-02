@@ -1,5 +1,5 @@
 <?php 
-include 'view/layout/script.php';
+include_once 'view/layout/script.php';
 ?>
 <footer class="footer padding-t-100 bg-off-white">
         <div class="container">

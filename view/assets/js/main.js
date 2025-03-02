@@ -39,7 +39,9 @@
 
         $('.plus').on("click", function () {
             var $input = $(this).parent().find('input');
-            $input.val(parseInt($input.val()) + 1);
+            var count = $input.val(parseInt($input.val()) + 1);
+            count = count < 10 ? count : 10;
+            $input.val(count);
             $input.change();
             return false;
         });
