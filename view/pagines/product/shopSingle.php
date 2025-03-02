@@ -78,7 +78,7 @@ $commentModel = new Comment();
                         </div>
                         <div class="cr-add-card">
                             <div class="cr-qty-main">
-                                <input type="number" placeholder="." value="1" min="1" maxlength="20" name="quantity" class="quantity" required>
+                                <input type="number" placeholder="." value="1" min="1" max="10" name="quantity" class="quantity" required>
                                 <button type="button" class="plus">+</button>
                                 <button type="button" class="minus">-</button>
                             </div>
